@@ -1,6 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-git pull
+git pull origin master
 function doIt() {
 rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av . ~
 }
@@ -14,4 +14,4 @@ else
 fi
 fi
 unset doIt
-source ~/.bash_profile
+source ~/.bashrc
