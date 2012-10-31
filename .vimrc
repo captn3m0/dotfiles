@@ -17,7 +17,7 @@ set autoindent
 set copyindent
 
 set showmode
-colorscheme Tomorrow-Night-Bright 
+colorscheme zmrok  
 set laststatus=2   " Always show the statusline
 set cinkeys=0{,0},:,0#,!^F
 set t_Co=256
