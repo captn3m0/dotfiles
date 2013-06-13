@@ -24,6 +24,7 @@ HISTFILESIZE=2000
 alias llama='ssh git@git.sdslabs.co.in llama'
 alias sublime='~/apps/sublime/sublime_text'
 alias chrome='chromium-browser'
+alias putio="echo -n \"captn3m0:A0CH5tEjSJ6zbisB\" |base64|xargs -I \"$$\" axel -n 10 -a --header \"Authorization: Basic $$\""
 alias gittunnel='ssh mobile@10.42.43.2 -L 2000:github.com:22 -N'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
