@@ -74,10 +74,6 @@ COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
 export COMP_WORDBREAKS
 
-#SCM Breeze, used for ga,gs,gc etc
-[[ -s "$HOME/.scm_breeze/scm_breeze.sh" ]] && . "$HOME/.scm_breeze/scm_breeze.sh"
-
-
 # autoload -U compinit
 # compinit
 export BLOCKSIZE=K
@@ -283,3 +279,5 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 export PATH="/usr/local/heroku/bin:$PATH"
 eval `keychain --eval --agents ssh id_rsa`
 
+#SCM Breeze
+[ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
