@@ -37,7 +37,7 @@ if [[ -x /usr/bin/dircolors ]]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
+export TERM=xterm-256color
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -280,4 +280,10 @@ export PATH="/usr/local/heroku/bin:$PATH"
 eval `keychain --eval --agents ssh id_rsa`
 
 #SCM Breeze
+
 [ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
+
+#UTF-8 Alias
+export LC_ALL=en_US.UTF-8
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
