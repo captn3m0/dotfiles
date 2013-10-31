@@ -285,5 +285,3 @@ eval `keychain --eval --agents ssh id_rsa`
 
 #UTF-8 Alias
 export LC_ALL=en_US.UTF-8
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
