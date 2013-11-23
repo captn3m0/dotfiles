@@ -22,8 +22,8 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 force_color_prompt=yes
-
-	color_prompt=yes
+color_prompt=yes
+export TERM=xterm-256color
 
 
 # enable color support of ls and also add handy aliases
@@ -60,9 +60,13 @@ export LC_ALL="C" ##For the weird characters in man pages
 rvm default #Use the default ruby
 
 #My latest prompt
-PROMPT_COMMAND='PS1="\[\033[0;33m\][\!]\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\`if [[ `pwd|wc -c|tr -d " "` > 18 ]]; then echo "\\W"; else echo "\\w"; fi\`]\$\[\033[0m\] "; echo -ne "\033]0;`pwd`\007";'
 
-###-begin-npm-completion-###
+function _update_ps1() {
+  export PS1="$(~/projects/ubuntu_packages/powerline-shell/powerline-shell.py --mode compatible $? 2> /dev/null)"
+}
+
+export PROMPT_COMMAND="_update_ps1"
+###b-egin-npm-completion-###
 #
 # npm command completion script
 #
