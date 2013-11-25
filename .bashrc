@@ -62,7 +62,7 @@ rvm default #Use the default ruby
 #My latest prompt
 
 function _update_ps1() {
-  export PS1="$(~/projects/ubuntu_packages/powerline-shell/powerline-shell.py --mode compatible $? 2> /dev/null)"
+  export PS1="$(~/projects/ubuntu_packages/powerline-shell/powerline-shell.py $? 2> /dev/null)"
 }
 
 export PROMPT_COMMAND="_update_ps1"
