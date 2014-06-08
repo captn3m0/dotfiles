@@ -1,4 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/nemo/projects/sdslabs/saavn/.git'
 let g:netrw_dirhist_2='/home/nemo/projects/sdslabs/saavn'
+let g:netrw_dirhist_3='/home/nemo/projects/sdslabs/muzi/js/lib'
+let g:netrw_dirhist_4='/home/nemo/.rvm/gems/ruby-2.0.0-p247/gems/octokit-2.6.2/lib/octokit'
+let g:netrw_dirhist_5='/home/nemo/.rvm/gems/ruby-2.0.0-p247/gems/octokit-2.6.2/lib'
