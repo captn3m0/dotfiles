@@ -1,0 +1,195 @@
+*Powerline.txt*	For Vim version 7.3.	Last change: 2011 Nov 23
+
+                                            ______
+         _________                          \    /__
+         \_____   \______  _  _____________ /   /'__' ___   ____
+          |    ___/  _ \ \/ \/ / __ \_  ___\   / |  |/   \_/ __ \
+          |   |  |  (_) \  _  /  ___/|  |  /  /__|  |  |  \  ___/
+          '___'   \____/ \/ \/ \___  |__' /___  /'__'__|  /\___ \
+                                   \/        / /        \/     \/
+                                            | /
+                                            |/
+                                            '
+
+==============================================================================
+CONTENTS                                                  *Powerline-contents*
+
+    1. Introduction ....................... |Powerline-introduction|
+    2. Usage .............................. |Powerline-usage|
+    3. Requirements ....................... |Powerline-requirements|
+       3.1 Recommended settings ........... |Powerline-recommended-settings|
+    4. Configuration ...................... |Powerline-configuration|
+       4.1 Powerline_cache_file ........... |Powerline_cache_file|
+       4.2 Powerline_cache_enabled ........ |Powerline_cache_enabled|
+       4.3 Powerline_symbols .............. |Powerline_symbols|
+           4.3.1 Compatible symbols ....... |Powerline-symbols-compatible|
+           4.3.2 Fancy symbols ............ |Powerline-symbols-fancy|
+       4.4 Powerline_theme ................ |Powerline_theme|
+       4.5 Powerline_colorscheme .......... |Powerline_colorscheme|
+    5. Fonts .............................. |Powerline-fonts|
+    6. Customization ...................... |Powerline-customization|
+       6.1 Basics ......................... |Powerline-cust-basics|
+       6.2 Functions ...................... |Powerline-cust-functions|
+    7. License ............................ |Powerline-license|
+    8. Known issues ....................... |Powerline-known-issues|
+    9. Contributing ....................... |Powerline-contributing|
+
+==============================================================================
+1. Introduction                           *Powerline* *Powerline-introduction*
+
+Powerline is a utility plugin which allows you to create better-looking, more 
+functional vim statuslines.
+
+==============================================================================
+2. Usage                                                     *Powerline-usage*
+
+Powerline is automatically enabled when it's installed, either by unzipping 
+the provided archive or by adding it as a Pathogen/Vundle bundle.
+
+==============================================================================
+3. Requirements                                       *Powerline-requirements*
+
+Powerline has been developed and tested in vim 7.3, but it should run without 
+any problems in vim 7.2. The default configuration requires a Unix-like system 
+to work properly.
+
+The plugin only works with vim running in an 88/256-color terminal or gvim.
+
+Vi-compatible mode must be disabled.
+
+------------------------------------------------------------------------------
+3.1 Recommended settings                      *Powerline-recommended-settings*
+
+The following configuration options should be set in your |vimrc|: >
+
+    set nocompatible   " Disable vi-compatibility
+    set laststatus=2   " Always show the statusline
+    set encoding=utf-8 " Necessary to show unicode glyphs
+
+Note: If you're using an 88/256-color terminal but still don't see the colored 
+statusline, you may have to set the following option as well: >
+
+    set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
+
+==============================================================================
+4. Configuration                                     *Powerline-configuration*
+
+Powerline will work fine without any user configuration, but default behavior 
+can be overridden by setting configuration variables globally in your |vimrc| 
+file.
+
+------------------------------------------------------------------------------
+4.1 Powerline_cache_file                                *Powerline_cache_file*
+
+By default Powerline caches all the statuslines and colors in a cache file in 
+the plugin's directory (or the vim directory, depending on the installation 
+method used).
+
+It's recommended that you enable the cache, as this dramatically improves vim 
+startup time after the cache file has been generated (the plugin usually loads 
+within ~100ms without the cache and ~1ms with the cache).
+
+Note: The default cache filename includes the current theme, colorscheme and 
+symbol settings in order to tie the cache file your current configuration, so 
+the cache file will be regenerated when you change any settings. This may 
+leave several old cache files in your vim folder, and these may safely be 
+deleted.
+
+Defaults: "<plugin_directory>/Powerline_<theme>_<colorscheme>_<symbols>.cache"
+
+------------------------------------------------------------------------------
+4.2 Powerline_cache_enabled                          *Powerline_cache_enabled*
+
+It's possible to disable statusline caching by setting this option to 0. This 
+is mostly useful when developing statuslines.
+
+Default: 1
+
+------------------------------------------------------------------------------
+4.3 Powerline_symbols                                      *Powerline_symbols*
+
+This option defines which set of symbols and dividers you want to use. There 
+are currently three available options: "compatible", "unicode" and "fancy".
+
+    TYPE           DESCRIPTION ~
+    compatible     Doesn't use any special characters.
+    unicode        Simulates icons and arrows using similar unicode glyphs.
+    fancy          Custom icons and arrows. Requires a patched font.
+
+Symbols can be inserted into statuslines by using the following variables:
+
+    VARIABLE       DESCRIPTION ~
+    $BRANCH        Inserts a branch symbol
+    $RO            Inserts a read-only symbol
+    $FT            Inserts a filetype symbol
+    $LINE          Inserts a line number symbol
+
+Default: "compatible"
+
+------------------------------------------------------------------------------
+4.3.1 Compatible symbols                        *Powerline-symbols-compatible*
+
+These symbols will work in any configuration, and do not require a special 
+font to work. This option will replace the fancy icons with plain text, and 
+the pointy dividers with straight lines.
+
+------------------------------------------------------------------------------
+4.3.2 Fancy symbols                                  *Powerline-symbols-fancy*
+
+These symbols require a custom font to work. A font patcher is provided for 
+adding the required symbols to any outline font and some bitmap fonts, see 
+|Powerline-fonts| and the provided README file for usage details.
+
+------------------------------------------------------------------------------
+4.4 Powerline_theme                                          *Powerline_theme*
+
+TODO
+
+------------------------------------------------------------------------------
+4.5 Powerline_colorscheme                              *Powerline_colorscheme*
+
+TODO
+
+==============================================================================
+5. Fonts                                                     *Powerline-fonts*
+
+TODO
+
+==============================================================================
+6. Customization                                     *Powerline-customization*
+
+------------------------------------------------------------------------------
+6.1 Basics                                             *Powerline-cust-basics*
+
+TODO
+
+------------------------------------------------------------------------------
+6.2 Functions                                       *Powerline-cust-functions*
+
+TODO
+
+==============================================================================
+7. License                                                 *Powerline-license*
+
+Creative Commons Attribution-ShareAlike 3.0 Unported
+
+http://creativecommons.org/licenses/by-sa/3.0/
+
+==============================================================================
+8. Known issues                                       *Powerline-known-issues*
+
+See the issue tracker at
+https://github.com/Lokaltog/vim-powerline/issues
+
+==============================================================================
+9. Contributing                                       *Powerline-contributing*
+
+If you experience any bugs or have feature requests, please open an issue on
+GitHub. Fork the source repository on GitHub and send a pull request if you
+have any code improvements.
+
+Author: Kim Silkebækken <kim.silkebaekken+vim@gmail.com>
+Source repository: https://github.com/Lokaltog/vim-powerline
+
+==============================================================================
+vim:tw=78:sw=4:ts=8:ft=help:norl:
