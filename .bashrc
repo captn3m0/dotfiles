@@ -24,6 +24,7 @@ esac
 force_color_prompt=yes
 color_prompt=yes
 export TERM=xterm-256color
+TERM=xterm-256color
 
 
 # enable color support of ls and also add handy aliases
@@ -289,3 +290,4 @@ eval `keychain --eval --agents ssh id_rsa`
 
 #UTF-8 Alias
 export LC_ALL=en_US.UTF-8
+alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
