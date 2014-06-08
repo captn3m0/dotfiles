@@ -10,7 +10,7 @@ export PATH=$PATH:/opt/framework-3.5.2/app/:/sbin:/home/nemo/projects/scripts/:/
 HISTSIZE=1000
 HISTFILESIZE=2000
 alias llama='ssh git@git.sdslabs.co.in llama'
-alias sublime='~/apps/sublime/sublime_text'
+alias sublime='/usr/bin/sublime-text'
 alias chrome='chromium-browser'
 alias putio="echo -n \"captn3m0:A0CH5tEjSJ6zbisB\" |base64|xargs -I \"$$\" axel -n 10 -a --header \"Authorization: Basic $$\""
 alias gittunnel='ssh mobile@10.42.43.2 -L 2000:github.com:22 -N'
@@ -58,7 +58,7 @@ export LC_ALL="C" ##For the weird characters in man pages
 
 #Ruby version manager
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-rvm default #Use the default ruby
+#rvm default #Use the default ruby
 
 #My latest prompt
 
