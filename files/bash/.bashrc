@@ -3,7 +3,7 @@ alias sl=ls
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 #metasploit, my own scripts, texlive
-export PATH=$PATH:/opt/framework-3.5.2/app/:/sbin:/home/nemo/projects/scripts/:/home/nemo/projects/ubuntu_packages/android-sdk-linux/tools:/opt/vagrant/bin
+export PATH=$PATH:/opt/framework-3.5.2/app/:/sbin:/home/nemo/projects/scripts/:/home/nemo/projects/ubuntu_packages/android-sdk-linux/tools:/opt/vagrant/bin:$HOME/.phpenv/bin
 # append to the history file, don't overwrite it
 . ~/.nvm/nvm.sh #node version manager
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
@@ -283,7 +283,8 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 eval `keychain --eval --agents ssh id_rsa`
-
+#Importing phpenv
+eval "$(phpenv init -)"
 #SCM Breeze
 
 [ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
