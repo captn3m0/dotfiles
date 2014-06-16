@@ -14,6 +14,7 @@
 	token = 
 [alias]
     pom = push origin master
+    pod = push origin development
     pu = pull
     po  = push origin
     co  = checkout
