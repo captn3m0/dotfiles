@@ -58,6 +58,8 @@ export LC_ALL="C" ##For the weird characters in man pages
 
 #Ruby version manager
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+alias rake='spring rake'
+alias rails='spring rails'
 #rvm default #Use the default ruby
 
 #My latest prompt
