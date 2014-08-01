@@ -14,6 +14,7 @@ alias sublime='/usr/bin/sublime-text'
 alias chrome='chromium-browser'
 alias putio="echo -n \"captn3m0:A0CH5tEjSJ6zbisB\" |base64|xargs -I \"$$\" axel -n 10 -a --header \"Authorization: Basic $$\""
 alias gittunnel='ssh mobile@10.42.43.2 -L 2000:github.com:22 -N'
+alias subtitles='subliminal -l en -s -- $1'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -149,7 +150,7 @@ export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
 # mesg n              				#
 set -b						# causes output from background processes to be output right away, not on wait for next primary prompt
 # set bell-style visible			# I hate noise
-set completion-ignore-case on 		# complete things that have been typed in the wrong case
+#set completion-ignore-case on 		# complete things that have been typed in the wrong case
 # set -o ignoreeof				# can't c-d out of shell
 # set -o noclobber				# disallow > to work on files that already exist (prevents catting over file)
 set -o notify					# notify when jobs running in background terminate
