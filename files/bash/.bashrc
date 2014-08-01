@@ -15,6 +15,7 @@ alias chrome='chromium-browser'
 alias putio="echo -n \"captn3m0:A0CH5tEjSJ6zbisB\" |base64|xargs -I \"$$\" axel -n 10 -a --header \"Authorization: Basic $$\""
 alias gittunnel='ssh mobile@10.42.43.2 -L 2000:github.com:22 -N'
 alias subtitles='subliminal -l en -s -- $1'
+alias charge='BUSNUM=003 DEVNUM="`lsusb -d 05ac:12a2 |cut -c16-18`" /home/nemo/projects/ubuntu_packages/ipad_charge/ipad_charge'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -295,3 +296,7 @@ eval "$(phpenv init -)"
 #UTF-8 Alias
 export LC_ALL=en_US.UTF-8
 alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
+# iOS Jailbreak development
+export THEOS=/home/nemo/apps/theos
+export THEOS_DEVICE_IP=192.168.1.101
+export THEOS_DEVICE_PORT=22
