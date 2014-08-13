@@ -17,6 +17,7 @@
     pod = push origin development
     pu = pull
     po  = push origin
+    fo  = fetch origin
     co  = checkout
     ci  = commit
 [color]
