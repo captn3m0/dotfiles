@@ -85,10 +85,16 @@ set hidden
 set history=1000
 set undolevels=1000
 
-set pastetoggle=<F2>
+set pastetoggle=<F7>
 nnoremap j gj
 nnoremap k gk
 
 cmap w!! w !sudo tee % >/dev/null
 map <silent><F3> :NEXTCOLOR<cr>
 map <silent><F2> :PREVCOLOR<cr>
+
+" Open nerdtree if no file was specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-t> :NERDTreeToggle<CR>
+
