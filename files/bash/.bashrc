@@ -14,7 +14,7 @@ alias sublime='/usr/bin/sublime-text'
 alias chrome='chromium-browser'
 alias putio="echo -n \"captn3m0:A0CH5tEjSJ6zbisB\" |base64|xargs -I \"$$\" axel -n 10 -a --header \"Authorization: Basic $$\""
 alias gittunnel='ssh mobile@10.42.43.2 -L 2000:github.com:22 -N'
-alias subtitles='subliminal -l en -s -- $1'
+alias subtitles='subliminal -p addic7ed -l en -s -- $1'
 alias charge='BUSNUM=003 DEVNUM="`lsusb -d 05ac:12a2 |cut -c16-18`" /home/nemo/projects/ubuntu_packages/ipad_charge/ipad_charge'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
