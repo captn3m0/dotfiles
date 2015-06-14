@@ -1,21 +1,39 @@
+#!/bin/bash
+
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+pathadd '$HOME/bin'
+
 alias xclip='xclip -selection c'
 alias sl=ls
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 #metasploit, my own scripts, texlive
-export PATH=$PATH:/opt/framework-3.5.2/app/:/sbin:/home/nemo/projects/scripts/:/home/nemo/projects/ubuntu_packages/android-sdk-linux/tools:/opt/vagrant/bin:$HOME/.phpenv/bin
+pathadd '/opt/framework-3.5.2/app/'
+pathadd '/sbin'
+pathadd '/home/nemo/projects/scripts/'
+pathadd '/home/nemo/projects/ubuntu_packages/android-sdk-linux/tools'
+pathadd '/opt/vagrant/bin'
+pathadd '$HOME/.phpenv/bin'
+
+source $HOME/.nvm/nvm.sh #node version manager
+
 # append to the history file, don't overwrite it
-. ~/.nvm/nvm.sh #node version manager
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 alias llama='ssh git@git.sdslabs.co.in llama'
+alias capt='ssh git@git.sdslabs.co.in capt'
 alias sublime='/usr/bin/sublime-text'
 alias chrome='chromium-browser'
-alias putio="echo -n \"captn3m0:A0CH5tEjSJ6zbisB\" |base64|xargs -I \"$$\" axel -n 10 -a --header \"Authorization: Basic $$\""
 alias gittunnel='ssh mobile@10.42.43.2 -L 2000:github.com:22 -N'
 alias subtitles='subliminal -p addic7ed -l en -s -- $1'
 alias charge='BUSNUM=003 DEVNUM="`lsusb -d 05ac:12a2 |cut -c16-18`" /home/nemo/projects/ubuntu_packages/ipad_charge/ipad_charge'
+alias pu='phpunit'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -58,11 +76,9 @@ function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264
 #export LANG=en_US
 export LC_ALL="C" ##For the weird characters in man pages
 
-#Ruby version manager
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 alias rake='spring rake'
 alias rails='spring rails'
-#rvm default #Use the default ruby
+alias rt='ruby -I"lib:test"' # rake test shortcut to run test for one script
 
 #My latest prompt
 
@@ -94,10 +110,10 @@ export EDITOR='vim'
 # export GPG_TTY='tty'				# gpg-agent says it needs this
 export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
 export HISTCONTROL=ignoreboth:erasedups		# for 'ignoreboth': ignore duplicates and /^\s/
-#export HISTCONTROL=ignoreboth			# ignore spaced commands and prevents storing of duplicate commands (ie, ignoredups & ignorespace)
-#export HISTCONTROL=ignoredups			# don't put duplicate lines in the history. See bash(1) for more options
-#export HISTCONTROL=ignorespace		# will make sure that bash don’t store any command beginning with the space character
-# export HISTFILE='$HOME/.history'
+export HISTCONTROL=ignoreboth			# ignore spaced commands and prevents storing of duplicate commands (ie, ignoredups & ignorespace)
+export HISTCONTROL=ignoredups			# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignorespace		# will make sure that bash don’t store any command beginning with the space character
+export HISTFILE='$HOME/.history'
 # export HISTFILESIZE=10000			# increase or decrease the size of the history to '10,000'
 # export HISTFILESIZE=${HISTSIZE}		# bash will remember 'N' commands
 #export HISTIGNORE='&:bg:fg:ll:h'
@@ -135,7 +151,6 @@ export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'	# use this if lesspipe.sh exists
 # export MY_PROXY='http://YOUR_USERNAME:YOUR_PASSWORD@PROXY_IP:PROXY_PORT/'
 # export OOO_FORCE_DESKTOP=gnome   		# openoffice preferences
 export PAGER='less -e'
-# export PATH=$PATH:$HOME/scripts
 # export PILOTRATE=57600			# make pilot-xfer go faster than 9600
 export TERM='xterm'
 export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
@@ -285,18 +300,268 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+pathadd '/usr/local/heroku/bin'
 eval `keychain --eval --agents ssh id_rsa`
 #Importing phpenv
-eval "$(phpenv init -)"
-#SCM Breeze
-
-[ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
+# eval "$(phpenv init -)"
 
 #UTF-8 Alias
 export LC_ALL=en_US.UTF-8
 alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
+
 # iOS Jailbreak development
 export THEOS=/home/nemo/apps/theos
 export THEOS_DEVICE_IP=192.168.1.101
 export THEOS_DEVICE_PORT=22
+
+# added by travis gem
+[ -f /home/nemo/.travis/travis.sh ] && source /home/nemo/.travis/travis.sh
+#[[ -s "/home/nemo/.gvm/scripts/gvm" ]] && source "/home/nemo/.gvm/scripts/gvm"
+
+#PERL_MB_OPT="--install_base \"/home/nemo/perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/home/nemo/perl5"; export PERL_MM_OPT;
+#eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+
+#Ruby version manager
+source "$HOME/.rvm/scripts/rvm"
+
+#SCM Breeze
+[ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
+#  ┌────────────────────┐
+#  │   APT-* WRAPPERS   │
+#──┴────────────────────┴───────────────────────────────────────────────────────
+# {{{ [01] MAKE COMPLETION WRAPPER
+#-------------------------------------------------------------------------------
+# {{{ [X] WRAPPER
+#-----------------------------------------------------------
+# Source:       http://ubuntuforums.org/showthread.php?t=733397
+# Author:       Ole J
+
+# Description:  Wraps a function for bash completion:
+#               make-completion-wrapper <completionFunction> <newFunc> <cmdName> <newArgs>
+
+# Directions:   alias agi='apt-get install'
+#               1. make-completion-wrapper _apt_get _apt_get_install apt-get install
+#               2. defines a function called _apt_get_install (that's $2)
+#               3. that will complete the 'agi' alias. (complete -F _apt_get_install agi)
+#-----------------------------------------------------------
+
+# function make-completion-wrapper () {
+#     local function_name="$2"
+#     local arg_count=$(($#-3))
+#     local comp_function_name="$1"
+#     shift 2
+#     local function="
+# function $function_name {
+#     ((COMP_CWORD+=$arg_count))
+#     COMP_WORDS=( "$@" \${COMP_WORDS[@]:1} )
+#     "$comp_function_name"
+#     return 0
+# }"
+#     eval "$function"
+#     echo $function_name
+#     echo "$function"
+# }
+
+# }}}
+#----------------------------------------------------------------------------}}}
+# {{{ [02] APT-COMPLETION
+#-------------------------------------------------------------------------------
+# {{{ GENERAL
+#-----------------------------------------------------------
+# Description:  Completion aliaseses for apt-get install, purge, remove, search, and show
+# Source:       http://ubuntuforums.org/showthread.php?t=392508&highlight=bash+completion
+
+# Bash version compatibility
+if [ ${BASH_VERSINFO[0]} -eq 2 ] && [[ ${BASH_VERSINFO[1]} > 04 ]] ||
+   [ ${BASH_VERSINFO[0]} -gt 2 ]; then
+    filenames="-o filenames"
+fi
+
+# Check to see if a program exists locally
+have()
+{
+    unset -v have
+    PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin type $1 &>/dev/null &&
+        have="yes"
+}
+
+# }}}
+# {{{ ALIASES
+#-----------------------------------------------------------
+# Change these if you'd rather use something else for a specific command.
+# Note that both must be changed in to work correctly with completion.
+# For example to use 'agrm' instead of 'agr', use:
+#   alias agrm='sudo apt-get remove'
+#   SUDO_APT_GET_REMOVE_ALIAS='agrm'
+#-----------------------------------------------------------
+# Install
+alias agi='sudo apt-get install'
+SUDO_APT_GET_INSTALL_ALIAS='agi'
+
+# Remove
+alias agr='sudo apt-get remove'
+SUDO_APT_GET_REMOVE_ALIAS='agr'
+
+# Purge
+alias agp='sudo apt-get purge'
+SUDO_APT_GET_PURGE_ALIAS='agp'
+
+# Show
+alias acs='apt-cache show'
+APT_CACHE_SHOW_ALIAS='acs'
+
+# Search
+alias acf='apt-cache search'
+APT_CACHE_SEARCH_ALIAS='acf'
+
+# Show Formatted 
+# Note: Not an actual apt function; something I added to show 
+# quick summaries for apt-cache-show
+alias acss='apt-summary'
+APT_CACHE_SUMMARY_ALIAS='acss'
+
+# }}}
+# {{{ INSTALL
+#-----------------------------------------------------------
+have apt-get &&
+_apt_get_install()
+{
+    local cur
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+
+    COMPREPLY=( $( apt-cache pkgnames $cur 2> /dev/null ) )
+    return 0
+} &&
+complete -F _apt_get_install $filenames $SUDO_APT_GET_INSTALL_ALIAS
+
+# }}}
+# {{{ REMOVE
+#-----------------------------------------------------------
+have apt-get &&
+_apt_get_remove()
+{
+    local cur
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+
+    if [ -f /etc/debian_version ]; then
+        # Debian system
+        COMPREPLY=( $( _comp_dpkg_installed_packages \
+                $cur ) )
+    else
+        # Assume RPM based
+        _rpm_installed_packages
+    fi
+
+    return 0
+} &&
+complete -F _apt_get_remove $filenames $SUDO_APT_GET_REMOVE_ALIAS
+
+# }}}
+# {{{ PURGE
+#-----------------------------------------------------------
+have apt-get &&
+_apt_get_purge()
+{
+    local cur
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+
+    if [ -f /etc/debian_version ]; then
+        # Debian system
+        COMPREPLY=( $( _comp_dpkg_installed_packages \
+                $cur ) )
+    else
+        # Assume RPM based
+        _rpm_installed_packages
+    fi
+
+    return 0
+} &&
+complete -F _apt_get_purge $filenames $SUDO_APT_GET_PURGE_ALIAS
+
+# }}}
+# {{{ SHOW
+#-----------------------------------------------------------
+have apt-cache &&
+_apt_cache_show()
+{
+    local cur
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+
+    COMPREPLY=( $( apt-cache pkgnames $cur 2> /dev/null ) )
+
+    return 0
+} &&
+complete -F _apt_cache_show $filenames $APT_CACHE_SHOW_ALIAS
+
+# }}}
+# {{{ SUMMARY
+#-----------------------------------------------------------
+# Description:  Brief formatted/color summary for apt-show
+
+ function apt-summary () {
+     apt-cache show --no-all-versions $1 | head -n 1 | echo -e "\n$(sed 's/Package/\\e[1;32mPackage\\e[0m/')"
+     apt-cache show --no-all-versions $1 | sed -n '/Description/,/Description/ p' | head -n -1 | echo -e "$(sed 's/Description/\\e[1;34mDescription\\e[0m/')\n"
+ } &&
+ complete -F _apt_cache_show $filenames $APT_CACHE_SUMMARY_ALIAS
+
+# }}}
+# {{{ SUPPLEMENTARY
+#-----------------------------------------------------------
+# Functions to retrieve packages
+
+have dpkg && {
+have grep-status && {
+_comp_dpkg_installed_packages()
+{
+    grep-status -P -e "^$1" -a -FStatus 'install ok installed' -n -s Package
+}
+} || {
+_comp_dpkg_installed_packages()
+{
+    grep -A 2 "Package: $1" /var/lib/dpkg/status | \
+        grep -B 2 'ok installed' | grep "Package: $1" | cut -d\  -f2
+}
+}
+}
+
+have rpm &&
+_rpm_installed_packages()
+{
+    local ver nodig nosig
+
+    if [ -r /var/log/rpmpkgs -a \
+        /var/log/rpmpkgs -nt /var/lib/rpm/Packages ]; then
+        # using RHL 7.2 or later - this is quicker than querying the DB
+        COMPREPLY=( $( sed -ne \
+        's|^\('$cur'.*\)-[0-9a-zA-Z._]\+-[0-9a-z.@]\+.*\.rpm$|\1|p' \
+                /var/log/rpmpkgs ) )
+    else
+        nodig=""
+        nosig=""
+        ver=$(rpm --version)
+        ver=${ver##* }
+
+        if [[ "$ver" > "4.0.4" ]]; then
+            nodig="--nodigest"
+        fi
+        if [[ "$ver" > "4.0.99" ]]; then
+            nosig="--nosignature"
+        fi
+
+        COMPREPLY=( $( rpm -qa $nodig $nosig | sed -ne \
+        's|^\('$cur'.*\)-[0-9a-zA-Z._]\+-[0-9a-z.@]\+$|\1|p' ) )
+    fi
+}
+
+# }}}
+#───────────────────────────────────────────────────────────────────────────────
+
