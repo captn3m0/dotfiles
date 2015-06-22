@@ -6,7 +6,7 @@ pathadd() {
     fi
 }
 
-pathadd '$HOME/bin'
+pathadd '/home/nemo/bin'
 
 alias xclip='xclip -selection c'
 alias sl=ls
@@ -44,8 +44,6 @@ esac
 force_color_prompt=yes
 color_prompt=yes
 export TERM=xterm-256color
-TERM=xterm-256color
-
 
 # enable color support of ls and also add handy aliases
 if [[ -x /usr/bin/dircolors ]]; then
@@ -72,9 +70,9 @@ if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
 fi
 function sympathy() { chromium-browser "chrome-extension://ilcgkjlgdddhjpbchiikkainlfiamkog/main.html#`pwd`/$1" ;}
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
-#export LC_ALL=en_US
-#export LANG=en_US
-export LC_ALL="C" ##For the weird characters in man pages
+export LC_ALL=en_IN
+export LANG=en_IN
+#export LC_ALL="C" ##For the weird characters in man pages
 
 alias rake='spring rake'
 alias rails='spring rails'
@@ -306,7 +304,7 @@ eval `keychain --eval --agents ssh id_rsa`
 # eval "$(phpenv init -)"
 
 #UTF-8 Alias
-export LC_ALL=en_US.UTF-8
+export LC_ALL=en_IN.UTF-8
 alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
 
 # iOS Jailbreak development
@@ -323,10 +321,15 @@ export THEOS_DEVICE_PORT=22
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
 #Ruby version manager
-source "$HOME/.rvm/scripts/rvm"
+# Disabled till I copy over my rvm directory
+#source "$HOME/.rvm/scripts/rvm"
 
 #SCM Breeze
 [ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
+
+# karn https://github.com/prydonius/karn
+if which karn > /dev/null; then eval "$(karn init)"; fi
+
 #  ┌────────────────────┐
 #  │   APT-* WRAPPERS   │
 #──┴────────────────────┴───────────────────────────────────────────────────────
