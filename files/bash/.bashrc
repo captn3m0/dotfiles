@@ -102,8 +102,7 @@ export COMP_WORDBREAKS
 export BLOCKSIZE=K
 # export CDPATH=.:~:~/src:/etc
 # export DISPLAY=:79
-#export EDITOR="gedit -w --resume" Typing 'fc'	# open last command for editing in gedit, then execute on save
-export EDITOR='vim'
+export EDITOR='nvim'
 # export ftp_proxy=${MY_PROXY}
 # export GPG_TTY='tty'				# gpg-agent says it needs this
 export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
