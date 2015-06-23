@@ -105,7 +105,7 @@ export BLOCKSIZE=K
 export EDITOR='nvim'
 # export ftp_proxy=${MY_PROXY}
 # export GPG_TTY='tty'				# gpg-agent says it needs this
-export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
+# export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
 export HISTCONTROL=ignoreboth:erasedups		# for 'ignoreboth': ignore duplicates and /^\s/
 export HISTCONTROL=ignoreboth			# ignore spaced commands and prevents storing of duplicate commands (ie, ignoredups & ignorespace)
 export HISTCONTROL=ignoredups			# don't put duplicate lines in the history. See bash(1) for more options
