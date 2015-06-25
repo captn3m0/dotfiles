@@ -185,3 +185,8 @@ assign [class="Transmission-gtk"] → $WS3
 
 for_window [class="Wine"] floating enable
 for_window [class="Transmission-gtk"] floating enable
+
+
+# Scratchpad
+bindsym $mod+z move scratchpad
+bindsym $mod+shift+z scratchpad show
