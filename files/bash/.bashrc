@@ -321,7 +321,7 @@ export THEOS_DEVICE_PORT=22
 
 #Ruby version manager
 # Disabled till I copy over my rvm directory
-#source "$HOME/.rvm/scripts/rvm"
+source "$HOME/.rvm/scripts/rvm"
 
 #SCM Breeze
 [ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
@@ -566,4 +566,3 @@ _rpm_installed_packages()
 
 # }}}
 #───────────────────────────────────────────────────────────────────────────────
-
