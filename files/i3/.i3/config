@@ -16,6 +16,9 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id volumeicon
 exec --no-startup-id redshift-gtk
 
+# Set default backlight
+exec --no-startup-id xbacklight -set 15
+
 # Code Workspace
 exec --no-startup-id i3-msg "workspace 1:code; exec lxterminal"
 exec --no-startup-id i3-msg "workspace 1:code; exec subl3"
