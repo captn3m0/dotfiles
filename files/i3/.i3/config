@@ -49,7 +49,12 @@ bindsym $mod+Return exec lxterminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# My lock screen
+#### Lock screen config #####
+# Use i3lock as screensaver (works on suspend)
+exec --no-startup-id xss-lock /home/nemo/projects/scripts/i3lock.sh 
+# Autolock screen after 2 minutes
+exec --no-startup-id xautolock -detectsleep -time 2 -locker "/home/nemo/projects/scripts/i3lock.sh"
+# Win+L
 bindsym $mod+l exec --no-startup-id "sh /home/nemo/projects/scripts/i3lock.sh"
 
 # start dmenu (I actually have dmenu2 installed)
@@ -188,7 +193,6 @@ assign [class="Transmission-gtk"] → $WS3
 
 for_window [class="Wine"] floating enable
 for_window [class="Transmission-gtk"] floating enable
-
 
 # Scratchpad
 bindsym $mod+z move scratchpad
