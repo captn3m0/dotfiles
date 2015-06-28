@@ -63,6 +63,9 @@ bindsym $mod+d exec dmenu_run -i -o 0.1
 # For starting applications with a .desktop entry
 bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
+# Print screen
+bindsym Print exec xfce4-screenshooter
+
 # change focus
 bindsym $mod+j focus left
 # bindsym $mod+k focus down
