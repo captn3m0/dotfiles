@@ -1,0 +1,5 @@
+*.pyc
+*.pyo
+files/ranger/.config/ranger/history
+files/ranger/.config/ranger/bookmarks
+files/ranger/.config/ranger/tagged
