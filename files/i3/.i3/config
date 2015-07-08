@@ -226,8 +226,8 @@ for_window [class="Wine"] floating enable
 for_window [class="Transmission-gtk"] floating enable
 
 # Scratchpad
-bindsym $mod+z move scratchpad
-bindsym $mod+shift+z scratchpad show
+bindsym $mod+shift+z move scratchpad
+bindsym $mod+z scratchpad show #this is a toggle switch
 
 # i3 gaps
 for_window [class="^.*"] border pixel 0
