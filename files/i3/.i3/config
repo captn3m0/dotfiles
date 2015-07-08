@@ -232,3 +232,4 @@ smart_borders on
 # Multi monitor
 bindsym $mod+shift+a move workspace to output left
 bindsym $mod+shift+s move workspace to output right
+bindsym XF86Display exec arandr
