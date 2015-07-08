@@ -70,8 +70,8 @@ if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
 fi
 function sympathy() { chromium-browser "chrome-extension://ilcgkjlgdddhjpbchiikkainlfiamkog/main.html#`pwd`/$1" ;}
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
-export LC_ALL=en_IN
-export LANG=en_IN
+export LC_ALL=en_IN.utf8
+export LANG=en_IN.utf8
 #export LC_ALL="C" ##For the weird characters in man pages
 
 alias rake='spring rake'

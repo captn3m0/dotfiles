@@ -58,5 +58,5 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-URxvt.font: xft:Source Code Pro Light:pixelsize=14,style=Lighturxvt
-Urxvt.letterSpace: -2
+URxvt.font: xft:Sauce Code Powerline:size=10,style=Light
+URxvt.scrollBar: false
