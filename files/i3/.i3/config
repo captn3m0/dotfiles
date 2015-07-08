@@ -16,7 +16,8 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id volumeicon
 exec --no-startup-id redshift-gtk
 exec --no-startup-id compton --config ~/.compton.conf
-exec urxvtd -q -f -o
+exec --no-startup-id nm-applet
+exec urxvtd -q -f -o #terminal
 
 # Set default backlight
 exec xbacklight -set 15
@@ -188,7 +189,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # backlight support
-
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
@@ -221,6 +221,7 @@ client.urgent #aa0000 #990000 #ffffff
 # Special assignments for programs
 assign [class="Transmission-gtk"] → $WS3
 
+# Window assignments
 for_window [class="Wine"] floating enable
 for_window [class="Transmission-gtk"] floating enable
 
