@@ -10,7 +10,6 @@ pathadd '/home/nemo/bin'
 
 alias xclip='xclip -selection c'
 alias sl=ls
-# don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 #metasploit, my own scripts, texlive
 pathadd '/opt/framework-3.5.2/app/'
@@ -22,10 +21,7 @@ pathadd '$HOME/.phpenv/bin'
 
 source $HOME/.nvm/nvm.sh #node version manager
 
-# append to the history file, don't overwrite it
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+
 alias llama='ssh git@git.sdslabs.co.in llama'
 alias capt='ssh git@git.sdslabs.co.in capt'
 alias sublime='/usr/bin/sublime-text'
@@ -84,7 +80,8 @@ function _update_ps1() {
   export PS1="$(~/projects/ubuntu_packages/powerline-shell/powerline-shell.py $? 2> /dev/null)"
 }
 
-export PROMPT_COMMAND="_update_ps1"
+export UPDATE_PS1="_update_ps1"
+export PROMPT_COMMAND="history -a; history -c; history -r; $UPDATE_PS1"
 ###b-egin-npm-completion-###
 #
 # npm command completion script
@@ -106,25 +103,6 @@ export EDITOR='nvim'
 # export ftp_proxy=${MY_PROXY}
 # export GPG_TTY='tty'				# gpg-agent says it needs this
 # export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
-export HISTCONTROL=ignoreboth:erasedups		# for 'ignoreboth': ignore duplicates and /^\s/
-export HISTCONTROL=ignoreboth			# ignore spaced commands and prevents storing of duplicate commands (ie, ignoredups & ignorespace)
-export HISTCONTROL=ignoredups			# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignorespace		# will make sure that bash don’t store any command beginning with the space character
-export HISTFILE='$HOME/.history'
-# export HISTFILESIZE=10000			# increase or decrease the size of the history to '10,000'
-# export HISTFILESIZE=${HISTSIZE}		# bash will remember 'N' commands
-#export HISTIGNORE='&:bg:fg:ll:h'
-#export HISTIGNORE='${HISTIGNORE:+$HISTIGNORE:}la:ll:lah:lat:;a:-:fg:bg:j:sync:esu:rma:rmp:fol:pfol'
-export HISTIGNORE="&:ls:[bf]g:exit"		# duplicate entries in bash history, as well as ls, bg, fg & exit, making for cleaner bash history
-#export HISTIGNORE="&:ls:ll:la:l.:pwd:exit:clear"
-#export HISTIGNORE='pwd:cd:ls:ls -l:'		# ignore commands given
-#export HISTSIZE=10000				# increase or decrease the size of the history to '10,000'
-# export HISTTIMEFORMAT='| %d/%m/%y %T | '	# make 'History' Show The Date For Each Command
-# export HISTTIMEFORMAT='%F %T '		# adds date and time to history
-#export HISTTIMEFORMAT='%H:%M > '
-# export HISTTIMEFORMAT='%s' 			# the beloved Second of Our Linux
-# export HISTTIMEFORMAT='%Y-%b-%d::%Hh:%Mm:%Ss '
-#export HISTTIMEFORMAT='%Y-%m-%d_%H:%M:%S_%a  '	# makes history display in YYYY-MM-DD_HH:MM:SS_3CharWeekdaySpaceSpace format
 export HOSTFILE=$HOME/.hosts    		# put list of remote hosts in ~/.hosts ...
 # export http_proxy=${MY_PROXY}
 # export https_proxy=${MY_PROXY}
@@ -215,8 +193,6 @@ ulimit -S -c 0          			# (core file size) don't want any coredumps
 # umask 007    					# all files created 660, dirs 770
 # umask 022					# makes new files have permissions: rwxr-xr-x
 # umask 077           				# after everything is installed, uncomment this and the mkdir alias below ((base 8) 777 & ~077 = 700 = u=rwx,g=,o=)
-# unset HISTFILESIZE				# infinite History
-# unset HISTSIZE				# infinite History
 #unset MAILCHECK        				# don't want my shell to warn me of incoming mail
 # unsetopt bgnice            			# don't nice bg command
 
@@ -294,6 +270,31 @@ alias sd='fasd -sid'     # interactive directory selection
 alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
+
+
+##### History Shenanigans
+export HISTCONTROL=ignoredups:erasedups        # for 'ignoreboth': ignore duplicates and /^\s/
+export HISTFILE='/home/nemo/.bash_history'
+# export HISTFILESIZE=10000         # increase or decrease the size of the history to '10,000'
+# export HISTFILESIZE=${HISTSIZE}       # bash will remember 'N' commands
+#export HISTIGNORE='&:bg:fg:ll:h'
+#export HISTIGNORE='${HISTIGNORE:+$HISTIGNORE:}la:ll:lah:lat:;a:-:fg:bg:j:sync:esu:rma:rmp:fol:pfol'
+#export HISTIGNORE="&:ls:ll:la:l.:pwd:exit:clear"
+#export HISTIGNORE='pwd:cd:ls:ls -l:'       # ignore commands given
+#export HISTSIZE=10000              # increase or decrease the size of the history to '10,000'
+# export HISTTIMEFORMAT='| %d/%m/%y %T | '  # make 'History' Show The Date For Each Command
+# export HISTTIMEFORMAT='%F %T '        # adds date and time to history
+#export HISTTIMEFORMAT='%H:%M > '
+# export HISTTIMEFORMAT='%s'            # the beloved Second of Our Linux
+# export HISTTIMEFORMAT='%Y-%b-%d::%Hh:%Mm:%Ss '
+#export HISTTIMEFORMAT='%Y-%m-%d_%H:%M:%S_%a  ' # makes history display in YYYY-MM-DD_HH:MM:SS_3CharWeekdaySpaceSpace format
+# unset HISTFILESIZE                # infinite History
+# unset HISTSIZE                # infinite History
+# append to the history file, don't overwrite it
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000000
+HISTFILESIZE=1000000
+shopt -s histappend
 
 
 ### Added by the Heroku Toolbelt

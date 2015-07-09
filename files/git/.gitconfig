@@ -6,6 +6,7 @@
 	token = 
 [alias]
     rod = rebase origin/development
+    rom = rebase origin/master
     pom = push origin master
     pod = push origin development
     pogh = push origin gh-pages
