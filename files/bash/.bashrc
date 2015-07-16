@@ -259,6 +259,8 @@ alias lt_='ls -alt|head -20' 								# 20, all, long listing, modification time
 alias lt='ls -ltr'         								# sort by date, most recent last
 alias lu='ls -ltur'        								# sort by and show access time, most recent last
 alias lx='ls -lXB'									# sort by extension
+alias sss='sudo systemctl start'
+alias ssr='sudo systemctl restart'
 
 #### FASD
 eval "$(fasd --init auto)"
