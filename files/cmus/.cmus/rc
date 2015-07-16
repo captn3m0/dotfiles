@@ -1,0 +1,32 @@
+fset 90s=date>=1990&date<2000
+fset classical=genre="Classical"
+fset country=genre="Country"
+fset electronic=genre="Electronic"|genre="House"|genre="Electro"|genre="Trance"|genre="Dance"|genre="Pop"|artist="Avicii"
+fset missing-tag=!stream&(artist=""|album=""|title=""|tracknumber=-1|date=-1)
+fset mp3=filename="*.mp3"
+fset ogg=filename="*.ogg"
+fset ogg-or-mp3=ogg|mp3
+fset symphonic=genre="Symphonic"|genre="Classical"
+fset unheard=play_count=0
+factivate
+
+fset electronic=genre="Electronic"|genre="House"|genre="Electro"|genre="Trance"|genre="Dance"|genre="Pop"|artist="Avicii"
+fset symphonic=genre="Symphonic"|genre="Classical"
+fset country=genre="Country"
+
+set follow=true
+set resume=true
+set format_current= %a > %l > %02n. %t%= %g | %y 
+set format_playlist= %-25%a %-30l %n. %t%= %y %d 
+set format_title=%a - %t
+set format_trackwin=%4n. %t%= %d
+set format_trackwin_album= %{?y?%y%{?date!=maxdate?-%{maxdate}} - }%l 
+set format_treewin=  %{?y?%y%{?date!=maxdate?-%{maxdate}} - }%l 
+set format_treewin_artist=%a
+
+set mouse=true
+bind -f common mlb_click_selected win-activate
+bind -f common mouse_scroll_down win-down
+bind -f common mouse_scroll_up win-up
+
+set lib_sort=albumartist album discnumber tracknumber title filename
