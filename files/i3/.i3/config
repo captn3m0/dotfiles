@@ -73,7 +73,9 @@ bindsym $mod+d exec dmenu_run -i -o 0.1
 bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
 # Print screen
-bindsym Print exec xfce4-screenshooter
+set $screenshot_file '/home/nemo/Desktop/Screenshots/%Y-%m-%d_%H-%M-$wx$h.png'
+bindsym Print exec escrotum --select --selection-delay 1 $screenshot_file
+bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 1 $screenshot_file
 
 # change focus
 bindsym $mod+j focus left
