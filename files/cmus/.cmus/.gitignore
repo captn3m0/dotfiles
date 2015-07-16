@@ -3,3 +3,5 @@ cache
 command-history
 search-history
 *.pl
+now-playing.txt
+resume
