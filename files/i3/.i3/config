@@ -30,9 +30,6 @@ exec i3-msg "workspace 1:code; exec subl3"
 exec i3-msg "workspace 2:web; exec plaidchat"
 exec i3-msg "workspace 2:web; exec google-chrome-unstable"
 
-# Media workspace
-exec i3-msg 'workspace 3:media; exec pcmanfm'
-
 # Quick switching between workspace is disabled
 # Just leads to confusion
 workspace_auto_back_and_forth no
