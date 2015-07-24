@@ -71,8 +71,8 @@ bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
 # Print screen
 set $screenshot_file '/home/nemo/Desktop/Screenshots/%Y-%m-%d_%H-%M-$wx$h.png'
-bindsym Print exec escrotum --select --selection-delay 1 $screenshot_file
-bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 1 $screenshot_file
+bindsym Print exec escrotum --select --selection-delay 3 $screenshot_file
+bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 3 $screenshot_file
 
 # change focus
 bindsym $mod+j focus left
