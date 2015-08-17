@@ -23,7 +23,7 @@ exec urxvtd -q -f -o #terminal
 exec xbacklight -set 15
 
 # Code Workspace
-exec i3-msg "workspace 1:code; exec urxvtc"
+exec i3-msg "workspace 1:code; exec cwdterm.sh"
 exec i3-msg "workspace 1:code; exec subl3"
 
 # Web workspace
@@ -45,12 +45,12 @@ font pango:DejaVu Sans 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return split v; exec urxvtc
-bindsym $mod+Shift+Return split h; exec urxvtc
+bindsym $mod+Return split v; exec cwdterm.sh
+bindsym $mod+Shift+Return split h; exec cwdterm.sh
 
 # Split terminals using byobu shortcuts
-bindsym Shift+F2 split v; exec urxvtc
-bindsym Ctrl+F2 split h; exec urxvtc
+bindsym Shift+F2 split v; exec cwdterm.sh
+bindsym Ctrl+F2 split h; exec cwdterm.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
