@@ -261,6 +261,7 @@ alias lu='ls -ltur'        								# sort by and show access time, most recent l
 alias lx='ls -lXB'									# sort by extension
 alias sss='sudo systemctl start'
 alias ssr='sudo systemctl restart'
+alias cda='composer dump-autoload'
 
 #### FASD
 eval "$(fasd --init auto)"
