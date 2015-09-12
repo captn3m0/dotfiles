@@ -17,7 +17,8 @@ pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
 pathadd '/home/nemo/projects/ubuntu_packages/android-sdk-linux/tools'
 pathadd '/opt/vagrant/bin'
-pathadd '$HOME/.phpenv/bin'
+pathadd "$HOME/.phpenv/bin"
+PATH="$PATH:$HOME/apps/ec2/bin"
 
 source $HOME/.nvm/nvm.sh #node version manager
 
@@ -262,6 +263,7 @@ alias lx='ls -lXB'									# sort by extension
 alias sss='sudo systemctl start'
 alias ssr='sudo systemctl restart'
 alias cda='composer dump-autoload'
+alias cal='cal -3m'
 
 #### FASD
 eval "$(fasd --init auto)"
@@ -299,7 +301,6 @@ HISTSIZE=1000000
 HISTFILESIZE=1000000
 shopt -s histappend
 
-
 ### Added by the Heroku Toolbelt
 pathadd '/usr/local/heroku/bin'
 eval `keychain --eval --agents ssh id_rsa`
@@ -309,6 +310,8 @@ eval `keychain --eval --agents ssh id_rsa`
 #UTF-8 Alias
 export LC_ALL=en_IN.UTF-8
 alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
+export JAVA_HOME=/usr/lib/jvm/default-runtime
+export EC2_HOME=/home/nemo/apps/ec2
 
 # iOS Jailbreak development
 export THEOS=/home/nemo/apps/theos
@@ -324,7 +327,6 @@ export THEOS_DEVICE_PORT=22
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
 #Ruby version manager
-# Disabled till I copy over my rvm directory
 source "$HOME/.rvm/scripts/rvm"
 
 #SCM Breeze
@@ -351,3 +353,11 @@ xset -b
 #     echo $function_name
 #     echo "$function"
 # }
+
+
+
+# Overrides the display provided by imagemagick
+function display() {
+    `cd ~/.screenlayout && sh $1.sh`
+    nitrogen --restore
+}
