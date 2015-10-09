@@ -15,7 +15,7 @@ general {
 order += "external_script cmus"
 order += "disk /home"
 order += "bluetooth"
-order += "weather_yahoo"
+#order += "weather_yahoo"
 #order += "run_watch DHCP"
 #order += "run_watch VPN"
 order += "wireless _first_"
