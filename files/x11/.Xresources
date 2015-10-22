@@ -37,7 +37,7 @@ Xcursor.size:  22
 ! xterm ----------------------------------------------------------------------
 
 xterm*VT100.geometry:     80x25
-xterm*faceName: SourceCodePro:size=10:antialias=false
+! xterm*faceName: SourceCodePro:size=8:antialias=false
 xterm*font: 7x13
 xterm*dynamicColors:      true
 xterm*utf8:               2
@@ -58,5 +58,5 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-URxvt.font: xft:Sauce Code Powerline:size=10,style=Light
+URxvt.font: xft:Sauce Code Powerline:size=8:pixelsize=10,style=Light
 URxvt.scrollBar: false
