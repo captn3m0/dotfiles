@@ -8,6 +8,7 @@ pathadd() {
 
 pathadd '/home/nemo/bin'
 
+
 alias xclip='xclip -selection c'
 alias sl=ls
 # ... or force ignoredups and ignorespace
@@ -311,6 +312,8 @@ eval `keychain --eval --agents ssh id_rsa`
 export LC_ALL=en_IN.UTF-8
 alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
 export JAVA_HOME=/usr/lib/jvm/default-runtime
+export GROOVY_HOME=/home/nemo/apps/groovy
+pathadd "$GROOVY_HOME/bin"
 export EC2_HOME=/home/nemo/apps/ec2
 
 # iOS Jailbreak development
