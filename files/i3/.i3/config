@@ -225,10 +225,14 @@ for_window [class="Wine"] floating enable
 for_window [class="Transmission-gtk"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
+for_window [class="xpad"] floating enable
+
+# Sticky Notepad
+exec --no-startup-id xpad
+bindsym F1 [class="xpad" instance="xpad"] scratchpad show
 
 # Scratchpad
 bindsym $mod+shift+z move scratchpad
-bindsym $mod+z scratchpad show #this is a toggle switch
 
 # i3 gaps
 for_window [class="^.*"] border pixel 0
