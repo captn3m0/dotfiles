@@ -17,7 +17,16 @@ exec --no-startup-id volumeicon
 exec --no-startup-id redshift-gtk
 exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id nm-applet
-exec urxvtd -q -f -o #terminal
+
+# Stream my pulseaudio via icecast
+# -c is for config location
+exec --no-startup-id darkice -c ~/.darkice.cfg
+# Start icecast as well. This runs on port 8000
+# -b = background
+# -c = config location
+exec --no-startup-id icecast -b -c ~/.icecast.xml
+#terminal
+exec urxvtd -q -f -o
 
 # Set default backlight
 exec xbacklight -set 15
