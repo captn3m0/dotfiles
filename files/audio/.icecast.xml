@@ -197,7 +197,7 @@
         <!-- Note that if <chroot> is turned on below, these paths must both
              be relative to the new root, not the original root -->
         <logdir>/home/nemo/logs/icecast</logdir>
-        <webroot>/usr/share/icecast/web</webroot>
+        <webroot>/home/nemo/projects/personal/icecast-web/</webroot>
         <adminroot>/usr/share/icecast/admin</adminroot>
         <pidfile>/tmp/icecast.pid</pidfile>
 
