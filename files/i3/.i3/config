@@ -6,10 +6,10 @@
 set $mod Mod4
 
 # 4 named workspaces
-set $WS1 1:code
-set $WS2 2:web
-set $WS3 3:media
-set $WS4 4:game
+set $WS1 1:
+set $WS2 2:
+set $WS3 3:
+set $WS4 4:
 
 # Startup items that don't have their windows
 exec --no-startup-id nitrogen --restore
@@ -32,12 +32,12 @@ exec urxvtd -q -f -o
 exec xbacklight -set 15
 
 # Code Workspace
-exec i3-msg "workspace 1:code; exec cwdterm.sh"
-exec i3-msg "workspace 1:code; exec subl3"
+exec i3-msg "workspace $WS1; exec cwdterm.sh"
+exec i3-msg "workspace $WS1; exec subl3"
 
 # Web workspace
-exec i3-msg "workspace 2:web; exec plaidchat"
-exec i3-msg "workspace 2:web; exec google-chrome-unstable"
+exec i3-msg "workspace $WS2; exec plaidchat"
+exec i3-msg "workspace $WS2; exec google-chrome-unstable"
 
 # Quick switching between workspace is disabled
 # Just leads to confusion
@@ -48,7 +48,7 @@ workspace_layout default
 hide_edge_borders both
 
 # Still playing around with this
-font pango:DejaVu Sans 9
+font pango:DejaVu Sans, FontAwesome 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -212,6 +212,9 @@ bindsym XF86AudioMute exec amixer -D pulse set Master toggle
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+  tray_output primary
+  tray_padding 0
+  workspace_buttons yes
   status_command py3status -c ~/.config/i3status/config
   colors {
     separator #888888
