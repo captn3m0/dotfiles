@@ -234,6 +234,8 @@ assign [class="Transmission-gtk"] → $WS3
 for_window [class="Wine"] floating enable
 for_window [class="Transmission-gtk"] floating enable
 for_window [window_role="pop-up"] floating enable
+# Chrome popups should open in first monitor
+assign [window_role="pop-up"] $WS1
 for_window [window_role="bubble"] floating enable
 for_window [class="xpad"] floating enable
 
