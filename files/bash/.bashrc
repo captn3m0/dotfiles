@@ -23,6 +23,9 @@ PATH="$PATH:$HOME/apps/ec2/bin"
 
 source $HOME/.nvm/nvm.sh #node version manager
 
+# Python virtualenv
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
 
 alias llama='ssh git@git.sdslabs.co.in llama'
 alias capt='ssh git@git.sdslabs.co.in capt'
