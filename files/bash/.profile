@@ -16,6 +16,4 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/nemo/bin:/sbin:/home/nemo/projects/scripts/:/home/nemo/.nvm/v0.10.22/bin"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/nemo/bin:/sbin:/home/nemo/projects/scripts/:/home/nemo/.nvm/v5.0.1/bin"

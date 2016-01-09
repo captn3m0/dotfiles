@@ -332,15 +332,14 @@ export THEOS_DEVICE_PORT=22
 #PERL_MM_OPT="INSTALL_BASE=/home/nemo/perl5"; export PERL_MM_OPT;
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
-#Ruby version manager
+# Ruby version manager, must be loaded before
+# scm_breeze
 source "$HOME/.rvm/scripts/rvm"
-
-#SCM Breeze
-[ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
 
 # karn https://github.com/prydonius/karn
 if which karn > /dev/null; then eval "$(karn init)"; fi
 
+# Disable beeps
 xset -b
 
 # function make-completion-wrapper () {
@@ -365,5 +364,10 @@ xset -b
 # Overrides the display provided by imagemagick
 function display() {
     `cd ~/.screenlayout && sh $1.sh`
+    # Write the current layout
+    echo $1 > ~/.screenlayout/current
     nitrogen --restore
 }
+
+#SCM Breeze
+[ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
