@@ -366,7 +366,9 @@ function display() {
     `cd ~/.screenlayout && sh $1.sh`
     # Write the current layout
     echo $1 > ~/.screenlayout/current
-    (cd ~/Pictures && cp "$1.jpg" "./xin_1.jpg")
+    if [[ -e "~/Pictures/$1.jpg" ]]; then
+        (cd ~/Pictures && cp "$1.jpg" "./xin_1.jpg")
+    fi
     nitrogen --restore
 }
 
