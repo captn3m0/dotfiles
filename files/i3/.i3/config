@@ -61,6 +61,10 @@ bindsym $mod+Shift+Return split h; exec cwdterm.sh
 bindsym Shift+F2 split v; exec cwdterm.sh
 bindsym Ctrl+F2 split h; exec cwdterm.sh
 
+# Snippy for quick text
+# https://gist.github.com/coderofsalvation/46549e3788ade2f3a938
+bindsym $mod+grave exec snippy.sh
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -234,8 +238,6 @@ assign [class="Transmission-gtk"] → $WS3
 for_window [class="Wine"] floating enable
 for_window [class="Transmission-gtk"] floating enable
 for_window [window_role="pop-up"] floating enable
-# Chrome popups should open in first monitor
-assign [window_role="pop-up"] $WS1
 for_window [window_role="bubble"] floating enable
 for_window [class="xpad"] floating enable
 
