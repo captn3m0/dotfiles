@@ -32,4 +32,3 @@ bind -f common mouse_scroll_up win-up
 set lib_sort=albumartist album discnumber tracknumber title filename
 set status_display_program=~/projects/scripts/cmus-current-track.sh
 set output_plugin=pulse
-
