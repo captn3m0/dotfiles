@@ -36,7 +36,6 @@ exec i3-msg "workspace $WS1; exec cwdterm.sh"
 exec i3-msg "workspace $WS1; exec subl3"
 
 # Web workspace
-exec i3-msg "workspace $WS2; exec plaidchat"
 exec i3-msg "workspace $WS2; exec google-chrome-unstable"
 
 # Quick switching between workspace is disabled
@@ -70,10 +69,10 @@ bindsym $mod+Shift+q kill
 
 #### Lock screen config #####
 # Use i3lock as screensaver (works on suspend)
-exec --no-startup-id xss-lock /home/nemo/projects/scripts/i3lock.sh 
+exec --no-startup-id "xss-lock /home/nemo/projects/scripts/i3lock.sh > /home/nemo/projects/scripts/xss-lock.log"
 
 # Autolock screen after 2 minutes
-exec --no-startup-id xautolock -corners -000 -detectsleep -time 2 -locker "/home/nemo/projects/scripts/i3lock.sh"
+exec --no-startup-id "xautolock -corners -000 -detectsleep -time 2 -locker /home/nemo/projects/scripts/i3lock.sh >  /home/nemo/logs/i3/xautolock.log"
 
 # Win+L
 bindsym $mod+l exec --no-startup-id xautolock -locknow
@@ -229,11 +228,6 @@ bar {
   }
 }
 
-# Colors
-
-# Special assignments for programs
-assign [class="Transmission-gtk"] → $WS3
-
 # Window assignments
 for_window [class="Wine"] floating enable
 for_window [class="Transmission-gtk"] floating enable
@@ -244,6 +238,7 @@ for_window [class="xpad"] floating enable
 # Sticky Notepad
 exec --no-startup-id xpad
 bindsym F1 [class="xpad" instance="xpad"] scratchpad show
+bindsym F2 [class="^(?!xpad$)"] scratchpad show
 
 # Scratchpad
 bindsym $mod+shift+z move scratchpad

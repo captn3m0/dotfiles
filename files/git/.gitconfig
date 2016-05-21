@@ -1,6 +1,7 @@
 [user]
 	name = Abhay Rana
 	email = capt.n3m0@gmail.com
+	signingkey = B8963685
 [github]
 	user = captn3m0
 	token = 
@@ -28,4 +29,4 @@
 [help]
 	autocorrect = 0
 [push]
-	default = simple
+	default = current

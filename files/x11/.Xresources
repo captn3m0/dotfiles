@@ -37,7 +37,6 @@ Xcursor.size:  22
 ! xterm ----------------------------------------------------------------------
 
 xterm*VT100.geometry:     80x25
-! xterm*faceName: SourceCodePro:size=8:antialias=false
 xterm*font: 7x13
 xterm*dynamicColors:      true
 xterm*utf8:               2
@@ -51,12 +50,15 @@ xterm*jumpScroll:         true
 xterm*multiScroll:        true
 xterm*toolBar:            false
 
-
 Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-URxvt.font: xft:Sauce Code Powerline:size=10:pixelsize=10,style=Light
+URxvt.font: xft:Sauce Code Powerline:size=16:pixelsize=16,style=Light
 URxvt.scrollBar: false
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
+URxvt.iso14755: false
+URxvt.iso14755_52: false

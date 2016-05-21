@@ -26,12 +26,12 @@ source $HOME/.nvm/nvm.sh #node version manager
 # Python virtualenv
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
+source /usr/share/doc/pkgfile/command-not-found.bash
 
-alias llama='ssh git@git.sdslabs.co.in llama'
-alias capt='ssh git@git.sdslabs.co.in capt'
 alias sublime='/usr/bin/sublime-text'
 alias chrome='chromium-browser'
 alias gittunnel='ssh mobile@10.42.43.2 -L 2000:github.com:22 -N'
+alias gp='git push'
 alias subtitles='subliminal -p addic7ed -l en -s -- $1'
 alias charge='BUSNUM=003 DEVNUM="`lsusb -d 05ac:12a2 |cut -c16-18`" /home/nemo/projects/ubuntu_packages/ipad_charge/ipad_charge'
 alias pu='phpunit'
