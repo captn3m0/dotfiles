@@ -20,11 +20,11 @@ exec --no-startup-id nm-applet
 
 # Stream my pulseaudio via icecast
 # -c is for config location
-exec --no-startup-id darkice -c ~/.darkice.cfg
+#exec --no-startup-id darkice -c ~/.darkice.cfg
 # Start icecast as well. This runs on port 8000
 # -b = background
 # -c = config location
-exec --no-startup-id icecast -b -c ~/.icecast.xml
+#exec --no-startup-id icecast -b -c ~/.icecast.xml
 #terminal
 exec urxvtd -q -f -o
 
