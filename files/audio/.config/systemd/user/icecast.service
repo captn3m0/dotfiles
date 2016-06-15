@@ -1,0 +1,6 @@
+[Unit]
+Description=Streams whatever darkice gets
+Requires=darkice.service
+
+[Service]
+ExecStart=/usr/bin/icecast -c /home/nemo/.icecast.xml

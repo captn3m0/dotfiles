@@ -1,0 +1,5 @@
+[Unit]
+Description=Darkice streams alsa monitor
+
+[Service]
+ExecStart=/usr/bin/darkice -c /home/nemo/.darkice.cfg
