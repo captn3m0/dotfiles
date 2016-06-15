@@ -267,7 +267,6 @@ alias lx='ls -lXB'									# sort by extension
 alias sss='sudo systemctl start'
 alias ssr='sudo systemctl restart'
 alias cda='composer dump-autoload'
-alias cal='cal -3m'
 
 #### FASD
 eval "$(fasd --init auto)"
