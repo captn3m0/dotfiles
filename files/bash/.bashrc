@@ -265,6 +265,7 @@ alias lt='ls -ltr'         								# sort by date, most recent last
 alias lu='ls -ltur'        								# sort by and show access time, most recent last
 alias lx='ls -lXB'									# sort by extension
 alias sss='sudo systemctl start'
+alias ssh="cat ~/.ssh/config.d/* > ~/.ssh/config; ssh"
 alias ssr='sudo systemctl restart'
 alias cda='composer dump-autoload'
 
@@ -373,3 +374,8 @@ function display() {
 
 #SCM Breeze
 [ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
+PATH="/home/nemo/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/nemo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/nemo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/nemo/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/nemo/perl5"; export PERL_MM_OPT;

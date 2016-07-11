@@ -227,6 +227,7 @@ for_window [class="Transmission-gtk"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [class="xpad"] floating enable
+for_window [class="Zeal"] floating enable
 
 # Sticky Notepad
 exec --no-startup-id xpad
