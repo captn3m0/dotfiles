@@ -363,13 +363,31 @@ xset -b
 
 # Overrides the display provided by imagemagick
 function display() {
-    `cd ~/.screenlayout && sh $1.sh`
-    # Write the current layout
-    echo $1 > ~/.screenlayout/current
-    if [[ -e "~/Pictures/$1.jpg" ]]; then
-        (cd ~/Pictures && cp "$1.jpg" "./xin_1.jpg")
+    layout="$1"
+    if [[ "$1" == "toggle" ]]; then
+        # exchange it
+        CURRENT=$(cat ~/.screenlayout/current)
+        echo "current=$CURRENT"
+        case "$CURRENT" in
+            "office")
+                layout="single"
+                ;;
+            "single")
+                layout="office"
+                ;;
+        esac
     fi
-    nitrogen --restore
+    echo "layout=$layout"
+    if [[ -a ~/.screenlayout/$layout.sh ]]; then
+        `cd ~/.screenlayout && sh $layout.sh`
+        # Write the current layout
+        echo $layout > ~/.screenlayout/current
+        if [[ -e "~/Pictures/$layout.jpg" ]]; then
+            (cd ~/Pictures && cp "$layout.jpg" "./xin_1.jpg")
+        fi
+        nitrogen --restore >/dev/null 2>&1
+        i3-msg reload
+    fi
 }
 
 #SCM Breeze
