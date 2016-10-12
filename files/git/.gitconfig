@@ -2,8 +2,10 @@
     name = Abhay Rana
     email = me@captnemo.in
     signingkey = B8963685
+
 [github]
     user = captn3m0
+
 [alias]
     rod = rebase origin/development
     rom = rebase origin/master
@@ -17,13 +19,17 @@
     fo  = fetch origin
     co  = checkout
     ci  = commit
+    from = "! git fetch origin; git rebase origin/master"
+
 [rerere]
     enabled = true
+
 [color]
     branch = auto
     diff   = auto
     status = auto
     ui     = true
+
 [alias]
     l50 = "!git log --abbrev-commit --date=short --pretty=format:'%x00%h%x00%cd%x00%s%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-50s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, $3, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$4), $5, $6 }' | less -R"
     l80 = "!git log --abbrev-commit --date=short --pretty=format:'%x00%h%x00%cd%x00%s%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, $3, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$4), $5, $6 }' | less -R"
@@ -32,13 +38,16 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue)(%an <%ae>)%Creset' --abbrev-commit --date=relative
 [help]
     autocorrect = 10
+
 [push]
     default = current
+
 [color "diff-highlight"]
     oldNormal = red bold
     oldHighlight = red bold 52
     newNormal = green bold
     newHighlight = green bold 22
+
 [core]
     # https://github.com/so-fancy/diff-so-fancy
     pager = diff-so-fancy | less --tabs=4 -RFX
