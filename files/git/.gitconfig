@@ -20,6 +20,7 @@
     co  = checkout
     ci  = commit
     from = "! git fetch origin; git rebase origin/master"
+    frum = "! git fetch upstream; git rebase upstream/master"
 
 [rerere]
     enabled = true
@@ -51,3 +52,4 @@
 [core]
     # https://github.com/so-fancy/diff-so-fancy
     pager = diff-so-fancy | less --tabs=4 -RFX
+	preloadindex = true
