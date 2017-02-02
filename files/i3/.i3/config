@@ -71,7 +71,7 @@ exec --no-startup-id "xautolock -corners -000 -detectsleep -time 2 -locker /home
 exec --no-startup-id "dunst"
 
 # Win+L
-bindsym $mod+l exec --no-startup-id xautolock -locknow
+bindsym $mod+l exec xautolock -locknow
 
 # start dmenu (I actually have dmenu2 installed)
 bindsym $mod+d exec dmenu_run -i -o 0.1

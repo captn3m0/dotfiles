@@ -51,7 +51,7 @@ external_script "cmus" {
     cache_timeout = 5
     format = "► {output}"
     color = "#E67E22"
-    script_path = "~/projects/scripts/get-current-track.sh"
+    script_path = "python /home/nemo/projects/scripts/get_current_track.py"
 }
 
 run_watch DHCP {
