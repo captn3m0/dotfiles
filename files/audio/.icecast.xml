@@ -5,13 +5,6 @@
     <location>20,000 Leagues under the sea</location>
     <admin>me@captnemo.in</admin>
 
-    <!-- IMPORTANT!
-         Especially for inexperienced users:
-         Start out by ONLY changing all passwords and restarting Icecast.
-         For detailed setup instructions please refer to the documentation.
-         It's also available here: http://icecast.org/docs/
-    -->
-
     <limits>
         <clients>50</clients>
         <sources>2</sources>
@@ -220,8 +213,8 @@
     </paths>
 
     <logging>
-        <accesslog>access.log</accesslog>
-        <errorlog>error.log</errorlog>
+        <accesslog>/home/nemo/logs/icecast-access.log</accesslog>
+        <errorlog>/home/nemo/logs/icecast-access.log</errorlog>
         <!-- <playlistlog>playlist.log</playlistlog> -->
         <loglevel>3</loglevel> <!-- 4 Debug, 3 Info, 2 Warn, 1 Error -->
         <logsize>10000</logsize> <!-- Max size of a logfile -->
