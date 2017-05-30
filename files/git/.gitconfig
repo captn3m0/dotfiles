@@ -40,6 +40,9 @@
 [help]
     autocorrect = 10
 
+[diff]
+    indentHeuristic = on
+
 [push]
     default = current
 
