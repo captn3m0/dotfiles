@@ -27,6 +27,7 @@ source $HOME/.nvm/nvm.sh #node version manager
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 source /usr/share/doc/pkgfile/command-not-found.bash
+source ~/.sourcerer.sh
 
 alias sublime='/usr/bin/sublime-text'
 alias chrome='chromium-browser'

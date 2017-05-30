@@ -17,7 +17,7 @@ set autoindent
 set copyindent
 
 set showmode
-colorscheme wombat256  
+colorscheme sourcerer
 set laststatus=2   " Always show the statusline
 set cinkeys=0{,0},:,0#,!^F
 set t_Co=256
