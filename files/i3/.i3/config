@@ -56,6 +56,7 @@ bindsym Ctrl+F2 split h; exec cwdterm.sh
 # Snippy for quick text
 # https://gist.github.com/coderofsalvation/46549e3788ade2f3a938
 bindsym $mod+grave exec snippy.sh
+bindsym $mod+Escape exec snippy.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -84,6 +85,7 @@ set $screenshot_file '/home/nemo/Desktop/Screenshots/%Y-%m-%d_%H-%M-$wx$h.png'
 bindsym Print exec escrotum --select --selection-delay 300 $screenshot_file
 bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 300 $screenshot_file
 bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silent $screenshot_file
+bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file
 
 # change focus
 bindsym $mod+j focus left
