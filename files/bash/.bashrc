@@ -316,6 +316,8 @@ eval `keychain --eval --agents ssh id_rsa`
 #UTF-8 Alias
 export LC_ALL=en_IN.UTF-8
 alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
+transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
+tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
 export JAVA_HOME=/usr/lib/jvm/default-runtime
 export GROOVY_HOME=/home/nemo/apps/groovy
 pathadd "$GROOVY_HOME/bin"
