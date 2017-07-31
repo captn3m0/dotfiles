@@ -36,6 +36,7 @@ alias gp='git push'
 alias subtitles='subliminal -p addic7ed -l en -s -- $1'
 alias charge='BUSNUM=003 DEVNUM="`lsusb -d 05ac:12a2 |cut -c16-18`" /home/nemo/projects/ubuntu_packages/ipad_charge/ipad_charge'
 alias pu='phpunit'
+alias ghpr='gh pull-request'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize

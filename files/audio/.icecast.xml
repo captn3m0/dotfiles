@@ -189,7 +189,7 @@
 
         <!-- Note that if <chroot> is turned on below, these paths must both
              be relative to the new root, not the original root -->
-        <logdir>/home/nemo/logs/icecast</logdir>
+        <logdir>/home/nemo/logs</logdir>
         <webroot>/home/nemo/projects/personal/icecast-web/</webroot>
         <adminroot>/usr/share/icecast/admin</adminroot>
         <pidfile>/tmp/icecast.pid</pidfile>
@@ -213,8 +213,8 @@
     </paths>
 
     <logging>
-        <accesslog>/home/nemo/logs/icecast-access.log</accesslog>
-        <errorlog>/home/nemo/logs/icecast-access.log</errorlog>
+        <accesslog>icecast-access.log</accesslog>
+        <errorlog>icecast-access.log</errorlog>
         <!-- <playlistlog>playlist.log</playlistlog> -->
         <loglevel>3</loglevel> <!-- 4 Debug, 3 Info, 2 Warn, 1 Error -->
         <logsize>10000</logsize> <!-- Max size of a logfile -->
