@@ -56,3 +56,9 @@
     # https://github.com/so-fancy/diff-so-fancy
     pager = diff-so-fancy | less --tabs=4 -RFX
 	preloadindex = true
+
+[svn-remote "svn"]
+#svn checkout https://svn.code.sf.net/p/elibsrv/code/ elibsrv-code
+#    url = http://localhost:81/svn/project/branches
+    branches = 
+    tags = 
