@@ -1,55 +1,134 @@
 [global]
-    font = Source Sans Pro 20
+font = Source Sans Pro 12
 
-    format = "%a: %s %b"
-    sort = yes
-    indicate_hidden = yes
-    alignment = right
-    bounce_freq = 1
-    show_age_threshold = 60;
+markup = yes
+plain_text = no
 
-    word_wrap = yes
+format = "<b>%s</b>\n%b"
+sort = no
+indicate_hidden = yes
+alignment = right
+bounce_freq = 1
+show_age_threshold = 60;
 
-    geometry = "0x0+0+0"
-    transparency = 0
+word_wrap = yes
 
-    idle_threshold = 20
+# The geometry of the window:
+#   [{width}]x{height}[+/-{x}+/-{y}]
+# The geometry of the message window.
+# The height is measured in number of notifications everything else
+# in pixels.  If the width is omitted but the height is given
+# ("-geometry x2"), the message window expands over the whole screen
+# (dmenu-like).  If width is 0, the window expands to the longest
+# message displayed.  A positive x is measured from the left, a
+# negative from the right side of the screen.  Y is measured from
+# the top and down respectevly.
+# The width can be negative.  In this case the actual width is the
+# screen width minus the width defined in within the geometry option.
+#geometry = "250x50-40+40"
+geometry = "500x50-15+49"
 
-    monitor = 0
-    follow = none
+# Shrink window if it's smaller than the width.  Will be ignored if
+# width is 0.
+shrink = no
 
-    sticky_history = yes
-    line_height = 0
+# The transparency of the window.  Range: [0; 100].
+# This option will only work if a compositing windowmanager is
+# present (e.g. xcompmgr, compiz, etc.).
+transparency = 5
 
-    separator_height = 2;
+# Don't remove messages, if the user is idle (no mouse or keyboard input)
+# for longer than idle_threshold seconds.
+# Set to 0 to disable.
+idle_threshold = 20
 
-    separator_color = auto
+# Which monitor should the notifications be displayed on.
 
-    padding = 1
-    horizontal_padding = 9
+# Display notification on focused monitor.  Possible modes are:
+#   mouse: follow mouse pointer
+#   keyboard: follow window with keyboard focus
+#   none: don't follow anything
+#
+# "keyboard" needs a windowmanager that exports the
+# _NET_ACTIVE_WINDOW property.
+# This should be the case for almost all modern windowmanagers.
+#
+# If this option is set to mouse or keyboard, the monitor option
+# will be ignored.
+follow = keyboard
 
+# Should a notification popped up from history be sticky or timeout
+# as if it would normally do.
+sticky_history = yes
+
+# Maximum amount of notifications kept in history
+history_length = 15
+
+# Display indicators for URLs (U) and actions (A).
+show_indicators = yes
+
+# The height of a single line.  If the height is smaller than the
+# font height, it will get raised to the font height.
+# This adds empty space above and under the text.
+line_height = 3
+
+# Draw a line of "separatpr_height" pixel height between two
+# notifications.
+# Set to 0 to disable.
+separator_height = 2;
+
+# Define a color for the separator.
+# possible values are:
+#  * auto: dunst tries to find a color fitting to the background;
+#  * foreground: use the same color as the foreground;
+#  * frame: use the same color as the frame;
+#  * anything else will be interpreted as a X color.
+separator_color = auto
+
+# Padding between text and separator.
+padding = 6
+
+# Horizontal padding.
+horizontal_padding = 6
+
+# Hide duplicate's count and stack them
+stack_duplicates = yes
+hide_duplicates_count = yes
+
+# Align icons left/right/off
+icon_position = off
+max_icon_size = 80
+
+# Paths to default icons.
+icon_folders = /usr/share/icons/Paper/16x16/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/
+
+# Context menu.
 
 [shortcuts]
-    close = mod4+x
-    close_all = mod4+n
-    history = mod4+backslash
+close = mod4+x
+close_all = mod4+n
+history = mod4+backslash
+context = ctrl+shift+period
 
 [urgency_low]
-    background = "#404040"
-    foreground = "#CCCCCC"
-    timeout = 10
+# IMPORTANT: colors have to be defined in quotation marks.
+# Otherwise the "#" and following would be interpreted as a comment.
+frame_color = "#FFFFFF"
+foreground = "#3B7C87"
+background = "#191311"
+#background = "#2B313C"
+timeout = 4
 
 [urgency_normal]
-    background = "#859900"
-    foreground = "#DDDDDD"
-    timeout = 10
+frame_color = "#FFFFFF"
+foreground = "#5B8234"
+background = "#191311"
+#background = "#2B313C"
+timeout = 6
 
 [urgency_critical]
-    background = "#dc322f"
-    foreground = "#DDDDDD"
-    timeout = 0
-
-[ignore]
-    appname = "Spotify"
-    summary = "*"
-    format = ""
+frame_color = "#FFFFFF"
+foreground = "#B7472A"
+background = "#191311"
+#background = "#2B313C"
+timeout = 8
