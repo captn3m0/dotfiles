@@ -21,7 +21,7 @@
 ! Xcursor --------------------------------------------------------------------
 
 Xcursor.theme: Vanilla-DMZ-AA
-Xcursor.size:  22
+Xcursor.size:  18
 
 ! xterm ----------------------------------------------------------------------
 
@@ -54,7 +54,7 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-URxvt.font: xft:Input Mono:size=16:pixelsize=16
+URxvt.font: xft:Input Mono:size=12:pixelsize=12
 URxvt.scrollBar: false
 URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger: C-Up

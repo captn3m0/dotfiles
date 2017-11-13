@@ -61,6 +61,12 @@ bindsym $mod+Escape exec snippy.sh
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# keyboard backlight, for Mac
+
+# increase/decrease keyboard brightness
+bindsym XF86KbdBrightnessUp exec /home/nemo/projects/scripts/backlight up
+bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down 
+
 #### Lock screen config #####
 # Use i3lock as screensaver (works on suspend)
 exec --no-startup-id "xss-lock /home/nemo/projects/scripts/i3lock.sh > /home/nemo/projects/scripts/xss-lock.log"
