@@ -90,6 +90,7 @@ bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 set $screenshot_file '/home/nemo/Desktop/Screenshots/%Y-%m-%d_%H-%M-$wx$h.png'
 bindsym Print exec escrotum --select --selection-delay 300 $screenshot_file
 bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 300 $screenshot_file
+bindsym $mod+Shift+I exec escrotum --clipboard --select --selection-delay 300 $screenshot_file
 bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silent $screenshot_file
 bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file
 
@@ -252,8 +253,8 @@ bindsym $mod+shift+z move scratchpad
 
 # i3 gaps
 for_window [class="^.*"] border pixel 0
-gaps inner 10
-gaps outer 0
+gaps inner 15
+gaps outer 20
 smart_gaps on
 smart_borders on
 
