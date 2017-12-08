@@ -116,9 +116,8 @@ export EDITOR='nvim'
 # export ftp_proxy=${MY_PROXY}
 # export GPG_TTY='tty'				# gpg-agent says it needs this
 # export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
-export HOSTFILE=$HOME/.hosts    		# put list of remote hosts in ~/.hosts ...
-# export http_proxy=${MY_PROXY}
-# export https_proxy=${MY_PROXY}
+# put list of remote hosts in ~/.hosts ...
+export HOSTFILE=$HOME/.hosts    		
 # export IGNOREEOF=1				# prevent CTRL-D from immediately logging out
 # export INPUTRC=/etc/inputrc			# it's possible that this will make bash find my delete key (and everything else)((but i don't think it did))
 # export INPUTRC=$HOME/.inputrc			# type in ‘whatever’ and press ‘Page Up’ key and bash automatically fetches last command that starts with whatever and completes the command for you (requires '$HOME/.inputrc' with these lines: #Page up/page down && "\e[5~": history-search-backward && "\e[6~": history-search-forward)
@@ -295,19 +294,19 @@ export HISTCONTROL=ignoredups:erasedups        # for 'ignoreboth': ignore duplic
 export HISTFILE='/home/nemo/.bash_history'
 # export HISTFILESIZE=10000         # increase or decrease the size of the history to '10,000'
 # export HISTFILESIZE=${HISTSIZE}       # bash will remember 'N' commands
-#export HISTIGNORE='&:bg:fg:ll:h'
-#export HISTIGNORE='${HISTIGNORE:+$HISTIGNORE:}la:ll:lah:lat:;a:-:fg:bg:j:sync:esu:rma:rmp:fol:pfol'
-#export HISTIGNORE="&:ls:ll:la:l.:pwd:exit:clear"
-#export HISTIGNORE='pwd:cd:ls:ls -l:'       # ignore commands given
+export HISTIGNORE='&:bg:fg:ll:h'
+export HISTIGNORE='${HISTIGNORE:+$HISTIGNORE:}la:ll:lah:lat:;a:-:fg:bg:j:sync:esu:rma:rmp:fol:pfol'
+export HISTIGNORE="&:ls:ll:la:l.:pwd:exit:clear"
+export HISTIGNORE='pwd:cd:ls:ls -l:'       # ignore commands given
 #export HISTSIZE=10000              # increase or decrease the size of the history to '10,000'
-# export HISTTIMEFORMAT='| %d/%m/%y %T | '  # make 'History' Show The Date For Each Command
+export HISTTIMEFORMAT='| %d/%m/%y %T | '  # make 'History' Show The Date For Each Command
 # export HISTTIMEFORMAT='%F %T '        # adds date and time to history
 #export HISTTIMEFORMAT='%H:%M > '
 # export HISTTIMEFORMAT='%s'            # the beloved Second of Our Linux
 # export HISTTIMEFORMAT='%Y-%b-%d::%Hh:%Mm:%Ss '
 #export HISTTIMEFORMAT='%Y-%m-%d_%H:%M:%S_%a  ' # makes history display in YYYY-MM-DD_HH:MM:SS_3CharWeekdaySpaceSpace format
-# unset HISTFILESIZE                # infinite History
-# unset HISTSIZE                # infinite History
+unset HISTFILESIZE                # infinite History
+unset HISTSIZE                # infinite History
 # append to the history file, don't overwrite it
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000000
