@@ -8,7 +8,7 @@ set $mod Mod4
 # 4 named workspaces
 set $WS1 1:
 set $WS2 2:
-set $WS3 3:
+set $WS3 3:
 set $WS4 4:
 
 # Startup items that don't have their windows
@@ -25,11 +25,11 @@ exec urxvtd -q -f -o
 exec xbacklight -set 15
 
 # Code Workspace
-exec i3-msg "workspace $WS1; exec cwdterm.sh"
 exec i3-msg "workspace $WS1; exec subl3"
+exec i3-msg "workspace $WS1; exec cwdterm.sh"
 
 # Web workspace
-exec i3-msg "workspace $WS2; exec google-chrome-unstable"
+exec i3-msg "workspace $WS2; exec firefox-beta"
 
 # Quick switching between workspace is disabled
 # Just leads to confusion
