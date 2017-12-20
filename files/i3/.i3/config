@@ -242,6 +242,9 @@ for_window [class="xpad"] floating enable
 for_window [class="Zeal"] floating enable
 for_window [class="Pavucontrol"] floating enable resize 940 600
 for_window [class="Google-musicmanager"] floating enable
+for_window [class="Connman-gtk"] floating enable resize 800 420
+for_window [class="Firefox" instance="Browser"] floating enable
+for_window [class="Firefox Beta" instance="Browser"] floating enable
 
 # Sticky Notepad
 exec --no-startup-id xpad
