@@ -8,12 +8,4 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-fi
-
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/nemo/bin:/sbin:/home/nemo/projects/scripts/:/home/nemo/.phpenv/bin:/home/nemo/.nvm/versions/node/v8.7.0/bin
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/nemo/bin:/sbin:/home/nemo/projects/scripts/:/home/nemo/.phpenv/bin:/home/nemo/.nvm/versions/node/v8.9.1/bin"

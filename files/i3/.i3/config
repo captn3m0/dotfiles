@@ -72,7 +72,7 @@ bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down
 exec --no-startup-id "xss-lock /home/nemo/projects/scripts/i3lock.sh -l dim > /home/nemo/projects/scripts/xss-lock.log"
 
 # Autolock screen after 2 minutes
-exec --no-startup-id "xautolock -corners -000 -detectsleep -time 2 -locker '/home/nemo/projects/scripts/i3lock.sh -l dim' >  /home/nemo/logs/i3-xautolock.log"
+exec --no-startup-id "xautolock -corners -000 -detectsleep -time 2 -locker '/home/nemo/projects/scripts/i3lock.sh -l dim'"
 
 # dunst for notifications
 exec --no-startup-id "dunst"

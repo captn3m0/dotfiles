@@ -21,8 +21,6 @@ pathadd '/opt/vagrant/bin'
 pathadd "$HOME/.phpenv/bin"
 PATH="$PATH:$HOME/apps/ec2/bin"
 
-source $HOME/.nvm/nvm.sh #node version manager
-
 # Python virtualenv
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
@@ -87,7 +85,8 @@ export LC_ALL=en_IN.utf8
 export LANG=en_IN.utf8
 #export LC_ALL="C" ##For the weird characters in man pages
 
-alias rake='spring rake'
+alias gh='hub'
+alias rake='bundle exec rake'
 alias rails='spring rails'
 alias rt='ruby -I"lib:test"' # rake test shortcut to run test for one script
 
@@ -342,12 +341,8 @@ export THEOS_DEVICE_PORT=22
 #PERL_MM_OPT="INSTALL_BASE=/home/nemo/perl5"; export PERL_MM_OPT;
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
-# Ruby version manager, must be loaded before
-# scm_breeze
-source "$HOME/.rvm/scripts/rvm"
-
 # karn https://github.com/prydonius/karn
-if which karn > /dev/null; then eval "$(karn init)"; fi
+# if which karn > /dev/null; then eval "$(karn init)"; fi
 
 # Disable beeps
 xset -b
@@ -484,6 +479,3 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-
-
-rvm use 2.4.1 >/dev/null
