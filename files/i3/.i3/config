@@ -2,7 +2,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# I use the ubuntu key on my laptop for i3
+# I use the Super key on my laptop for i3
 set $mod Mod4
 
 # 4 named workspaces
@@ -93,6 +93,7 @@ bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 300 $sc
 bindsym $mod+Shift+I exec escrotum --clipboard --select --selection-delay 300 $screenshot_file
 bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silent $screenshot_file
 bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file
+bindsym $mod+P exec passmenu --type
 
 # change focus
 bindsym $mod+j focus left

@@ -22,6 +22,7 @@
     from = "! git fetch origin; git rebase origin/master"
     frogh = "! git fetch origin; git rebase origin/gh-pages"
     frum = "! git fetch upstream; git rebase upstream/master"
+	pushall = !git remote | xargs -L1 git push --all
 
 [rerere]
     enabled = true
@@ -70,3 +71,5 @@
   insteadOf = https://gitlab.com/
 [url "ssh://git@bitbucket.org/"]
   insteadOf = https://bitbucket.org/
+[credential]
+	helper = cache --timeout=3600
