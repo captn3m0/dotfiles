@@ -5,6 +5,13 @@
 ~/projects/personal:
     name: Nemo
     email: me@captnemo.in
+# 2 AUR packages
+~/projects/personal/karn:
+    name: Nemo
+    email: archlinux@captnemo.in
+~/projects/personal/signal-desktop-beta:
+    name: Nemo
+    email: archlinux@captnemo.in
 ~/projects/personal/shauryaa:
     name: Abhishek
     email: mama@shauryaa.in
