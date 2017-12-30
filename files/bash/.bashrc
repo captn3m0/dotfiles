@@ -29,12 +29,11 @@ source ~/.sourcerer.sh
 
 alias sublime='/usr/bin/sublime-text'
 alias chrome='chromium-browser'
-alias gittunnel='ssh mobile@10.42.43.2 -L 2000:github.com:22 -N'
 alias gp='git push'
 alias subtitles='subliminal -p addic7ed -l en -s -- $1'
-alias charge='BUSNUM=003 DEVNUM="`lsusb -d 05ac:12a2 |cut -c16-18`" /home/nemo/projects/ubuntu_packages/ipad_charge/ipad_charge'
 alias pu='phpunit'
 alias ghpr='gh pull-request'
+alias ssdr='sudo systemctl daemon-reload'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -57,7 +56,7 @@ if [[ -x /usr/bin/dircolors ]]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-export TERM=xterm-256color
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -73,13 +72,18 @@ function kpssh() { kubectl exec -it $1 -n $2 sh ; }
 function kcssh() { kubectl exec -it $1 -n $2 -c $3 sh ; }
 function klog() { kubetail $1 -n $1 ; }
 
+# Get inotify listener counts
+function inotifytop() {
+    for foo in /proc/*/fd/*; do readlink -f $foo; done |grep inotify |cut -d/ -f3 |xargs -I '{}' -- ps --no-headers -o '%p %U %a' -p '{}' |uniq -c |sort -n
+}
+
 if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-function sympathy() { chromium-browser "chrome-extension://ilcgkjlgdddhjpbchiikkainlfiamkog/main.html#`pwd`/$1" ;}
+
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
 export LC_ALL=en_IN.utf8
 export LANG=en_IN.utf8
@@ -175,10 +179,10 @@ shopt -s cdspell				# this will correct minor spelling errors in a cd command
 shopt -s checkhash
 shopt -s checkwinsize				# update windows size on command
 shopt -s cmdhist          			# save multi-line commands in history as single line
-# shopt -s dotglob				# files beginning with . to be returned in the results of path-name expansion
+shopt -s dotglob				# files beginning with . to be returned in the results of path-name expansion
 # shopt -s expand aliases			# expand aliases
 shopt -s extglob				# necessary for bash completion (programmable completion)
-# shopt -s globstar				# enables the ** globbing operator
+shopt -s globstar				# enables the ** globbing operator
 shopt -s histappend histreedit histverify
 shopt -s hostcomplete     			# attempt hostname expansion when @ is at the beginning of a word
 # shopt -s huponexit
@@ -189,15 +193,15 @@ shopt -s no_empty_cmd_completion		# no empty completion (bash>=2.04 only)
 # shopt -s nullglob dotglob
 shopt -s sourcepath
 # shopt -u cmdhist				# do not treat multiple line commands as a single entry
-# shopt -u force_fignore			# expand to complete an ignored word, if no other words match.
+shopt -u force_fignore			# expand to complete an ignored word, if no other words match.
 # shopt -u mailwarn
 # shopt -u sourcepath
 # stty -ixon					# disable XON/XOFF flow control (^s/^q)
 stty start undef
 stty stop undef
-# stty stop ''					# use C-s to search forward through history (do not block output)
-# ulimit -c unlimited				# let me have core dumps
-ulimit -S -c 0          			# (core file size) don't want any coredumps
+stty stop ''					# use C-s to search forward through history (do not block output)
+ulimit -c unlimited				# let me have core dumps
+# ulimit -S -c 0          			# (core file size) don't want any coredumps
 # ulimit -S -f 1024   				# open files
 # ulimit -S -s 8192  				# stack size
 # ulimit -S -u 256    				# max user processes
@@ -213,8 +217,6 @@ ulimit -S -c 0          			# (core file size) don't want any coredumps
 ##################################################
 
 function zipf() { zip -r "$1".zip "$1" ; }
-
-
 
 ### Custom Functions For adding and fetching covers from a pdf ###
 function addcover() { convert "$2" /tmp/cover.pdf; pdftk /tmp/cover.pdf "$1" cat output /tmp/final.pdf;mv /tmp/final.pdf "$1"; }
@@ -341,8 +343,9 @@ export THEOS_DEVICE_PORT=22
 #PERL_MM_OPT="INSTALL_BASE=/home/nemo/perl5"; export PERL_MM_OPT;
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
+# Manage multiple Git identities
 # karn https://github.com/prydonius/karn
-# if which karn > /dev/null; then eval "$(karn init)"; fi
+if which karn > /dev/null; then eval "$(karn init)"; fi
 
 # Disable beeps
 xset -b
