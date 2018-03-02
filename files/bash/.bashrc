@@ -34,6 +34,9 @@ alias subtitles='subliminal -p addic7ed -l en -s -- $1'
 alias pu='phpunit'
 alias ghpr='gh pull-request'
 alias ssdr='sudo systemctl daemon-reload'
+
+# https://github.com/chef/inspec
+function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -273,7 +276,7 @@ alias lt='ls -ltr'         								# sort by date, most recent last
 alias lu='ls -ltur'        								# sort by and show access time, most recent last
 alias lx='ls -lXB'									# sort by extension
 alias sss='sudo systemctl start'
-alias ssh="cat ~/.ssh/config.d/* > ~/.ssh/config; ssh"
+alias ssh="cat ~/.ssh/config.d/p* > ~/.ssh/config; ssh"
 alias ssr='sudo systemctl restart'
 alias cda='composer dump-autoload'
 
@@ -291,7 +294,7 @@ alias vim='nvim'
 
 
 ##### History Shenanigans
-export HISTCONTROL=ignoredups:erasedups        # for 'ignoreboth': ignore duplicates and /^\s/
+export HISTCONTROL=ignorespace:ignoredups:erasedups        # for 'ignoreboth': ignore duplicates and /^\s/
 export HISTFILE='/home/nemo/.bash_history'
 # export HISTFILESIZE=10000         # increase or decrease the size of the history to '10,000'
 # export HISTFILESIZE=${HISTSIZE}       # bash will remember 'N' commands
@@ -411,6 +414,8 @@ function display() {
         fi
         nitrogen --restore >/dev/null 2>&1
         i3-msg reload
+        # dunst doesn't like screensize changes
+        killall dunst;notify-send foo
     fi
 }
 

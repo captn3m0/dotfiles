@@ -69,13 +69,13 @@ bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down
 
 #### Lock screen config #####
 # Use i3lock as screensaver (works on suspend)
-exec --no-startup-id "xss-lock /home/nemo/projects/scripts/i3lock.sh -l dim > /home/nemo/projects/scripts/xss-lock.log"
+exec "xss-lock -- /home/nemo/projects/scripts/i3lock.sh -l dim"
 
 # Autolock screen after 2 minutes
-exec --no-startup-id "xautolock -corners -000 -detectsleep -time 2 -locker '/home/nemo/projects/scripts/i3lock.sh -l dim'"
+exec "xautolock -corners -000 -detectsleep -time 2 -locker '/home/nemo/projects/scripts/i3lock.sh -l dim'"
 
 # dunst for notifications
-exec --no-startup-id "dunst"
+exec "dunst"
 
 # Win+L
 bindsym $mod+l exec xautolock -locknow
@@ -88,33 +88,23 @@ bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
 # Print screen
 set $screenshot_file '/home/nemo/Desktop/Screenshots/%Y-%m-%d_%H-%M-$wx$h.png'
-bindsym Print exec escrotum --select --selection-delay 300 $screenshot_file
-bindsym $mod+I exec escrotum --select --selection-delay 300 $screenshot_file
-bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 300 $screenshot_file
-bindsym $mod+Shift+I exec escrotum --clipboard --select --selection-delay 300 $screenshot_file
-bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silent $screenshot_file
-bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file
+bindsym Print exec escrotum --select --selection-delay 300 $screenshot_file && notify-send "done"
+bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 300 $screenshot_file && notify-send "copied"
+bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
+bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
+
+bindsym $mod+I exec escrotum --select --selection-delay 300 $screenshot_file && notify-send "done"
+bindsym $mod+Shift+I exec escrotum --clipboard --select --selection-delay 100 $screenshot_file && notify-send "copied"
+
 bindsym $mod+P exec passmenu --type
 
-# change focus
-bindsym $mod+j focus left
-# bindsym $mod+k focus down
-# bindsym $mod+l focus up I use this for lock screen
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
+# focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up

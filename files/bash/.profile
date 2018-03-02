@@ -8,4 +8,5 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/nemo/bin:/sbin:/home/nemo/projects/scripts/:/home/nemo/.phpenv/bin:/home/nemo/.nvm/versions/node/v8.9.1/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/bin:/sbin:$HOME/projects/scripts/:$HOME/.node_modules/bin:$HOME/.gem/ruby/2.5.0/bin"
+export npm_config_prefix=~/.node_modules
