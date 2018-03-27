@@ -11,6 +11,7 @@ pathadd '/home/nemo/bin'
 
 alias xclip='xclip -selection c'
 alias sl=ls
+alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
 # ... or force ignoredups and ignorespace
 #metasploit, my own scripts, texlive
 pathadd '/opt/framework-3.5.2/app/'
@@ -34,6 +35,7 @@ alias subtitles='subliminal -p addic7ed -l en -s -- $1'
 alias pu='phpunit'
 alias ghpr='gh pull-request'
 alias ssdr='sudo systemctl daemon-reload'
+alias k='kubectl'
 
 # https://github.com/chef/inspec
 function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }

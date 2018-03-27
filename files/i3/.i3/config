@@ -53,6 +53,8 @@ bindsym $mod+Shift+Return split h; exec cwdterm.sh
 bindsym Shift+F2 split v; exec cwdterm.sh
 bindsym Ctrl+F2 split h; exec cwdterm.sh
 
+#bindsym $mod+space split h; exec /home/nemo/bin/minions
+
 # Snippy for quick text
 # https://gist.github.com/coderofsalvation/46549e3788ade2f3a938
 bindsym $mod+grave exec snippy.sh
