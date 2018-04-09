@@ -131,7 +131,7 @@ export HOSTFILE=$HOME/.hosts
 # export INPUTRC=$HOME/.inputrc			# type in ‘whatever’ and press ‘Page Up’ key and bash automatically fetches last command that starts with whatever and completes the command for you (requires '$HOME/.inputrc' with these lines: #Page up/page down && "\e[5~": history-search-backward && "\e[6~": history-search-forward)
 # export LC_COLLATE="en_CA.utf8"		# change sorting methods [a-Z] instead of [A-Z]
 export LESSCHARSET='latin1'
-export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \'
+export LESS='-i -n -w  -z-4 -g -e -M -X -F -R -P%t?f%f \'
 # export LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
 export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'	# use this if lesspipe.sh exists
 # export LESS="-QR"				# tell less not to beep and also display colours
@@ -414,10 +414,10 @@ function display() {
         if [[ -e "~/Pictures/$layout.jpg" ]]; then
             (cd ~/Pictures && cp "$layout.jpg" "./xin_1.jpg")
         fi
-        nitrogen --restore >/dev/null 2>&1
+        nitrogen --restore
         i3-msg reload
         # dunst doesn't like screensize changes
-        killall dunst;notify-send foo
+        killall dunst;notify-send "Display Switched"
     fi
 }
 
