@@ -36,6 +36,8 @@ alias pu='phpunit'
 alias ghpr='gh pull-request'
 alias ssdr='sudo systemctl daemon-reload'
 alias k='kubectl'
+# Gets list of all packages from AUR sorted by Size
+alias aur.list='expac "%m\t%n" | sort -h  > /tmp/expac.txt && pacman -Qqm > /tmp/aur.txt  && grep -w -F -f /tmp/aur.txt /tmp/expac.txt'
 
 # https://github.com/chef/inspec
 function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
@@ -90,9 +92,10 @@ if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
 fi
 
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
-export LC_ALL=en_IN.utf8
-export LANG=en_IN.utf8
-#export LC_ALL="C" ##For the weird characters in man pages
+export LC_ALL=en_US.utf8
+export LC_ALL=en_US.utf8
+export LANG=C
+
 
 alias gh='hub'
 alias rake='bundle exec rake'
@@ -104,12 +107,10 @@ function gco_date() {
 }
 
 #My latest prompt
-function _update_ps1() {
-  export PS1="$(~/projects/ubuntu_packages/powerline-shell/powerline-shell.py $? 2> /dev/null)"
-}
-
-export UPDATE_PS1="_update_ps1"
-export PROMPT_COMMAND="history -a; history -c; history -r; $UPDATE_PS1"
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
@@ -129,7 +130,7 @@ export HOSTFILE=$HOME/.hosts
 # export IGNOREEOF=1				# prevent CTRL-D from immediately logging out
 # export INPUTRC=/etc/inputrc			# it's possible that this will make bash find my delete key (and everything else)((but i don't think it did))
 # export INPUTRC=$HOME/.inputrc			# type in ‘whatever’ and press ‘Page Up’ key and bash automatically fetches last command that starts with whatever and completes the command for you (requires '$HOME/.inputrc' with these lines: #Page up/page down && "\e[5~": history-search-backward && "\e[6~": history-search-forward)
-# export LC_COLLATE="en_CA.utf8"		# change sorting methods [a-Z] instead of [A-Z]
+export LC_COLLATE="en_US.utf8"		# change sorting methods [a-Z] instead of [A-Z]
 export LESSCHARSET='latin1'
 export LESS='-i -n -w  -z-4 -g -e -M -X -F -R -P%t?f%f \'
 # export LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
@@ -325,20 +326,13 @@ eval `keychain --eval --quiet --agents ssh id_rsa`
 #Importing phpenv
 # eval "$(phpenv init -)"
 
-#UTF-8 Alias
-export LC_ALL=en_IN.UTF-8
 alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+    tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
 export JAVA_HOME=/usr/lib/jvm/default-runtime
 export GROOVY_HOME=/home/nemo/apps/groovy
 pathadd "$GROOVY_HOME/bin"
 export EC2_HOME=/home/nemo/apps/ec2
-
-# iOS Jailbreak development
-export THEOS=/home/nemo/apps/theos
-export THEOS_DEVICE_IP=192.168.1.101
-export THEOS_DEVICE_PORT=22
 
 # added by travis gem
 [ -f /home/nemo/.travis/travis.sh ] && source /home/nemo/.travis/travis.sh
@@ -350,7 +344,7 @@ export THEOS_DEVICE_PORT=22
 
 # Manage multiple Git identities
 # karn https://github.com/prydonius/karn
-if which karn > /dev/null; then eval "$(karn init)"; fi
+# if which karn > /dev/null; then eval "$(karn init)"; fi
 
 # Disable beeps
 xset -b

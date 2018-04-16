@@ -54,15 +54,18 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-URxvt.font: xft:Input Mono:size=12:pixelsize=12
+URxvt.font:     xft:Input Mono:size=18:antialias=true
+URxvt.boldFont: xft:Input Mono:bold:size=18:antialias=true
 URxvt.scrollBar: false
 URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger: C-Up
-URxvt.iso14755: false
-URxvt.iso14755_52: false
+URxvt.iso14755: true
+URxvt.iso14755_52: true
 
 URxvt.perl-ext-common: default,matcher,resize-font
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
+
+URxvt.imLocale: en_US.utf8

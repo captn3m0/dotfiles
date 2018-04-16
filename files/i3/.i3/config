@@ -40,7 +40,7 @@ workspace_layout default
 hide_edge_borders both
 
 # Still playing around with this
-font pango:DejaVu Sans, FontAwesome 9
+font pango:Input Sans 8,DejaVu Sans, FontAwesome 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
