@@ -13,14 +13,10 @@ alias xclip='xclip -selection c'
 alias sl=ls
 alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
 # ... or force ignoredups and ignorespace
-#metasploit, my own scripts, texlive
-pathadd '/opt/framework-3.5.2/app/'
 pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
-pathadd '/home/nemo/projects/ubuntu_packages/android-sdk-linux/tools'
-pathadd '/opt/vagrant/bin'
 pathadd "$HOME/.phpenv/bin"
-PATH="$PATH:$HOME/apps/ec2/bin"
+pathadd "$HOME/apps/ec2/bin"
 
 # Python virtualenv
 export WORKON_HOME=~/.virtualenvs
@@ -75,9 +71,14 @@ alias kgpa='kubectl get pods --all-namespaces'
 alias kgpn='kubectl get pods -o wide -n '
 alias kno='kubectl get nodes'
 
+
 function kpssh() { kubectl exec -it $1 -n $2 sh ; }
 function kcssh() { kubectl exec -it $1 -n $2 -c $3 sh ; }
 function klog() { kubetail $1 -n $1 ; }
+function kne() { 
+    kubectl get events -n $1 --sort-by='.metadata.creationTimestamp' \
+    -o 'go-template={{range .items}}{{.involvedObject.name}}{{"\t"}}{{.involvedObject.kind}}{{"\t"}}{{.message}}{{"\t"}}{{.reason}}{{"\t"}}{{.type}}{{"\t"}}{{.firstTimestamp}}{{"\n"}}{{end}}' 
+}
 
 # Get inotify listener counts
 function inotifytop() {
@@ -279,6 +280,7 @@ alias lt='ls -ltr'         								# sort by date, most recent last
 alias lu='ls -ltur'        								# sort by and show access time, most recent last
 alias lx='ls -lXB'									# sort by extension
 alias sss='sudo systemctl start'
+alias ssS='sudo systemctl stop'
 alias ssh="cat ~/.ssh/config.d/p* > ~/.ssh/config; ssh"
 alias ssr='sudo systemctl restart'
 alias cda='composer dump-autoload'
