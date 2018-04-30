@@ -54,8 +54,8 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-URxvt.font:     xft:Input Mono:size=18:antialias=true
-URxvt.boldFont: xft:Input Mono:bold:size=18:antialias=true
+URxvt.font:     xft:Input Mono:size=12:antialias=true
+URxvt.boldFont: xft:Input Mono:bold:size=12:antialias=true
 URxvt.scrollBar: false
 URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger: C-Up
