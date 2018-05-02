@@ -132,19 +132,17 @@ export HOSTFILE=$HOME/.hosts
 # export INPUTRC=/etc/inputrc			# it's possible that this will make bash find my delete key (and everything else)((but i don't think it did))
 # export INPUTRC=$HOME/.inputrc			# type in ‘whatever’ and press ‘Page Up’ key and bash automatically fetches last command that starts with whatever and completes the command for you (requires '$HOME/.inputrc' with these lines: #Page up/page down && "\e[5~": history-search-backward && "\e[6~": history-search-forward)
 export LC_COLLATE="en_US.utf8"		# change sorting methods [a-Z] instead of [A-Z]
-export LESSCHARSET='latin1'
-export LESS='-i -n -w  -z-4 -g -e -M -X -F -R -P%t?f%f \'
+export LESSCHARSET="UTF-8"
+export LESS='-i -n -w  -z-4 -g -e -M -X -F -Q -R -P%t?f%f \'
 # export LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
 export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'	# use this if lesspipe.sh exists
-# export LESS="-QR"				# tell less not to beep and also display colours
-# export LESS='-R'
 # export LESS_TERMCAP_mb=$'\E[01;31m'      	# less colors for Man pages # begin blinking
-# export LESS_TERMCAP_md=$'\E[01;38;5;74m'  	# less colors for Man pages # begin bold
-# export LESS_TERMCAP_me=$'\E[0m'           	# less colors for Man pages # end mode
-# export LESS_TERMCAP_se=$'\E[0m'           	# less colors for Man pages # end standout-mode
-# export LESS_TERMCAP_so=$'\E[38;5;246m'    	# less colors for Man pages # begin standout-mode - info box
-# export LESS_TERMCAP_ue=$'\E[0m'           	# less colors for Man pages # end underline
-# export LESS_TERMCAP_us=$'\E[04;38;5;146m' 	# less colors for Man pages # begin underline
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  	# less colors for Man pages # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           	# less colors for Man pages # end mode
+export LESS_TERMCAP_se=$'\E[0m'           	# less colors for Man pages # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;5;246m'    	# less colors for Man pages # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           	# less colors for Man pages # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' 	# less colors for Man pages # begin underline
 # export MY_PROXY='http://YOUR_USERNAME:YOUR_PASSWORD@PROXY_IP:PROXY_PORT/'
 # export OOO_FORCE_DESKTOP=gnome   		# openoffice preferences
 export PAGER='less -e'
@@ -296,6 +294,10 @@ alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 alias vim='nvim'
+
+#### Docker
+# docker run image
+alias dri='docker run --rm --tty --entrypoint --interactive /bin/sh'
 
 
 ##### History Shenanigans
