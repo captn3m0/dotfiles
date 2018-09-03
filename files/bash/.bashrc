@@ -115,7 +115,7 @@ function gco_date() {
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
-. /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
+. /usr/share/powerline/bindings/bash/powerline.sh
 
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
@@ -341,6 +341,7 @@ export JAVA_HOME=/usr/lib/jvm/default-runtime
 export GROOVY_HOME=/home/nemo/apps/groovy
 pathadd "$GROOVY_HOME/bin"
 export EC2_HOME=/home/nemo/apps/ec2
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
 # added by travis gem
 [ -f /home/nemo/.travis/travis.sh ] && source /home/nemo/.travis/travis.sh

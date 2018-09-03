@@ -25,7 +25,7 @@ exec urxvtd -q -f -o
 exec xbacklight -set 15
 
 # Code Workspace
-exec i3-msg "workspace $WS1; exec subl3"
+exec i3-msg "workspace $WS1; exec subl"
 exec i3-msg "workspace $WS1; exec cwdterm.sh"
 
 # Web workspace
