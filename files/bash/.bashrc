@@ -61,6 +61,9 @@ if [[ -x /usr/bin/dircolors ]]; then
     alias egrep='egrep --color=auto'
 fi
 
+# Drone related stuff
+export DRONE_SERVER=https://drone.razorpay.com
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -82,6 +85,10 @@ function klog() { kubetail $1 -n $1 ; }
 function kne() { 
     kubectl get events -n $1 --sort-by='.metadata.creationTimestamp' \
     -o 'go-template={{range .items}}{{.involvedObject.name}}{{"\t"}}{{.involvedObject.kind}}{{"\t"}}{{.message}}{{"\t"}}{{.reason}}{{"\t"}}{{.type}}{{"\t"}}{{.firstTimestamp}}{{"\n"}}{{end}}' 
+}
+
+function gettoken() {
+    export "`basename $1`"="$(pass show $1)"
 }
 
 # Get inotify listener counts
