@@ -12,6 +12,8 @@ alias watch='watch '
 alias xclip='xclip -selection c'
 alias sl=ls
 alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
+alias wine32='WINEARCH=win32 WINEPREFIX=~/win32 wine'
+alias signal_update='docker run captn3m0/signal-arch-builder'
 # ... or force ignoredups and ignorespace
 pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
@@ -35,6 +37,9 @@ alias ssdr='sudo systemctl daemon-reload'
 
 # Gets list of all packages from AUR sorted by Size
 alias aur.list='expac "%m\t%n" | sort -h  > /tmp/expac.txt && pacman -Qqm > /tmp/aur.txt  && grep -w -F -f /tmp/aur.txt /tmp/expac.txt'
+
+# To list the packages marked for upgrade with their download size
+alias upgrade.size='pacman -Quq|xargs expac -S -H M "%k\t%n" | sort -sh'
 
 # https://github.com/chef/inspec
 function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
