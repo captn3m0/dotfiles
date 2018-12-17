@@ -314,6 +314,9 @@ alias vim='nvim'
 #### Docker
 # docker run image
 alias dri='docker run --volume /home/nemo/tmp:/data --tty --rm --interactive --entrypoint /bin/sh '
+# docker run image, but with current directory mounted as /current
+# Do not run this on untrusted images
+alias dri_cwd='docker run --volume `pwd`:/current --volume /home/nemo/tmp:/data --tty --rm --interactive --entrypoint /bin/sh '
 alias dockerlint='LC_ALL=C hadolint'
 
 ##### History Shenanigans
@@ -429,6 +432,7 @@ function display() {
         if [[ -e "~/Pictures/$layout.jpg" ]]; then
             (cd ~/Pictures && cp "$layout.jpg" "./xin_1.jpg")
         fi
+        sleep 3
         nitrogen --restore
         i3-msg reload
         # dunst doesn't like screensize changes

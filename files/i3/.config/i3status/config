@@ -33,7 +33,7 @@ ethernet _first_ {
     format_down = "E: down"
 }
 
-battery_level{
+battery_level {
     color_bad = "#ECF0F1"
     color_charging = "#FCE94F"
     color = "#FCE94F"
@@ -43,13 +43,13 @@ battery_level{
     mode = "text"
 }
 
-external_script "cmus" {
-    # Refresh every 5 seconds
-    cache_timeout = 5
-    format = "► {output}"
-    color = "#E67E22"
-    script_path = "python /home/nemo/projects/scripts/get_current_track.py"
-}
+#external_script "cmus" {
+#    # Refresh every 5 seconds
+#    cache_timeout = 5
+#    format = "► {output}"
+#    color = "#E67E22"
+#    script_path = "python /home/nemo/projects/scripts/get_current_track.py"
+#}
 
 run_watch DHCP {
     pidfile = "/var/run/dhclient*.pid"
@@ -75,9 +75,9 @@ disk "/" {
     format = "%avail"
 }
 
-weather_yahoo {
-    city_code = "INKA0686"
-}
+#weather_yahoo {
+#    city_code = "INKA0686"
+#}
 
 #bluetooth {
 #    format = "{name}"
@@ -86,6 +86,6 @@ weather_yahoo {
 #    format_no_conn_prefix = ""
 #}
 
-pomodoro {
+#pomodoro {
     
-}
+#}

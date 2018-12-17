@@ -74,7 +74,7 @@ bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down
 exec "xss-lock -- /home/nemo/projects/scripts/i3lock.sh -l dim"
 
 # Autolock screen after 2 minutes
-exec "xautolock -corners -000 -detectsleep -time 2 -locker '/home/nemo/projects/scripts/i3lock.sh -l dim'"
+exec xautolock -corners -000 -detectsleep -time 1 -locker "/home/nemo/projects/scripts/i3lock.sh -l dim"
 
 # dunst for notifications
 exec "dunst"
