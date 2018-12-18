@@ -24,7 +24,7 @@ pathadd "$HOME/apps/ec2/bin"
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 source /usr/share/doc/pkgfile/command-not-found.bash
-source ~/.sourcerer.sh
+# source ~/.sourcerer.sh
 
 alias sublime='/usr/bin/sublime-text'
 alias subl3=subl
@@ -34,6 +34,7 @@ alias subtitles='subliminal -p addic7ed -l en -s -- $1'
 alias pu='phpunit'
 alias ghpr='gh pull-request'
 alias ssdr='sudo systemctl daemon-reload'
+alias cat='bat'
 
 # Gets list of all packages from AUR sorted by Size
 alias aur.list='expac "%m\t%n" | sort -h  > /tmp/expac.txt && pacman -Qqm > /tmp/aur.txt  && grep -w -F -f /tmp/aur.txt /tmp/expac.txt'
@@ -170,7 +171,7 @@ export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
 # export USER_OPRT=47426
 # export USER_VPRT=79
 # export USER_WPRT=30818
-#export VISUAL='nano'
+# export VISUAL='subl'
 # export wpsetters=feh
 # ${file%\.[^.]*}				# to remove filename extensions in bash
 # fortune -a					# fortunes at each new shell
@@ -349,12 +350,10 @@ eval `keychain --eval --quiet --agents ssh id_rsa`
 #Importing phpenv
 # eval "$(phpenv init -)"
 
-alias suidchromium='sudo chown root:root chrome_sandbox && sudo chmod 4755 chrome_sandbox && export CHROME_DEVEL_SANDBOX="$PWD/chrome_sandbox"'
+# Don't use this for sensitive files
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
     tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
 export JAVA_HOME=/usr/lib/jvm/default-runtime
-export GROOVY_HOME=/home/nemo/apps/groovy
-pathadd "$GROOVY_HOME/bin"
 export EC2_HOME=/home/nemo/apps/ec2
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
@@ -368,7 +367,7 @@ export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
 # Manage multiple Git identities
 # karn https://github.com/prydonius/karn
-# if which karn > /dev/null; then eval "$(karn init)"; fi
+if which karn > /dev/null; then eval "$(karn init)"; fi
 
 # Disable beeps
 xset -b
