@@ -435,6 +435,12 @@ function display() {
         esac
     fi
     echo "layout=$layout"
+    if [[ "$layout" == "home" ]]; then
+        xrandr --newmode "2560x1080_60.00"  \
+            230.00  2560 2720 2992 3424  \
+            1080 1083 1093 1120 -hsync +vsync
+        xrandr --addmode HDMI1 "2560x1080_60.00"
+    fi
     if [[ -a ~/.screenlayout/$layout.sh ]]; then
         `cd ~/.screenlayout && sh $layout.sh`
         # Write the current layout

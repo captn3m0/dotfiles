@@ -96,7 +96,7 @@ bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silen
 bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
 
 bindsym $mod+I exec escrotum --select --selection-delay 300 $screenshot_file && notify-send "done"
-bindsym $mod+Shift+I exec escrotum --clipboard --select --selection-delay 500 $screenshot_file && notify-send "copied"
+bindsym $mod+Shift+I exec escrotum --clipboard --select --selection-delay 2000 $screenshot_file && notify-send "copied"
 
 bindsym $mod+P exec passmenu --type
 
