@@ -320,6 +320,15 @@ alias dri='docker run --volume /home/nemo/tmp:/data --tty --rm --interactive --e
 alias dri_cwd='docker run --volume `pwd`:/current --volume /home/nemo/tmp:/data --tty --rm --interactive --entrypoint /bin/sh '
 alias dockerlint='LC_ALL=C hadolint'
 
+##### Terraform
+alias t=terraform
+alias tp='terraform plan'
+alias tpt='terraform plan --target '
+alias ta='terraform apply'
+alias tat='terraform apply --target '
+alias tfa='terraform apply --auto-approve'
+alias tfat='terraform apply --auto-approve --target '
+
 ##### History Shenanigans
 export HISTCONTROL=ignorespace:ignoredups:erasedups        # for 'ignoreboth': ignore duplicates and /^\s/
 export HISTFILE='/home/nemo/.bash_history'
@@ -367,7 +376,7 @@ export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
 # Manage multiple Git identities
 # karn https://github.com/prydonius/karn
-if which karn > /dev/null; then eval "$(karn init)"; fi
+if command -v karn > /dev/null; then eval "$(karn init)"; fi
 
 # Disable beeps
 xset -b
