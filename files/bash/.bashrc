@@ -37,10 +37,12 @@ alias ssdr='sudo systemctl daemon-reload'
 alias cat='bat'
 
 # Gets list of all packages from AUR sorted by Size
-alias aur.list='expac "%m\t%n" | sort -h  > /tmp/expac.txt && pacman -Qqm > /tmp/aur.txt  && grep -w -F -f /tmp/aur.txt /tmp/expac.txt'
+alias aur.list='expac -H M "%m\t%n" | sort -h  > /tmp/expac.txt && pacman -Qqm > /tmp/aur.txt  && grep --color=never -w -F -f /tmp/aur.txt /tmp/expac.txt'
+# Same as above, but all packages (except AUR)
+alias package.list='expac -sH M "%-30n %m" | sort -hk 2'
 
 # To list the packages marked for upgrade with their download size
-alias upgrade.size='pacman -Quq|xargs expac -S -H M "%k\t%n" | sort -sh'
+alias upgrade.size='pacman -Quq|xargs expac -SH M "%k\t%n" | sort -sh'
 
 # https://github.com/chef/inspec
 function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
