@@ -529,3 +529,21 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+#
+#
+# Stolen from @ThatHarmanSingh
+function sprint() {
+
+# Set time format to unix so we can subtract
+ HISTTIMEFORMAT='%s ' history |    
+ # History returns way more than needed
+  tail -n 4000 |                   
+  # Grep for git commits (after timestamps)
+  grep -E '^\d+\s+\d+\s+gc' |            
+  # Max 15 days ago
+  awk -v now=$(date +%s) '(now - $2) < 15*24*60*60' | 
+  # Cut out the timestamps for uniq check
+  cut -d ' ' -f 4- |
+  # To handle multiple commit-pull-reset-commit cycles
+  uniq
+}
