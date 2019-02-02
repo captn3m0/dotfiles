@@ -19,6 +19,7 @@ pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
 pathadd "$HOME/.phpenv/bin"
 pathadd "$HOME/apps/ec2/bin"
+pathadd "$HOME/.gem/ruby/2.6.0/bin"
 
 # Python virtualenv
 export WORKON_HOME=~/.virtualenvs

@@ -3,9 +3,9 @@
     <!--More or less recommended resolutions (16:10 format): 2560x1600, 1920x1200, 1680x1050, 1440x900, 1280x800-->
     <!--Note: The game will work in ANY resolution you set, but it won't look as intended.-->
     <!--mode=0 is windowed, mode=1 is fullscreen windowed, mode=2 is fulscreen-->
-    <Video width="2560" height="1080" mode="1" stretchToFit="1" maxFPS="60" vsync="false" monitor="3" gore="2" skipLogo="true"/>
+    <Video width="1920" height="1080" mode="2" stretchToFit="1" maxFPS="60" vsync="false" monitor="3" gore="2" skipLogo="true"/>
     <Sound masterVolume="1" musicVolume="1" gameVolume="1" ambientalVolume="1" dynamicReverb="1"/>
-    <Game scrollSpeed="0.1" allowZoomPan="1" previewLOS="1" showSoundsRange="1" showLoadingScreens="1" coloredPaths="1" keepPrevPlan="1" invertHUD="0"/>
+    <Game scrollSpeed="0.1" allowZoomPan="1" previewLOS="1" showSoundsRange="1" showLoadingScreens="1" coloredPaths="1" keepPrevPlan="0" invertHUD="0"/>
     <DevMode value="false" useRandomMapPool="false" fullDebugOutput="false"/>
     <KHGCloud uniqueId=""/>
     <Language value="English"/>
