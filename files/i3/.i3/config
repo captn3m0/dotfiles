@@ -17,6 +17,7 @@ exec --no-startup-id volumeicon
 exec --no-startup-id redshift-gtk
 exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id connman-gtk
+exec --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 
 #terminal
 exec urxvtd -q -f -o
