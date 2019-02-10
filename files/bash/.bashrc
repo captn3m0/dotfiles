@@ -7,6 +7,7 @@ pathadd() {
 }
 
 pathadd '/home/nemo/bin'
+pathadd '/home/nemo/projects/go/bin'
 
 alias watch='watch '
 alias xclip='xclip -selection c'
@@ -547,4 +548,20 @@ function sprint() {
   cut -d ' ' -f 4- |
   # To handle multiple commit-pull-reset-commit cycles
   uniq
+}
+
+# https://github.com/uber/makisu
+
+function makisu_build() {
+    makisu_version=${MAKISU_VERSION:-v0.1.8}
+    
+    docker run -i --rm --net host \
+        -v /var/run/docker.sock:/docker.sock \
+        -e DOCKER_HOST=unix:///docker.sock \
+        -v $(pwd):/makisu-context \
+        -v /tmp/makisu-storage:/makisu-storage \
+        gcr.io/makisu-project/makisu:$makisu_version build \
+            --modifyfs=true --load \
+            ${@:1:-1} /makisu-context
+    # popd
 }
