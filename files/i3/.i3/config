@@ -54,12 +54,14 @@ bindsym $mod+Shift+Return split h; exec cwdterm.sh
 bindsym Shift+F2 split v; exec cwdterm.sh
 bindsym Ctrl+F2 split h; exec cwdterm.sh
 
-#bindsym $mod+space split h; exec /home/nemo/bin/minions
 
 # Snippy for quick text
 # https://gist.github.com/coderofsalvation/46549e3788ade2f3a938
 bindsym $mod+grave exec snippy.sh
+# This one because of a 60% keyboard
 bindsym $mod+Escape exec snippy.sh
+
+bindsym $mod+z exec fsearch
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -179,29 +181,29 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym button 6 exec "notify-send 123"
+#bindsym button 6 exec "notify-send 123"
 # resize window (you can also use the mouse for that)
 mode "resize" {
-    # These bindings trigger as soon as you enter the resize mode
+	# These bindings trigger as soon as you enter the resize mode
 
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym semicolon resize grow width 10 px or 10 ppt
+	# Pressing left will shrink the window’s width.
+	# Pressing right will grow the window’s width.
+	# Pressing up will shrink the window’s height.
+	# Pressing down will grow the window’s height.
+	bindsym j resize shrink width 10 px or 10 ppt
+	bindsym k resize grow height 10 px or 10 ppt
+	bindsym l resize shrink height 10 px or 10 ppt
+	bindsym semicolon resize grow width 10 px or 10 ppt
 
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+	# same bindings, but for the arrow keys
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
 
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -219,13 +221,13 @@ bar {
   workspace_buttons yes
   status_command py3status -c ~/.config/i3status/config
   colors {
-    separator #888888
-    background #333333
-    statusline #FFFFFF
-    focused_workspace #4E9C00 #4E9C00 #FFFFFF
-    active_workspace #333333 #333333 #FFFFFF
-    inactive_workspace #333333 #333333 #888888
-    urgent_workspace #C20000 #C20000 #FFFFFF
+	separator #888888
+	background #333333
+	statusline #FFFFFF
+	focused_workspace #4E9C00 #4E9C00 #FFFFFF
+	active_workspace #333333 #333333 #FFFFFF
+	inactive_workspace #333333 #333333 #888888
+	urgent_workspace #C20000 #C20000 #FFFFFF
   }
 }
 
@@ -241,6 +243,7 @@ for_window [class="Google-musicmanager"] floating enable
 for_window [class="Connman-gtk"] floating enable resize 800 420
 for_window [class="Firefox" instance="Browser"] floating enable
 for_window [class="Firefox Beta" instance="Browser"] floating enable
+for_window [class="Fsearch"] floating enable
 
 # Sticky Notepad
 exec --no-startup-id xpad
