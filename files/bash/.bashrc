@@ -128,6 +128,11 @@ function gco_date() {
   git checkout `git rev-list -n 1 --before="$1" master`
 }
 
+function make_aoc() {
+    pdftk $1 cat 1 output 1-$1
+    pdftk 1-$1 aoc.pdf cat output aoc-$1
+}
+
 #My latest prompt
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
