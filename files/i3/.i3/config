@@ -239,16 +239,23 @@ for_window [window_role="bubble"] floating enable
 for_window [class="xpad"] floating enable
 for_window [class="Zeal"] floating enable
 for_window [class="Pavucontrol"] floating enable resize 940 600
-for_window [class="Google-musicmanager"] floating enable
 for_window [class="Connman-gtk"] floating enable resize 800 420
 for_window [class="Firefox" instance="Browser"] floating enable
 for_window [class="Firefox Beta" instance="Browser"] floating enable
 for_window [class="Fsearch"] floating enable
+for_window [class="Com.github.parnold-x.nasc"] floating enable 800 420
+for_window [class="xpad"] move scratchpad
+for_window [class="Com.github.parnold-x.nasc"] move scratchpad
 
 # Sticky Notepad
 exec --no-startup-id xpad
+# Sticky math app
+exec --no-startup-id com.github.parnold-x.nasc
 bindsym F1 [class="xpad" instance="xpad"] scratchpad show
-bindsym F2 [class="^(?!xpad$)"] scratchpad show
+# Go through all windows
+bindsym F2 scratchpad show
+# Only for Nasc
+bindsym F3 [class="Com.github.parnold-x.nasc"] scratchpad show
 
 # Scratchpad
 bindsym $mod+shift+z move scratchpad
