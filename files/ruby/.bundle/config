@@ -1,2 +1,9 @@
 ---
 BUNDLE_PATH: "vendor/bundle"
+BUNDLE_DEFAULT_INSTALL_USES_PATH: "true"
+BUNDLE_PATH: "vendor/bundle"
+BUNDLE_ALLOW_OFFLINE_INSTALL: "true"
+BUNDLE_CACHE_ALL: "true"
+BUNDLE_GLOBAL_GEM_CACHE: "true"
+BUNDLE_GEM__TEST: "false"
+BUNDLE_GEM__MIT: "false"

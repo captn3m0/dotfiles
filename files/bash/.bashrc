@@ -21,6 +21,23 @@ pathadd '/home/nemo/projects/scripts/'
 pathadd "$HOME/.phpenv/bin"
 pathadd "$HOME/apps/ec2/bin"
 pathadd "$HOME/.gem/ruby/2.6.0/bin"
+# needs a kubectl upgrade
+pathadd "$HOME/.krew/bin"
+
+
+# https://substrakt.com/journal/easy-peasy-composer-local-package-symlink-composer-link/
+composer-link() {
+  jq '.repositories |= [{"type": "path", "url": "'$1'", "options": {"symlink": true}}] + . ' composer.json > composer.tmp.json && mv composer.tmp.json composer.json
+
+  packageName=$(jq -r '.name' $1/composer.json)
+
+  composer require $packageName @dev
+}
+
+composer-unlink() {
+  git checkout composer.json composer.lock
+  composer update
+}
 
 # Python virtualenv
 export WORKON_HOME=~/.virtualenvs
@@ -337,6 +354,7 @@ alias ta='terraform apply'
 alias tat='terraform apply --target '
 alias tfa='terraform apply --auto-approve'
 alias tfat='terraform apply --auto-approve --target '
+alias tfit='terraform init'
 
 ##### History Shenanigans
 export HISTCONTROL=ignorespace:ignoredups:erasedups        # for 'ignoreboth': ignore duplicates and /^\s/
