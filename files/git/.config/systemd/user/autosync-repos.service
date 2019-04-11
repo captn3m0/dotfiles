@@ -1,0 +1,10 @@
+[Unit]
+Description=Automatically does git push and pull on a number of repos
+
+[Service]
+Type=simple
+ExecStart=/home/nemo/projects/scripts/syncrepos
+Nice=19
+
+[Install]
+WantedBy=autosync-repos.target
