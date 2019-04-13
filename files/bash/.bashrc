@@ -23,6 +23,7 @@ pathadd "$HOME/apps/ec2/bin"
 pathadd "$HOME/.gem/ruby/2.6.0/bin"
 # needs a kubectl upgrade
 pathadd "$HOME/.krew/bin"
+pathadd "$HOME/.local/bin"
 
 
 # https://substrakt.com/journal/easy-peasy-composer-local-package-symlink-composer-link/
@@ -65,6 +66,8 @@ alias upgrade.size='pacman -Quq|xargs expac -SH M "%k\t%n" | sort -sh'
 
 # https://github.com/chef/inspec
 function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
+
+# alias kapitan='docker run -t --rm -u $(id -u) -v $(pwd):/src:delegated deepmind/kapitan'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
