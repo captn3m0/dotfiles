@@ -21,7 +21,7 @@ exec --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 
 # terminal
 # https://www.systutorials.com/docs/linux/man/1-urxvtd/
-exec urxvtd --quiet --mlock --fork --opendisplay
+exec urxvtd --quiet --fork --opendisplay
 
 # Set default backlight
 exec xbacklight -set 15

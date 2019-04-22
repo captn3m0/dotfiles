@@ -324,6 +324,8 @@ alias lt='ls -ltr'         								# sort by date, most recent last
 alias lu='ls -ltur'        								# sort by and show access time, most recent last
 alias lx='ls -lXB'									# sort by extension
 alias sss='sudo systemctl start'
+alias sse='sudo systemctl enable'
+alias ssd='sudo systemctl disable'
 alias ssS='sudo systemctl stop'
 alias ssh="cat ~/.ssh/config.d/p* > ~/.ssh/config; ssh"
 alias ssr='sudo systemctl restart'
@@ -358,6 +360,8 @@ alias tat='terraform apply --target '
 alias tfa='terraform apply --auto-approve'
 alias tfat='terraform apply --auto-approve --target '
 alias tfit='terraform init'
+
+alias ctop='docker run --name ctop -it --rm -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop '
 
 ##### History Shenanigans
 export HISTCONTROL=ignorespace:ignoredups:erasedups        # for 'ignoreboth': ignore duplicates and /^\s/
