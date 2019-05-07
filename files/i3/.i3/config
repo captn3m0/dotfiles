@@ -94,8 +94,8 @@ bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
 
 # Print screen
 set $screenshot_file '/home/nemo/Desktop/Screenshots/%Y-%m-%d_%H-%M-%S-$wx$h.png'
-bindsym Print exec escrotum --select --selection-delay 300 $screenshot_file && notify-send "done"
-bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 300 $screenshot_file && notify-send "copied"
+bindsym Print exec escrotum --select --selection-delay 100 $screenshot_file && notify-send "done"
+bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 100 $screenshot_file && notify-send "copied"
 bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
 bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
 
