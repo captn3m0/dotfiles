@@ -33,6 +33,9 @@ exec i3-msg "workspace $WS1; exec cwdterm.sh"
 # Web workspace
 exec i3-msg "workspace $WS2; exec firefox-beta"
 
+# Startup figure out monitors
+exec autorandr
+
 # Quick switching between workspace is disabled
 # Just leads to confusion
 workspace_auto_back_and_forth no
@@ -258,6 +261,7 @@ bindsym F2 scratchpad show
 # Only for Nasc
 bindsym $mod+F3 [class="Com.github.parnold-x.nasc"] scratchpad show
 
+
 # Scratchpad
 bindsym $mod+shift+z move scratchpad
 
@@ -274,7 +278,8 @@ bindsym $mod+shift+s move workspace to output right
 bindsym $mod+shift+w move workspace to output up
 bindsym $mod+shift+x move workspace to output down
 
-bindsym XF86Display exec arandr
+bindsym XF86Display exec autorandr
+bindsym $mod+F9 exec autorandr
 
 client.focused #4E9C00 #4E9C00 #FFFFFF #FFFFFF
 client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF

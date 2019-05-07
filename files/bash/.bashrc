@@ -452,39 +452,44 @@ man() {
 
 # Overrides the display provided by imagemagick
 function display() {
-    layout="$1"
-    if [[ "$1" == "toggle" ]]; then
-        # exchange it
-        CURRENT=$(cat ~/.screenlayout/current)
-        echo "current=$CURRENT"
-        case "$CURRENT" in
-            "office")
-                layout="single"
-                ;;
-            "single")
-                layout="office"
-                ;;
-        esac
-    fi
-    echo "layout=$layout"
-    if [[ "$layout" == "home" ]]; then
-        xrandr --newmode "2560x1080_60.00"  \
-            230.00  2560 2720 2992 3424  \
-            1080 1083 1093 1120 -hsync +vsync
-        xrandr --addmode HDMI1 "2560x1080_60.00"
-    fi
-    if [[ -a ~/.screenlayout/$layout.sh ]]; then
-        `cd ~/.screenlayout && sh $layout.sh`
-        # Write the current layout
-        echo $layout > ~/.screenlayout/current
-        if [[ -e "~/Pictures/$layout.jpg" ]]; then
-            (cd ~/Pictures && cp "$layout.jpg" "./xin_1.jpg")
-        fi
-        sleep 3
-        nitrogen --restore
-        i3-msg reload
-        # dunst doesn't like screensize changes
-        killall dunst;notify-send "Display Switched"
+    if [[ `which autorandr` ]]; then
+      autorandr
+    else
+      echo "[warn] Reminder to switch to autorandr"
+      layout="$1"
+      if [[ "$1" == "toggle" ]]; then
+          # exchange it
+          CURRENT=$(cat ~/.screenlayout/current)
+          echo "current=$CURRENT"
+          case "$CURRENT" in
+              "office")
+                  layout="single"
+                  ;;
+              "single")
+                  layout="office"
+                  ;;
+          esac
+      fi
+      echo "layout=$layout"
+      if [[ "$layout" == "home" ]]; then
+          xrandr --newmode "2560x1080_60.00"  \
+              230.00  2560 2720 2992 3424  \
+              1080 1083 1093 1120 -hsync +vsync
+          xrandr --addmode HDMI1 "2560x1080_60.00"
+      fi
+      if [[ -a ~/.screenlayout/$layout.sh ]]; then
+          `cd ~/.screenlayout && sh $layout.sh`
+          # Write the current layout
+          echo $layout > ~/.screenlayout/current
+          if [[ -e "~/Pictures/$layout.jpg" ]]; then
+              (cd ~/Pictures && cp "$layout.jpg" "./xin_1.jpg")
+          fi
+          sleep 3
+          nitrogen --restore
+          i3-msg reload
+          # dunst doesn't like screensize changes
+          killall dunst;notify-send "Display Switched"
+      fi
     fi
 }
 
