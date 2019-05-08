@@ -15,6 +15,7 @@ alias sl=ls
 alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
 alias wine32='WINEARCH=win32 WINEPREFIX=~/win32 wine'
 alias signal_update='docker run captn3m0/signal-arch-builder'
+alias kc='kapitan compile'
 # ... or force ignoredups and ignorespace
 pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
