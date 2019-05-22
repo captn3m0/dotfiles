@@ -9,11 +9,12 @@ off
 output DP1
 gamma 1.0:1.0:0.909
 mode 1920x1200
-pos 1440x0
+pos 0x0
 rate 59.95
+rotate right
 output eDP1
 gamma 1.0:1.0:0.909
 mode 1440x900
-pos 0x300
+pos 1200x1020
 primary
 rate 60.00

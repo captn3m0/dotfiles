@@ -237,6 +237,7 @@ bar {
 
 # Window assignments
 for_window [class="Wine"] floating enable
+for_window [class="Blueberry.py"] floating enable
 for_window [class="Transmission-gtk"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
