@@ -82,12 +82,8 @@ bindsym $mod+Shift+q kill
 bindsym XF86KbdBrightnessUp exec /home/nemo/projects/scripts/backlight up
 bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down 
 
-#### Lock screen config #####
-# Use i3lock as screensaver (works on suspend)
-exec "xss-lock -- /home/nemo/projects/scripts/i3lock.sh -l dim"
-
 # Autolock screen after 2 minutes
-exec xautolock -corners -000 -detectsleep -time 1 -locker "/home/nemo/projects/scripts/i3lock.sh -l dim"
+exec xautolock -detectsleep -time 1 -locker "/home/nemo/projects/scripts/lock.sh"
 
 # dunst for notifications
 exec "dunst"
@@ -106,6 +102,7 @@ set $screenshot_file '/home/nemo/Desktop/Screenshots/%Y-%m-%d_%H-%M-%S-$wx$h.png
 bindsym Print exec escrotum --select --selection-delay 100 $screenshot_file && notify-send "done"
 bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 100 $screenshot_file && notify-send "copied"
 bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
+bindsym Ctrl+$mod+I exec scrot --focused --count --delay 1 --quality 80 --silent $screenshot_file && notify-send "done"
 bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
 
 bindsym $mod+I exec escrotum --select --selection-delay 300 $screenshot_file && notify-send "done"

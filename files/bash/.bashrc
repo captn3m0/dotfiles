@@ -621,19 +621,21 @@ function sprint() {
 }
 
 # https://github.com/uber/makisu
-
+# 
 function makisu_build() {
-    makisu_version=${MAKISU_VERSION:-v0.1.8}
-    
+    makisu_version=${MAKISU_VERSION:-v0.1.10}
+    cd ${@: -1}
     docker run -i --rm --net host \
         -v /var/run/docker.sock:/docker.sock \
         -e DOCKER_HOST=unix:///docker.sock \
         -v $(pwd):/makisu-context \
         -v /tmp/makisu-storage:/makisu-storage \
         gcr.io/makisu-project/makisu:$makisu_version build \
-            --modifyfs=true --load \
-            ${@:1:-1} /makisu-context
-    # popd
+            --commit=explicit \
+            --modifyfs=true \
+            --load \
+            ${@:1:${#@}-1} /makisu-context
+    cd -
 }
 
 eval "$(starship init bash)"
