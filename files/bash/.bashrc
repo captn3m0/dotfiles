@@ -390,7 +390,6 @@ shopt -s histappend
 
 ### Added by the Heroku Toolbelt
 pathadd '/usr/local/heroku/bin'
-eval `keychain --eval --quiet --agents ssh id_rsa`
 #Importing phpenv
 # eval "$(phpenv init -)"
 
