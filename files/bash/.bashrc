@@ -9,6 +9,8 @@ pathadd() {
 pathadd '/home/nemo/bin'
 pathadd '/home/nemo/projects/go/bin'
 
+eval $(ssh-agent)
+
 alias watch='watch '
 alias xclip='xclip -selection c'
 alias sl=ls
