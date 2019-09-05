@@ -10,6 +10,12 @@ pathadd() {
 
 pathadd '/home/nemo/bin'
 pathadd '/home/nemo/projects/go/bin'
+pathadd '/bin'
+pathadd '/snap/bin'
+
+pathadd /home/nemo/.local/share/junest/bin
+
+eval $(keychain --eval)
 
 alias watch='watch '
 alias xclip='xclip -selection c'
@@ -60,6 +66,7 @@ alias pu='phpunit'
 alias ghpr='gh pull-request'
 alias ssdr='sudo systemctl daemon-reload'
 alias cat='bat'
+alias fomu.setup='export PATH=/home/nemo/apps/fomu/bin:$PATH'
 
 # Gets list of all packages from AUR sorted by Size
 alias aur.list='expac -H M "%m\t%n" | sort -h  > /tmp/expac.txt && pacman -Qqm > /tmp/aur.txt  && grep --color=never -w -F -f /tmp/aur.txt /tmp/expac.txt'
