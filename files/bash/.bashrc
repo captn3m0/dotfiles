@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/.bash_profile
+
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
@@ -9,8 +11,6 @@ pathadd() {
 pathadd '/home/nemo/bin'
 pathadd '/home/nemo/projects/go/bin'
 
-eval $(ssh-agent)
-
 alias watch='watch '
 alias xclip='xclip -selection c'
 alias sl=ls
@@ -18,6 +18,8 @@ alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
 alias wine32='WINEARCH=win32 WINEPREFIX=~/win32 wine'
 alias signal_update='docker run captn3m0/signal-arch-builder'
 alias kc='kapitan compile'
+# https://tizardsbriefcase.com/1059/linux/remove-query-string-filename-wget
+alias clean.filenames='for file in *; do mv "$file" "${file%%\?*}"; done'
 # ... or force ignoredups and ignorespace
 pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
