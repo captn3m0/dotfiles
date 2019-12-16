@@ -31,7 +31,7 @@ exec xbacklight -set 15
 
 # Code Workspace
 exec i3-msg "workspace $WS1; exec subl"
-exec i3-msg "workspace $WS1; exec cwdterm.sh"
+exec i3-msg "workspace $WS1; exec alacritty"
 
 # Web workspace
 exec i3-msg "workspace $WS2; exec firefox-beta"
@@ -54,12 +54,12 @@ font pango:Fira Sans 8,Dejavu Sans,Cantarell 10,FontAwesome 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return split v; exec cwdterm.sh
-bindsym $mod+Shift+Return split h; exec cwdterm.sh
+bindsym $mod+Return split v; exec alacritty
+bindsym $mod+Shift+Return split h; exec alacritty
 
 # Split terminals using byobu shortcuts
-#bindsym Shift+F2 split v; exec cwdterm.sh
-#bindsym Ctrl+F2 split h; exec cwdterm.sh
+#bindsym Shift+F2 split v; exec alacritty
+#bindsym Ctrl+F2 split h; exec alacritty
 
 
 # Snippy for quick text

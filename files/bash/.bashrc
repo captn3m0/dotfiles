@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ~/.bash_profile
-
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
@@ -186,10 +184,10 @@ function make_aoc() {
 }
 
 #My latest prompt
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. /usr/share/powerline/bindings/bash/powerline.sh
+# powerline-daemon -q
+# POWERLINE_BASH_CONTINUATION=1
+# POWERLINE_BASH_SELECT=1
+# . /usr/share/powerline/bindings/bash/powerline.sh
 
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
@@ -374,7 +372,7 @@ alias sf='fasd -sif'     # interactive file selection
 alias z='j'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 
-source /usr/share/autojump/autojump.sh
+source /etc/profile.d/autojump.bash
 alias vim='nvim'
 
 #### Docker
@@ -633,3 +631,5 @@ function makisu_build() {
             ${@:1:-1} /makisu-context
     # popd
 }
+
+eval "$(starship init bash)"
