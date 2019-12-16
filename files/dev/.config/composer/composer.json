@@ -1,5 +1,8 @@
 {
     "require": {
-        "hirak/prestissimo": "^0.3.8"
+        "hirak/prestissimo": "^0.3.8",
+        "fancyguy/composer-security-check-plugin": "^1.2",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+        "phpcompatibility/php-compatibility": "^9.3"
     }
 }

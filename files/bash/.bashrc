@@ -8,6 +8,12 @@ pathadd() {
     fi
 }
 
+# Read a gemfile contents
+# https://stackoverflow.com/a/43298099
+gemread() {
+  tar --to-stdout -xf "$1" data.tar.gz | tar -zt
+}
+
 pathadd '/home/nemo/bin'
 pathadd '/home/nemo/projects/go/bin'
 pathadd '/bin'
@@ -15,8 +21,14 @@ pathadd '/snap/bin'
 
 pathadd /home/nemo/.local/share/junest/bin
 
-eval $(keychain --eval)
+# eval `keychain --eval --agents ssh id_rsa`
 
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
+alias mk='microk8s.kubectl'
+alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
 alias watch='watch '
 alias xclip='xclip -selection c'
 alias sl=ls
@@ -36,6 +48,11 @@ pathadd "$HOME/.gem/ruby/2.6.0/bin"
 pathadd "$HOME/.krew/bin"
 pathadd "$HOME/.local/bin"
 
+# slows shell for now.
+source <(kubectl completion bash)
+# Enable kubectl completion with k
+complete -F __start_kubectl k
+
 
 # https://substrakt.com/journal/easy-peasy-composer-local-package-symlink-composer-link/
 composer-link() {
@@ -53,8 +70,10 @@ composer-unlink() {
 
 # Python virtualenv
 export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
-source /usr/share/doc/pkgfile/command-not-found.bash
+
+# TODO: FIX THESE 2 on ubuntu
+# source /usr/bin/virtualenvwrapper.sh
+# source /usr/share/doc/pkgfile/command-not-found.bash
 # source ~/.sourcerer.sh
 
 alias sublime='/usr/bin/sublime-text'
@@ -115,6 +134,7 @@ alias l='ls -CF'
 alias k='kubectl'
 alias kontext='kubectl config use-context'
 alias kgpa='kubectl get pods --all-namespaces'
+alias kgp='kubectl get pods -o wide'
 alias kgpn='kubectl get pods -o wide -n '
 alias kno='kubectl get nodes'
 
@@ -351,8 +371,10 @@ alias d='fasd -d'        # directory
 alias f='fasd -f'        # file
 alias sd='fasd -sid'     # interactive directory selection
 alias sf='fasd -sif'     # interactive file selection
-alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+alias z='j'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
+
+source /usr/share/autojump/autojump.sh
 alias vim='nvim'
 
 #### Docker
