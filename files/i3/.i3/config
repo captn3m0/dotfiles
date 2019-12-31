@@ -15,12 +15,15 @@ set $WS4 4:
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id volumeicon
 exec --no-startup-id redshift-gtk
-exec --no-startup-id compton --config ~/.compton.conf
+# exec --no-startup-id compton --config ~/.compton.conf
+
 # For ArchLinux
 exec --no-startup-id connman-gtk
+
 # For Ubuntu
 exec --no-startup-id nm-applet
 exec --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
+exec --no-startup-id autorandr --change
 
 # terminal
 # https://www.systutorials.com/docs/linux/man/1-urxvtd/
@@ -224,19 +227,6 @@ bindsym XF86AudioMute exec amixer -D pulse set Master toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-  workspace_buttons yes
-  status_command py3status -c ~/.config/i3status/config
-  colors {
-    separator #888888
-    background #333333
-    statusline #FFFFFF
-    focused_workspace #4E9C00 #4E9C00 #FFFFFF
-    active_workspace #333333 #333333 #FFFFFF
-    inactive_workspace #333333 #333333 #888888
-    urgent_workspace #C20000 #C20000 #FFFFFF
-  }
-}
 
 # Window assignments
 for_window [class="Wine"] floating enable
@@ -254,6 +244,8 @@ for_window [class="Fsearch"] floating enable
 for_window [class="Com.github.parnold-x.nasc"] floating enable 800 420
 for_window [class="xpad" window_role="info-"] move scratchpad
 for_window [class="Com.github.parnold-x.nasc"] move scratchpad
+
+exec "/home/nemo/.config/polybar/launch.sh dark"
 
 # Sticky Notepad
 exec --no-startup-id xpad
