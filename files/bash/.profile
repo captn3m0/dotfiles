@@ -11,3 +11,4 @@
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/bin:/sbin:$HOME/projects/scripts/:$HOME/.node_modules/bin:$HOME/.gem/ruby/2.5.0/bin:$HOME/bin:/bin"
 export npm_config_prefix=~/.node_modules
 export GOPATH="/home/nemo/projects/go"
+PATH="/usr/sbin:/usr/games:$PATH"
