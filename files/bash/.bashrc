@@ -157,10 +157,11 @@ function inotifytop() {
 }
 
 if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
-    . /etc/bash_completion
+   . /etc/bash_completion
 fi
-if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
-    . /etc/bash_completion
+
+if [[ -f /usr/share/bash-completion/completions/pass ]] && ! shopt -oq posix; then
+   . /usr/share/bash-completion/completions/pass
 fi
 
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
