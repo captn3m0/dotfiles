@@ -3,11 +3,13 @@ off
 output VIRTUAL1
 off
 output DP2
+crtc 1
 gamma 1.0:0.769:0.625
 mode 1920x1080
 pos 0x0
 rate 60.00
 output DP1
+crtc 0
 gamma 1.0:0.769:0.625
 mode 2560x1080
 pos 1920x0

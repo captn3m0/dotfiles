@@ -19,11 +19,8 @@ pathadd '/snap/bin'
 
 pathadd /home/nemo/.local/share/junest/bin
 
-# eval `keychain --eval --agents ssh id_rsa`
-
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
 
 alias mk='microk8s.kubectl'
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
