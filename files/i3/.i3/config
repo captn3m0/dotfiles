@@ -247,13 +247,12 @@ exec "/home/nemo/.config/polybar/launch.sh dark"
 # Sticky Notepad
 exec --no-startup-id xpad
 # Sticky math app
-exec --no-startup-id com.github.parnold-x.nasc
+exec --no-startup-id GTK_THEME=Ambiance com.github.parnold-x.nasc
 #bindsym $mod+F1 [class="xpad" instance="xpad"] scratchpad show
 # Go through all windows
 #bindsym $mod+F2 scratchpad show
 # Only for Nasc
-#bindsym $mod+F3 [class="Com.github.parnold-x.nasc"] scratchpad show
-
+bindsym $mod+F3 [class="Com.github.parnold-x.nasc"] scratchpad show
 
 # Scratchpad
 bindsym $mod+shift+z move scratchpad
