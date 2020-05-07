@@ -1,0 +1,6 @@
+configuration {
+ modi: "window,drun,combi";
+ theme: "/usr/share/rofi/themes/paper-float.rasi";
+ font: "Input Mono 10";
+ combi-modi: "window,drun";
+}
