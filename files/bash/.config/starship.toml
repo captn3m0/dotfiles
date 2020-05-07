@@ -1,0 +1,64 @@
+add_newline = false
+
+prompt_order = [
+    "username",
+    "hostname",
+    "kubernetes",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    # "hg_branch",
+    "docker_context",
+    "package",
+    # "dotnet",
+    "elixir",
+    # "elm",
+    # "erlang",
+    "golang",
+    # "haskell",
+    # "java",
+    # "julia",
+    "nodejs",
+    "php",
+    "python",
+    "ruby",
+    "rust",
+    "terraform",
+    # "nix_shell",
+    # "conda",
+    "aws",
+    "env_var",
+    "crystal",
+    "cmd_duration",
+    "custom",
+    "line_break",
+    "memory_usage",
+    "jobs",
+    # "battery",
+    "time",
+    "character",
+]
+
+[character]
+symbol = "➜"
+error_symbol = "✗"
+use_symbol_for_status = true
+
+
+[time]
+disabled = false
+format = "[%d %b | %H:%M]"
+utc_time_offset = "+5.5"
+
+[jobs]
+symbol = "+ "
+threshold = 2
+
+[memory_usage]
+disabled = false
+
+[cmd_duration]
+min_time = 500
+disabled = false
