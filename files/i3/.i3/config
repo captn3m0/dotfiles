@@ -73,6 +73,9 @@ bindsym $mod+Escape exec snippy.sh
 
 bindsym $mod+z exec fsearch
 
+bindsym $mod+Hyper_L exec rofi -show drun
+bindsym --release Hyper_L exec rofi -show window
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -80,7 +83,7 @@ bindsym $mod+Shift+q kill
 
 # increase/decrease keyboard brightness
 bindsym XF86KbdBrightnessUp exec /home/nemo/projects/scripts/backlight up
-bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down 
+bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down
 
 # Autolock screen after 2 minutes
 exec xautolock -detectsleep -time 1 -locker "/home/nemo/projects/scripts/lock.sh"
@@ -91,22 +94,15 @@ exec "dunst"
 # Win+L
 bindsym $mod+l exec xautolock -locknow
 
-# start dmenu (I actually have dmenu2 installed)
-bindsym $mod+d exec dmenu_run -i -o 0.1
-
 # For starting applications with a .desktop entry
-bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+shift+d exec notify-send -u low "Use Mod+Caps_Lock instead"
 
 # Print screen
-set $screenshot_file '/home/nemo/Desktop/Screenshots/%Y-%m-%d_%H-%M-%S-$wx$h.png'
-bindsym Print exec escrotum --select --selection-delay 100 $screenshot_file && notify-send "done"
-bindsym Shift+Print exec escrotum --clipboard --select --selection-delay 100 $screenshot_file && notify-send "copied"
-bindsym Ctrl+Print exec scrot --focused --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
-bindsym Ctrl+$mod+I exec scrot --focused --count --delay 1 --quality 80 --silent $screenshot_file && notify-send "done"
-bindsym Ctrl+Shift+Print exec scrot --count --delay 0.5 --quality 80 --silent $screenshot_file && notify-send "done"
+bindsym Print exec flameshot gui
+bindsym $mod+I exec flameshot gui
 
-bindsym $mod+I exec escrotum --select --selection-delay 300 $screenshot_file && notify-send "done"
-bindsym $mod+Shift+I exec escrotum --clipboard --select --selection-delay 50 $screenshot_file && notify-send "copied"
+bindsym Ctrl+Print exec flameshot screen
+bindsym Ctrl+$mod+I exec flameshot screen
 
 bindsym $mod+P exec passmenu --type
 
@@ -177,7 +173,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # rename a workspace
-# bindsym $mod+ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: ' 
+# bindsym $mod+ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

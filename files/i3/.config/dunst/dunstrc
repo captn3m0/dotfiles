@@ -1,5 +1,5 @@
 [global]
-font = Source Sans Pro 12
+font = Input Sans Narrow 12
 
 markup = yes
 plain_text = no
@@ -10,22 +10,7 @@ indicate_hidden = yes
 alignment = right
 bounce_freq = 1
 show_age_threshold = 60;
-
 word_wrap = yes
-
-# The geometry of the window:
-#   [{width}]x{height}[+/-{x}+/-{y}]
-# The geometry of the message window.
-# The height is measured in number of notifications everything else
-# in pixels.  If the width is omitted but the height is given
-# ("-geometry x2"), the message window expands over the whole screen
-# (dmenu-like).  If width is 0, the window expands to the longest
-# message displayed.  A positive x is measured from the left, a
-# negative from the right side of the screen.  Y is measured from
-# the top and down respectevly.
-# The width can be negative.  In this case the actual width is the
-# screen width minus the width defined in within the geometry option.
-#geometry = "250x50-40+40"
 geometry = "500x50-15+49"
 
 # Shrink window if it's smaller than the width.  Will be ignored if
@@ -43,18 +28,7 @@ transparency = 5
 idle_threshold = 20
 
 # Which monitor should the notifications be displayed on.
-
-# Display notification on focused monitor.  Possible modes are:
-#   mouse: follow mouse pointer
-#   keyboard: follow window with keyboard focus
-#   none: don't follow anything
-#
-# "keyboard" needs a windowmanager that exports the
-# _NET_ACTIVE_WINDOW property.
-# This should be the case for almost all modern windowmanagers.
-#
-# If this option is set to mouse or keyboard, the monitor option
-# will be ignored.
+# This picks the one with keyboard focus
 follow = keyboard
 
 # Should a notification popped up from history be sticky or timeout
@@ -72,10 +46,12 @@ show_indicators = yes
 # This adds empty space above and under the text.
 line_height = 3
 
+notification_height = 80
+
 # Draw a line of "separatpr_height" pixel height between two
 # notifications.
 # Set to 0 to disable.
-separator_height = 2;
+separator_height = 5;
 
 # Define a color for the separator.
 # possible values are:
@@ -86,10 +62,12 @@ separator_height = 2;
 separator_color = auto
 
 # Padding between text and separator.
-padding = 6
+padding = 10
 
 # Horizontal padding.
 horizontal_padding = 6
+
+frame_width = 2
 
 # Hide duplicate's count and stack them
 stack_duplicates = yes
@@ -100,7 +78,7 @@ icon_position = off
 max_icon_size = 80
 
 # Paths to default icons.
-icon_folders = /usr/share/icons/Paper/16x16/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/
+icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
 
 # Context menu.
 
@@ -111,24 +89,25 @@ history = mod4+backslash
 context = ctrl+shift+period
 
 [urgency_low]
-# IMPORTANT: colors have to be defined in quotation marks.
-# Otherwise the "#" and following would be interpreted as a comment.
-frame_color = "#FFFFFF"
-foreground = "#3B7C87"
-background = "#191311"
-#background = "#2B313C"
+frame_color = "#2c3e50"
+foreground = "#ecf0f1"
+background = "#95a5a6"
 timeout = 4
 
 [urgency_normal]
-frame_color = "#FFFFFF"
-foreground = "#5B8234"
-background = "#191311"
-#background = "#2B313C"
+frame_color = "#95a5a6"
+foreground = "#34495e"
+background = "#ecf0f1"
 timeout = 6
 
 [urgency_critical]
-frame_color = "#FFFFFF"
-foreground = "#B7472A"
-background = "#191311"
-#background = "#2B313C"
-timeout = 8
+frame_color = "#e74c3c"
+foreground = "#ecf0f1"
+background = "#e74c3c"
+timeout = 20
+
+[fullscreen_delay_everything]
+    fullscreen = delay
+[fullscreen_show_critical]
+    msg_urgency = critical
+    fullscreen = show

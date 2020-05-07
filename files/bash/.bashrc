@@ -33,12 +33,15 @@ alias signal_update='docker run captn3m0/signal-arch-builder'
 alias kc='kapitan compile'
 # https://tizardsbriefcase.com/1059/linux/remove-query-string-filename-wget
 alias clean.filenames='for file in *; do mv "$file" "${file%%\?*}"; done'
+
+alias dunst.pause='notify-send "DUNST_COMMAND_PAUSE"'
+alias dunst.resume='notify-send "DUNST_COMMAND_RESUME"'
 # ... or force ignoredups and ignorespace
 pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
 pathadd "$HOME/.phpenv/bin"
 pathadd "$HOME/apps/ec2/bin"
-pathadd "$HOME/.gem/ruby/2.6.0/bin"
+pathadd "$HOME/.gem/ruby/2.7.0/bin"
 # needs a kubectl upgrade
 pathadd "$HOME/.krew/bin"
 pathadd "$HOME/.local/bin"
@@ -139,9 +142,9 @@ alias kno='kubectl get nodes'
 function kpssh() { kubectl exec -it $1 -n $2 sh ; }
 function kcssh() { kubectl exec -it $1 -n $2 -c $3 sh ; }
 function klog() { kubetail $1 -n $1 ; }
-function kne() { 
+function kne() {
     kubectl get events -n $1 --sort-by='.metadata.creationTimestamp' \
-    -o 'go-template={{range .items}}{{.involvedObject.name}}{{"\t"}}{{.involvedObject.kind}}{{"\t"}}{{.message}}{{"\t"}}{{.reason}}{{"\t"}}{{.type}}{{"\t"}}{{.firstTimestamp}}{{"\n"}}{{end}}' 
+    -o 'go-template={{range .items}}{{.involvedObject.name}}{{"\t"}}{{.involvedObject.kind}}{{"\t"}}{{.message}}{{"\t"}}{{.reason}}{{"\t"}}{{.type}}{{"\t"}}{{.firstTimestamp}}{{"\n"}}{{end}}'
 }
 
 function gettoken() {
@@ -159,6 +162,11 @@ fi
 
 if [[ -f /usr/share/bash-completion/completions/pass ]] && ! shopt -oq posix; then
    . /usr/share/bash-completion/completions/pass
+fi
+
+
+if [[ -f /usr/share/bash-completion/completions/poetry ]] && ! shopt -oq posix; then
+   . /usr/share/bash-completion/completions/poetry
 fi
 
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
@@ -201,7 +209,7 @@ export EDITOR='nvim'
 # export GPG_TTY='tty'				# gpg-agent says it needs this
 # export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
 # put list of remote hosts in ~/.hosts ...
-export HOSTFILE=$HOME/.hosts    		
+export HOSTFILE=$HOME/.hosts
 # export IGNOREEOF=1				# prevent CTRL-D from immediately logging out
 # export INPUTRC=/etc/inputrc			# it's possible that this will make bash find my delete key (and everything else)((but i don't think it did))
 # export INPUTRC=$HOME/.inputrc			# type in ‘whatever’ and press ‘Page Up’ key and bash automatically fetches last command that starts with whatever and completes the command for you (requires '$HOME/.inputrc' with these lines: #Page up/page down && "\e[5~": history-search-backward && "\e[6~": history-search-forward)
@@ -379,6 +387,8 @@ alias dri='docker run --volume /home/nemo/tmp:/data --tty --rm --interactive --e
 # docker run image, but with current directory mounted as /current
 # Do not run this on untrusted images
 alias dri_cwd='docker run --volume `pwd`:/current --volume /home/nemo/tmp:/data --tty --rm --interactive --entrypoint /bin/sh '
+alias ctop='docker run --name ctop -it --rm -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop '
+
 alias dockerlint='LC_ALL=C hadolint'
 
 ##### Terraform
@@ -390,8 +400,6 @@ alias tat='terraform apply --target '
 alias tfa='terraform apply --auto-approve'
 alias tfat='terraform apply --auto-approve --target '
 alias tfit='terraform init'
-
-alias ctop='docker run --name ctop -it --rm -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop '
 
 ##### History Shenanigans
 export HISTCONTROL=ignorespace:ignoredups:erasedups        # for 'ignoreboth': ignore duplicates and /^\s/
@@ -417,14 +425,10 @@ HISTSIZE=1000000
 HISTFILESIZE=1000000
 shopt -s histappend
 
-### Added by the Heroku Toolbelt
-pathadd '/usr/local/heroku/bin'
-#Importing phpenv
-# eval "$(phpenv init -)"
-
 # Don't use this for sensitive files
-transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-    tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
+    tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+
 export JAVA_HOME=/usr/lib/jvm/default-runtime
 export EC2_HOME=/home/nemo/apps/ec2
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
@@ -462,7 +466,6 @@ xset -b
 # }
 
 
-##
 # http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
 # colorized man pages
 man() {
@@ -599,19 +602,20 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-#
-#
+
+eval "$(pipenv --completion)"
+
 # Stolen from @ThatHarmanSingh
 function sprint() {
 
 # Set time format to unix so we can subtract
- HISTTIMEFORMAT='%s ' history |    
+ HISTTIMEFORMAT='%s ' history |
  # History returns way more than needed
-  tail -n 4000 |                   
+  tail -n 4000 |
   # Grep for git commits (after timestamps)
-  grep -E '^\d+\s+\d+\s+gc' |            
+  grep -E '^\d+\s+\d+\s+gc' |
   # Max 15 days ago
-  awk -v now=$(date +%s) '(now - $2) < 15*24*60*60' | 
+  awk -v now=$(date +%s) '(now - $2) < 15*24*60*60' |
   # Cut out the timestamps for uniq check
   cut -d ' ' -f 4- |
   # To handle multiple commit-pull-reset-commit cycles
@@ -619,7 +623,7 @@ function sprint() {
 }
 
 # https://github.com/uber/makisu
-# 
+#
 function makisu_build() {
     makisu_version=${MAKISU_VERSION:-v0.1.10}
     cd ${@: -1}
@@ -635,5 +639,12 @@ function makisu_build() {
             ${@:1:${#@}-1} /makisu-context
     cd -
 }
+
+# https://starship.rs/advanced-config/#change-window-title
+function starship_set_win_title(){
+    echo -ne "\033]0; $PWD \007"
+}
+
+starship_precmd_user_func="starship_set_win_title"
 
 eval "$(starship init bash)"
