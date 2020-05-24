@@ -265,6 +265,7 @@ smart_gaps on
 smart_borders on
 
 bar {
+  font xft:Cantarell, FontAwesome 11
   status_command i3blocks
 }
 
