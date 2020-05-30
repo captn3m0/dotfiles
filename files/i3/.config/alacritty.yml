@@ -6,35 +6,38 @@ scrolling:
 font:
   normal:
     family: Input Mono
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 dynamic_title: true
-# Colors (Tomorrow Night Bright)
+# Colors (Solarized Light)
 colors:
   # Default colors
   primary:
-    background: '#000000'
-    foreground: '#eaeaea'
+    background: '#fdf6e3' # base3
+    foreground: '#657b83' # base00
+
+  # Cursor colors
+  cursor:
+    text:   '#fdf6e3' # base3
+    cursor: '#657b83' # base00
 
   # Normal colors
   normal:
-    black:   '#000000'
-    red:     '#d54e53'
-    green:   '#b9ca4a'
-    yellow:  '#e6c547'
-    blue:    '#7aa6da'
-    magenta: '#c397d8'
-    cyan:    '#70c0ba'
-    white:   '#424242'
+    black:   '#073642' # base02
+    red:     '#dc322f' # red
+    green:   '#859900' # green
+    yellow:  '#b58900' # yellow
+    blue:    '#268bd2' # blue
+    magenta: '#d33682' # magenta
+    cyan:    '#2aa198' # cyan
+    white:   '#eee8d5' # base2
 
   # Bright colors
   bright:
-    black:   '#666666'
-    red:     '#ff3334'
-    green:   '#9ec400'
-    yellow:  '#e7c547'
-    blue:    '#7aa6da'
-    magenta: '#b77ee0'
-    cyan:    '#54ced6'
-
-
-    white:   '#2a2a2a'
+    black:   '#002b36' # base03
+    red:     '#cb4b16' # orange
+    green:   '#586e75' # base01
+    yellow:  '#657b83' # base00
+    blue:    '#839496' # base0
+    magenta: '#6c71c4' # violet
+    cyan:    '#93a1a1' # base1
+    white:   '#fdf6e3' # base3

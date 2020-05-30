@@ -14,7 +14,6 @@ set $WS4 4:
 # Startup items that don't have their windows
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id redshift-gtk
-# exec --no-startup-id compton --config ~/.compton.conf
 
 # For ArchLinux
 exec --no-startup-id connman-gtk
@@ -24,9 +23,10 @@ exec --no-startup-id nm-applet
 exec --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 exec --no-startup-id autorandr --change
 
-# terminal
-# https://www.systutorials.com/docs/linux/man/1-urxvtd/
-exec urxvtd --quiet --fork --opendisplay
+# Caps Lock = Hyper_L
+exec setxkbmap -option ctrl:nocaps
+exec xmodmap -e 'clear lock'
+exec xmodmap -e 'keycode 66 = Hyper_L'
 
 # Set default backlight
 exec xbacklight -set 15
@@ -35,8 +35,9 @@ exec xbacklight -set 15
 exec i3-msg "workspace $WS1; exec subl"
 exec i3-msg "workspace $WS1; exec alacritty"
 
-# Web workspace
+# Web workspace (Run both, depending on the system I'm on)
 exec i3-msg "workspace $WS2; exec firefox-beta"
+exec i3-msg "workspace $WS2; exec firefox"
 
 # Startup figure out monitors
 exec autorandr
@@ -50,7 +51,7 @@ workspace_layout default
 hide_edge_borders both
 
 # Still playing around with this
-font pango:Fira Sans 8,Dejavu Sans,Cantarell 10,FontAwesome 9
+font pango:Cantarell 10,Fira Sans 8,Dejavu Sans,FontAwesome 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -58,11 +59,6 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return split v; exec alacritty
 bindsym $mod+Shift+Return split h; exec alacritty
-
-# Split terminals using byobu shortcuts
-#bindsym Shift+F2 split v; exec alacritty
-#bindsym Ctrl+F2 split h; exec alacritty
-
 
 # Snippy for quick text
 # https://gist.github.com/coderofsalvation/46549e3788ade2f3a938
@@ -81,7 +77,6 @@ bindsym $mod+F8 exec pcmanfm --role=floating
 bindsym $mod+Shift+q kill
 
 # keyboard backlight, for Mac
-
 # increase/decrease keyboard brightness
 bindsym XF86KbdBrightnessUp exec /home/nemo/projects/scripts/backlight up
 bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down
@@ -176,7 +171,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # rename a workspace
-# bindsym $mod+ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+bindsym $mod+ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -224,9 +219,8 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -R
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 
-
 # Window assignments
-for_window [class="Pcmanfm"] floating enable resuze 860 700
+for_window [class="Pcmanfm"] floating enable resize 860 800
 for_window [class="Wine"] floating enable
 for_window [class="Blueberry.py"] floating enable
 for_window [class="Transmission-gtk"] floating enable
@@ -267,6 +261,15 @@ smart_borders on
 bar {
   font xft:Cantarell, FontAwesome 11
   status_command i3blocks
+  colors {
+    separator #657b83
+    background #fdf6e3
+    statusline #002b36
+    focused_workspace #fdf6e3 #859900 #fdf6e3
+    active_workspace #fdf6e3 #6c71c4 #fdf6e3
+    inactive_workspace #586e75 #93a1a1 #002b36
+    urgent_workspace #d33682 #d33682 #fdf6e3
+  }
 }
 
 # Multi monitor
@@ -280,4 +283,3 @@ client.focused #4E9C00 #4E9C00 #FFFFFF #FFFFFF
 client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
 client.unfocused #333333 #333333 #888888 #FFFFFF
 client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
-
