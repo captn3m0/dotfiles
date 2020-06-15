@@ -66,13 +66,11 @@ composer-unlink() {
   composer update
 }
 
-# Python virtualenv
-export WORKON_HOME=~/.virtualenvs
-
-# TODO: FIX THESE 2 on ubuntu
-# source /usr/bin/virtualenvwrapper.sh
-# source /usr/share/doc/pkgfile/command-not-found.bash
-# source ~/.sourcerer.sh
+if [ -f /usr/sbin/virtualenvwrapper.sh ]; then
+  export WORKON_HOME=~/.virtualenvs
+  export VIRTUALENVWRAPPER_SCRIPT=/usr/sbin/virtualenvwrapper.sh
+  source /usr/sbin/virtualenvwrapper_lazy.sh
+fi
 
 alias sublime='/usr/bin/sublime-text'
 alias subl3=subl
@@ -89,6 +87,7 @@ alias fomu.setup='export PATH=/home/nemo/apps/fomu/bin:$PATH'
 alias aur.list='expac -H M "%m\t%n" | sort -h  > /tmp/expac.txt && pacman -Qqm > /tmp/aur.txt  && grep --color=never -w -F -f /tmp/aur.txt /tmp/expac.txt'
 # Same as above, but all packages (except AUR)
 alias package.list='expac -sH M "%-30n %m" | sort -hk 2'
+alias package.owns='pacman -F'
 
 # To list the packages marked for upgrade with their download size
 alias upgrade.size='pacman -Quq|xargs expac -SH M "%k\t%n" | sort -sh'
@@ -156,17 +155,26 @@ function inotifytop() {
     for foo in /proc/*/fd/*; do readlink -f $foo; done |grep inotify |cut -d/ -f3 |xargs -I '{}' -- ps --no-headers -o '%p %U %a' -p '{}' |uniq -c |sort -n
 }
 
+## COMPLETION SCRIPTS
+
 if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
    . /etc/bash_completion
+fi
+
+if [[ -f /usr/share/bash-completion/completions/pipenv ]] && ! shopt -oq posix; then
+   . /usr/share/bash-completion/completions/pipenv
 fi
 
 if [[ -f /usr/share/bash-completion/completions/pass ]] && ! shopt -oq posix; then
    . /usr/share/bash-completion/completions/pass
 fi
 
-
 if [[ -f /usr/share/bash-completion/completions/poetry ]] && ! shopt -oq posix; then
    . /usr/share/bash-completion/completions/poetry
+fi
+
+if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && ! shopt -oq posix; then
+   . /usr/share/doc/pkgfile/command-not-found.bash
 fi
 
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
@@ -384,6 +392,8 @@ alias vim='nvim'
 #### Docker
 # docker run image
 alias dri='docker run --volume /home/nemo/tmp:/data --tty --rm --interactive --entrypoint /bin/sh '
+# Better caching: https://github.com/moby/moby/issues/15717
+export DOCKER_BUILDKIT=1
 # docker run image, but with current directory mounted as /current
 # Do not run this on untrusted images
 alias dri_cwd='docker run --volume `pwd`:/current --volume /home/nemo/tmp:/data --tty --rm --interactive --entrypoint /bin/sh '
@@ -603,8 +613,6 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
-eval "$(pipenv --completion)"
-
 # Stolen from @ThatHarmanSingh
 function sprint() {
 
@@ -646,5 +654,4 @@ function starship_set_win_title(){
 }
 
 starship_precmd_user_func="starship_set_win_title"
-
 eval "$(starship init bash)"
