@@ -1,0 +1,31 @@
+[calendars]
+# https://lostpackets.de/khal/configure.html
+
+[[personal]]
+  path = ~/.calendars/radicale/96d6eacc-da02-4c04-81e6-d52f07b7e7bf/
+  color = dark blue
+  priority = 20
+
+# TODO: Change this to VCard sync
+[[birthdays]]
+  path = ~/.calendars/radicale/calendar/
+  readonly = True
+  color = "#9b59b6"
+
+[[recurse]]
+  path = ~/.calendars/recurse/
+  readonly = True
+  color = "#2ecc71"
+
+[view]
+theme = dark
+agenda_event_format = "{calendar-color}[{start-end-time-style}] {title} {repeat-symbol} {reset}"
+
+[default]
+default_calendar = personal
+
+[locale]
+default_timezone = "Asia/Kolkata"
+longdatetimeformat = "%d %b %Y (%H:%M)"
+longdateformat = "%d %b %Y"
+timeformat = "%I:%M"

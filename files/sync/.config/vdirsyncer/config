@@ -1,0 +1,43 @@
+# Run `vdirsyncer --help` for CLI usage.
+
+# This file doesn't document all available parameters, see
+# http://vdirsyncer.pimutils.org/ for the rest of them.
+
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = "~/.vdirsyncer/status/"
+
+[pair recurse]
+a = "recurse_local"
+b = "recurse_remote"
+collections = null
+
+[storage recurse_local]
+type = "filesystem"
+path = "~/.calendars/recurse/"
+fileext = ".ics"
+
+[storage recurse_remote]
+type = "http"
+# single line password entry so it doesn't need pass-show
+url.fetch = ["command", "pass", "Keys/recurse_calendar_url"]
+
+# CALDAV
+[pair radicale]
+a = "radicale_local"
+b = "radicale_remote"
+collections = ["96d6eacc-da02-4c04-81e6-d52f07b7e7bf", "calendar"]
+
+# Calendars also have a color property
+metadata = ["displayname", "color"]
+
+[storage radicale_local]
+type = "filesystem"
+path = "~/.calendars/radicale"
+fileext = ".ics"
+
+[storage radicale_remote]
+type = "caldav"
+url = "https://radicale.bb8.fun/nemo/df10ebc5-b72c-c12d-b279-d80633b1ebe8/"
+username = "nemo"
+password.fetch = ["command", "/home/nemo/projects/scripts/pass-show", "radicale.bb8.fun"]
