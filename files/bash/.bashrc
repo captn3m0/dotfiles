@@ -66,6 +66,21 @@ composer-unlink() {
   composer update
 }
 
+# These 2 methods change the color scheme for my:
+# 1. Editor (sublime text)
+# 2. Terminal (alacritty)
+# 3. TODO
+
+function dark() {
+  sed -i '54s/.*/colors: \*dark/' ~/.config/alacritty.yml
+  sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
+}
+
+function light() {
+  sed -i '54s/.*/colors: \*light/' ~/.config/alacritty.yml
+  sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
+}
+
 if [ -f /usr/sbin/virtualenvwrapper.sh ]; then
   export WORKON_HOME=~/.virtualenvs
   export VIRTUALENVWRAPPER_SCRIPT=/usr/sbin/virtualenvwrapper.sh
