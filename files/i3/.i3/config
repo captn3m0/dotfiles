@@ -15,9 +15,13 @@ set $WS4 4:
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id redshift-gtk
 
+## Press Ctrl+C twice to search a word
+## Dictionaries are kept in ~/Documents/Dictionaries
+exec --no-startup-id goldendict
+
 # For ArchLinux
 exec --no-startup-id connman-gtk
-exec --no-startup-id hackertray --firefox auto --comments
+exec --no-startup-id /usr/sbin/hackertray --firefox auto --comments/usr/sbin/hackertray
 
 # For Ubuntu
 exec --no-startup-id nm-applet
