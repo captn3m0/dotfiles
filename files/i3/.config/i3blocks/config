@@ -1,0 +1,117 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+command=/home/nemo/.config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[wifi]
+label=wifi:
+align=left
+interval=5
+
+[weather]
+command=curl -Ss 'https://wttr.in/Bangalore?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
+
+[ip]
+command=ip address show dev wlan0 | grep inet | head -n1  | cut -d ' ' -f 6
+interval=3600
+color=#91E78B
+
+[volume]
+LABEL=♪
+interval=once
+signal=10
+
+# I rarely run out of memory, so this is commented
+#[memory]
+#separator=|
+#interval=30
+
+[dunst]
+interval=once
+format=json
+markup=pango
+
+# Shows disk space remaining in /home
+[disk]
+interval=30
+
+[bandwidth2]
+interval=persist
+markup=pango
+LABEL=
+interval=60
+
+[cpu_usage2]
+markup=pango
+interval=persist
+min_width=CPU 100.00%
+REFRESH_TIME=1
+LABEL=CPU
+WARN_PERCENT=50
+CRIT_PERCENT=80
+DECIMALS=2
+
+[load_average]
+label=🗠
+interval=10
+
+# Battery indicator
+#
+# The battery instance defaults to 0.
+#[battery]
+#label=BAT
+#label=⚡
+#interval=30
+
+# Generic media player support
+#
+# This displays "ARTIST - SONG" if a music is playing.
+# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
+#[mediaplayer]
+#instance=spotify
+#interval=5
+#signal=10
+
+# Not really being used
+#[i3-pomodoro]
+#command=/home/nemo/projects/scripts/i3-pomodoro
+#interval=1
+
+[nm-vpn]
+interval=20
+
+[rofi-calendar]
+interval=30
+LABEL=
+
+[time]
+command=date '+%H:%M'
+interval=60
