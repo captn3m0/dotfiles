@@ -107,7 +107,7 @@ bindsym $mod+I exec flameshot gui
 bindsym Ctrl+Print exec flameshot screen
 bindsym Ctrl+$mod+I exec flameshot screen
 
-bindsym $mod+P exec passmenu --type
+bindsym $mod+P exec passmenu --type -fn "Input Mono"  -nb "#002b36" -nf "white" -sf "#fdf6e3"
 
 # focus
 bindsym $mod+Left focus left
