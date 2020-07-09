@@ -130,3 +130,11 @@ URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
 
 URxvt.imLocale: en_US.utf8
+
+!! https://wiki.archlinux.org/index.php/Font_configuration#Applications_without_fontconfig_support
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
