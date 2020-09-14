@@ -22,6 +22,7 @@ pathadd /home/nemo/.local/share/junest/bin
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
+alias adb.run='apktool build src/ -o patched.apk && java -jar ~/apps/uber-apk-signer-1.1.0.jar -a patched.apk  && adb install -r -d patched-aligned-debugSigned.apk && adb shell monkey -p '$1' -v 1'
 alias mk='microk8s.kubectl'
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
 alias watch='watch '
@@ -29,7 +30,7 @@ alias xclip='xclip -selection c'
 alias sl=ls
 alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
 alias wine32='WINEARCH=win32 WINEPREFIX=~/win32 wine'
-alias signal_update='docker run captn3m0/signal-arch-builder'
+alias signal_update='sss docker && docker run captn3m0/signal-arch-builder'
 alias kc='kapitan compile'
 # https://tizardsbriefcase.com/1059/linux/remove-query-string-filename-wget
 alias clean.filenames='for file in *; do mv "$file" "${file%%\?*}"; done'
@@ -71,14 +72,16 @@ composer-unlink() {
 # 2. Terminal (alacritty)
 # 3. TODO
 
+export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/alacritty/colors
+
 function dark() {
-  sed -i '54s/.*/colors: \*dark/' ~/.config/alacritty.yml
-  sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
+  alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-dark.yml
+  # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
 }
 
 function light() {
-  sed -i '54s/.*/colors: \*light/' ~/.config/alacritty.yml
-  sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
+  alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-light.yml
+  # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
 }
 
 if [ -f /usr/sbin/virtualenvwrapper.sh ]; then
@@ -103,12 +106,15 @@ alias aur.list='expac -H M "%m\t%n" | sort -h  > /tmp/expac.txt && pacman -Qqm >
 # Same as above, but all packages (except AUR)
 alias package.list='expac -sH M "%-30n %m" | sort -hk 2'
 alias package.owns='pacman -F'
-
+# Download size of all packages marked for upgrade
+alias package.dlsize='expac -S -H M '%k\t%n' $(pacman -Qqu) | sort -sh'
 # To list the packages marked for upgrade with their download size
 alias upgrade.size='pacman -Quq|xargs expac -SH M "%k\t%n" | sort -sh'
 
 # https://github.com/chef/inspec
 function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
+
+function pingen { pwgen -1Avs -r=qwertyuiopasdfghjklzxcvbnm "$1"; }
 
 # alias kapitan='docker run -t --rm -u $(id -u) -v $(pwd):/src:delegated deepmind/kapitan'
 # check the window size after each command and, if necessary,
@@ -211,12 +217,6 @@ function make_aoc() {
     pdftk $1 cat 1 output 1-$1
     pdftk 1-$1 aoc.pdf cat output aoc-$1
 }
-
-#My latest prompt
-# powerline-daemon -q
-# POWERLINE_BASH_CONTINUATION=1
-# POWERLINE_BASH_SELECT=1
-# . /usr/share/powerline/bindings/bash/powerline.sh
 
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}

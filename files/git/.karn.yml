@@ -4,7 +4,7 @@
   email: nemo@razorpay.com
 ~/projects/personal:
   name: Nemo
-  email: me@captnemo.in
+  email: commits@captnemo.in
 # AUR packages
 ~/projects/personal/aur:
   name: Nemo
@@ -12,7 +12,7 @@
 ~/projects/personal/shauryaa:
   name: Abhishek
   email: mama@shauryaa.in
-# This is a Google Project, so requires a 
+# This is a Google Project, so requires a
 # email that I have in my Google Account
 ~/projects/personal/kapitan:
   Name: Abhay Rana
