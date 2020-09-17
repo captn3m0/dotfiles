@@ -72,7 +72,7 @@ composer-unlink() {
 # 2. Terminal (alacritty)
 # 3. TODO
 
-export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/alacritty/colors
+export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/.config/alacritty/themes/colors
 
 function dark() {
   alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-dark.yml
