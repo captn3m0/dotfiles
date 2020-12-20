@@ -84,6 +84,14 @@ function light() {
   # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
 }
 
+# https://prefetch.net/blog/2020/07/14/decoding-json-web-tokens-jwts-from-the-linux-command-line/
+jwtd() {
+    if [[ -x $(command -v jq) ]]; then
+         jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "${1}"
+         echo "Signature: $(echo "${1}" | awk -F'.' '{print $3}')"
+    fi
+}
+
 if [ -f /usr/sbin/virtualenvwrapper.sh ]; then
   export WORKON_HOME=~/.virtualenvs
   export VIRTUALENVWRAPPER_SCRIPT=/usr/sbin/virtualenvwrapper.sh
@@ -115,6 +123,8 @@ alias upgrade.size='pacman -Quq|xargs expac -SH M "%k\t%n" | sort -sh'
 function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
 
 function pingen { pwgen -1Avs -r=qwertyuiopasdfghjklzxcvbnm "$1"; }
+
+function sortinplace { sort -o "$1" "$1"; }
 
 # alias kapitan='docker run -t --rm -u $(id -u) -v $(pwd):/src:delegated deepmind/kapitan'
 # check the window size after each command and, if necessary,

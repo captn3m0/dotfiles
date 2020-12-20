@@ -14,6 +14,7 @@ set $WS4 4:
 # Startup items that don't have their windows
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id redshift-gtk
+exec yubikey-touch-detector --libnotify
 
 # Launch the VPN app, but turn it off
 exec riseup-vpn-git --start-vpn off

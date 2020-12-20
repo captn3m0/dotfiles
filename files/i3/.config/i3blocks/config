@@ -29,10 +29,10 @@ command=/home/nemo/.config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-[wifi]
-label=wifi:
-align=left
-interval=5
+#[wifi]
+#label=wifi:
+#align=left
+#interval=5
 
 [weather]
 command=curl -Ss 'https://wttr.in/Bangalore?0&T&Q' | cut -c 16- | head -2 | xargs echo
@@ -100,17 +100,13 @@ interval=10
 #interval=5
 #signal=10
 
-# Not really being used
-#[i3-pomodoro]
-#command=/home/nemo/projects/scripts/i3-pomodoro
-#interval=1
-
 [nm-vpn]
 interval=20
 
 [rofi-calendar]
 interval=30
 LABEL=
+FONT=Monospace 10
 
 [time]
 command=date '+%H:%M'

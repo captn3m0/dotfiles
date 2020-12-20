@@ -1,7 +1,7 @@
 [user]
     name = Nemo
     email = me@captnemo.in
-    signingkey = B8963685
+	signingkey = 468F9102AB8BF8C959C2F9A4F94EA74A4EA9EB52
 
 [github]
     user = captn3m0
