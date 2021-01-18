@@ -1,5 +1,9 @@
-# Set the theme to "TwoDark"
---theme="OneHalfDark"
+# This is `bat`s configuration file. Each line either contains a comment or
+# a command-line option that you want to pass to `bat` by default. You can
+# run `bat --help` to get a list of all possible configuration options.
+
+# The theme is set by the light/dark functions
+# in bashrc
 
 # Show line numbers, Git modifications and file header (but no grid)
 # --style="changes,header"

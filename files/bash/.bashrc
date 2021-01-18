@@ -73,13 +73,19 @@ composer-unlink() {
 # 3. TODO
 
 export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/.config/alacritty/themes/colors
+# Default setup is light
+export BAT_THEME="Solarized (light)"
 
 function dark() {
+  export BAT_THEME="Solarized (dark)"
   alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-dark.yml
+  xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedDarkViolet"
   # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
 }
 
 function light() {
+  export BAT_THEME="Solarized (light)"
+  xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedLightGreen"
   alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-light.yml
   # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
 }
