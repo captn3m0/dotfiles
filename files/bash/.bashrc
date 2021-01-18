@@ -68,9 +68,10 @@ composer-unlink() {
 }
 
 # These 2 methods change the color scheme for my:
-# 1. Editor (sublime text)
+# 1. Editor (sublime text) - currently broken
 # 2. Terminal (alacritty)
-# 3. TODO
+# 3. bat
+# 4. Monitor brightness (only one of the monitors). See https://github.com/rockowitz/ddcutil/issues/140
 
 export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/.config/alacritty/themes/colors
 # Default setup is light
@@ -80,6 +81,11 @@ function dark() {
   export BAT_THEME="Solarized (dark)"
   alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-dark.yml
   xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedDarkViolet"
+  # Take the brightness for the monitor to 0
+  if [[ $(xrandr --listmonitors|grep 2560) ]]; then
+    echo "Dimming the right monitor"
+    ddcutil --model "LG ULTRAWIDE" setvcp 0x10 0
+  fi
   # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
 }
 
@@ -87,6 +93,11 @@ function light() {
   export BAT_THEME="Solarized (light)"
   xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedLightGreen"
   alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-light.yml
+  # Take the brightness for the monitor to 99
+  if [[ $(xrandr --listmonitors|grep 2560) ]]; then
+    echo "Brightening the right monitor"
+    ddcutil --model "LG ULTRAWIDE" setvcp 0x10 99
+  fi
   # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
 }
 
