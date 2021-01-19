@@ -75,50 +75,37 @@ composer-unlink() {
 # 5. Gtk theme
 
 export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/.config/alacritty/themes/colors
-# Default setup is light
 export BAT_THEME="Solarized (light)"
-SUBLIME_SETTINGS="/home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
-SUBLIME_DARK="Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme"
-SUBLIME_LIGHT="Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme"
+GTK_THEME_dark="NumixSolarizedDarkViolet"
+GTK_THEME_light="NumixSolarizedLightGreen"
+BRIGHTNESS_dark=0
+BRIGHTNESS_light=99
 
-function dark() {
-  export BAT_THEME="Solarized (dark)"
+function colorchange() {
+  export BAT_THEME="Solarized ($1)"
   echo "✔️ bat"
 
-  alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-dark.yml
+  alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a "base16-solarized-$1.yml"
   echo "✔️ alacritty"
 
-  xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedDarkViolet"
+  gtk_theme="GTK_THEME_$1"
+  xfconf-query -c xsettings -p /Net/ThemeName -s "${!gtk_theme}"
   echo "✔️ gtk"
 
-  strip-json-comments "$SUBLIME_SETTINGS" | jq ".color_scheme=\"$SUBLIME_DARK\"" > /tmp/sublime.json
-  mv /tmp/sublime.json "$SUBLIME_SETTINGS"
+  subl_settings="/home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+  strip-json-comments "$subl_settings" | jq ".color_scheme=\"Packages/Solarized Color Scheme/Solarized ($1).sublime-color-scheme\"" > /tmp/sublime.json
+  mv /tmp/sublime.json "$subl_settings"
   echo "✔️ sublime"
 
-  # Take the brightness for the monitor to 0
+  brightness="BRIGHTNESS_$1"
   if [[ $(xrandr --listmonitors|grep 2560) ]]; then
-    ddcutil --model "LG ULTRAWIDE" setvcp 0x10 0
+    ddcutil --model "LG ULTRAWIDE" setvcp 0x10 ${!brightness}
   fi
   echo "✔️ monitor"
 }
 
-function light() {
-  export BAT_THEME="Solarized (light)"
-  echo "✔️ bat"
-  alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-light.yml
-  echo "✔️ alacritty"
-  xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedLightGreen"
-  echo "✔️ gtk"
-  strip-json-comments "$SUBLIME_SETTINGS" | jq ".color_scheme=\"$SUBLIME_LIGHT\"" > /tmp/sublime.json
-  mv /tmp/sublime.json "$SUBLIME_SETTINGS"
-  echo "✔️ sublime"
-
-  # Take the brightness for the monitor to 99
-  if [[ $(xrandr --listmonitors|grep 2560) ]]; then
-    ddcutil --model "LG ULTRAWIDE" setvcp 0x10 99
-  fi
-  echo "✔️ monitor"
-}
+alias dark="colorchange dark"
+alias light="colorchange light"
 
 # https://prefetch.net/blog/2020/07/14/decoding-json-web-tokens-jwts-from-the-linux-command-line/
 jwtd() {
