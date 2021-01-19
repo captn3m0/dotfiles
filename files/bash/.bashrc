@@ -68,37 +68,56 @@ composer-unlink() {
 }
 
 # These 2 methods change the color scheme for my:
-# 1. Editor (sublime text) - currently broken
+# 1. Editor (sublime text)
 # 2. Terminal (alacritty)
 # 3. bat
 # 4. Monitor brightness (only one of the monitors). See https://github.com/rockowitz/ddcutil/issues/140
+# 5. Gtk theme
 
 export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/.config/alacritty/themes/colors
 # Default setup is light
 export BAT_THEME="Solarized (light)"
+SUBLIME_SETTINGS="/home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+SUBLIME_DARK="Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme"
+SUBLIME_LIGHT="Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme"
 
 function dark() {
   export BAT_THEME="Solarized (dark)"
+  echo "✔️ bat"
+
   alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-dark.yml
+  echo "✔️ alacritty"
+
   xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedDarkViolet"
+  echo "✔️ gtk"
+
+  strip-json-comments "$SUBLIME_SETTINGS" | jq ".color_scheme=\"$SUBLIME_DARK\"" > /tmp/sublime.json
+  mv /tmp/sublime.json "$SUBLIME_SETTINGS"
+  echo "✔️ sublime"
+
   # Take the brightness for the monitor to 0
   if [[ $(xrandr --listmonitors|grep 2560) ]]; then
-    echo "Dimming the right monitor"
     ddcutil --model "LG ULTRAWIDE" setvcp 0x10 0
   fi
-  # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
+  echo "✔️ monitor"
 }
 
 function light() {
   export BAT_THEME="Solarized (light)"
-  xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedLightGreen"
+  echo "✔️ bat"
   alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a base16-solarized-light.yml
+  echo "✔️ alacritty"
+  xfconf-query -c xsettings -p /Net/ThemeName -s "NumixSolarizedLightGreen"
+  echo "✔️ gtk"
+  strip-json-comments "$SUBLIME_SETTINGS" | jq ".color_scheme=\"$SUBLIME_LIGHT\"" > /tmp/sublime.json
+  mv /tmp/sublime.json "$SUBLIME_SETTINGS"
+  echo "✔️ sublime"
+
   # Take the brightness for the monitor to 99
   if [[ $(xrandr --listmonitors|grep 2560) ]]; then
-    echo "Brightening the right monitor"
     ddcutil --model "LG ULTRAWIDE" setvcp 0x10 99
   fi
-  # sed -i '11s$.*$"color_scheme": "Packages/Solarized Color Scheme/Solarized (light).sublime-color-scheme",$' /home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
+  echo "✔️ monitor"
 }
 
 # https://prefetch.net/blog/2020/07/14/decoding-json-web-tokens-jwts-from-the-linux-command-line/
