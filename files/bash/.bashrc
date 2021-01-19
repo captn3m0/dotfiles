@@ -200,6 +200,7 @@ function kne() {
     -o 'go-template={{range .items}}{{.involvedObject.name}}{{"\t"}}{{.involvedObject.kind}}{{"\t"}}{{.message}}{{"\t"}}{{.reason}}{{"\t"}}{{.type}}{{"\t"}}{{.firstTimestamp}}{{"\n"}}{{end}}'
 }
 
+# Export a secret automatically with the filename on pass
 function gettoken() {
     export "`basename $1`"="$(pass show $1)"
 }
@@ -236,12 +237,7 @@ export LC_ALL=en_US.utf8
 export LC_ALL=en_US.utf8
 export LANG=C
 
-
-alias gh='hub'
-alias rake='bundle exec rake'
-alias rails='spring rails'
-alias rt='ruby -I"lib:test"' # rake test shortcut to run test for one script
-
+# Checkout an older commit
 function gco_date() {
   git checkout `git rev-list -n 1 --before="$1" master`
 }
@@ -355,13 +351,10 @@ ulimit -c unlimited				# let me have core dumps
 # unsetopt bgnice            			# don't nice bg command
 
 
-##################################################
 # To create a ZIP archive of a file or folder	 #
-##################################################
-
 function zipf() { zip -r "$1".zip "$1" ; }
 
-### Custom Functions For adding and fetching covers from a pdf ###
+# Custom Functions For adding and fetching covers from a pdf
 function addcover() { convert "$2" /tmp/cover.pdf; pdftk /tmp/cover.pdf "$1" cat output /tmp/final.pdf;mv /tmp/final.pdf "$1"; }
 function getcover() { pdftk "$1" cat 1 output /tmp/cover.pdf; convert /tmp/cover.pdf cover.jpg;}
 
