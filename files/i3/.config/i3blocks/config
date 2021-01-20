@@ -62,6 +62,7 @@ markup=pango
 # Shows disk space remaining in /home
 [disk]
 interval=30
+label=💾
 
 [bandwidth2]
 interval=persist
