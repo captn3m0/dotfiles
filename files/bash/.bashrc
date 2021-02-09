@@ -22,6 +22,9 @@ pathadd /home/nemo/.local/share/junest/bin
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
+function gemls(){
+  tar --to-stdout -xf "$1" data.tar.gz | tar -zt
+}
 alias adb.run='apktool build src/ -o patched.apk && java -jar ~/apps/uber-apk-signer-1.1.0.jar -a patched.apk  && adb install -r -d patched-aligned-debugSigned.apk && adb shell monkey -p '$1' -v 1'
 alias mk='microk8s.kubectl'
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
