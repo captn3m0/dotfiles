@@ -17,6 +17,8 @@ exec --no-startup-id redshift-gtk
 exec yubikey-touch-detector --libnotify
 # This ensures that GTK changes are applied immediately
 exec xfsettingsd --replace --no-daemon
+# execute ibus XIM server.
+exec ibus-daemon --replace --xim
 
 # Launch the VPN app, but turn it off
 exec riseup-vpn-git --start-vpn off

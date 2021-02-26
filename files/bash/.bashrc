@@ -235,6 +235,10 @@ if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && ! shopt -oq posix; 
    . /usr/share/doc/pkgfile/command-not-found.bash
 fi
 
+if [[ -f /usr/share/git/completion/git-completion.bash ]] && ! shopt -oq posix; then
+  . /usr/share/git/completion/git-completion.bash
+fi
+
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
 export LC_ALL=en_US.utf8
 export LC_ALL=en_US.utf8
@@ -584,14 +588,6 @@ function mkcd() {
     cd "$1"
 }
 
-#SCM Breeze
-[ -s "/home/nemo/.scm_breeze/scm_breeze.sh" ] && source "/home/nemo/.scm_breeze/scm_breeze.sh"
-PATH="/home/nemo/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/nemo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/nemo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/nemo/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/nemo/perl5"; export PERL_MM_OPT;
-
 # To allow global package installations for the current user
 PATH="$HOME/.node_modules/bin:$PATH"
 export npm_config_prefix=~/.node_modules
@@ -699,3 +695,5 @@ function starship_set_win_title(){
 
 starship_precmd_user_func="starship_set_win_title"
 eval "$(starship init bash)"
+
+[ -s "/usr/share/scm_breeze/scm_breeze.sh" ] && source "/usr/share/scm_breeze/scm_breeze.sh"
