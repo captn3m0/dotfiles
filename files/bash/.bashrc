@@ -88,7 +88,7 @@ function colorchange() {
   export BAT_THEME="Solarized ($1)"
   echo "✔️ bat"
 
-  alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" -a "base16-solarized-$1.yml"
+  alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" apply "base16-solarized-$1.yml"
   echo "✔️ alacritty"
 
   gtk_theme="GTK_THEME_$1"
