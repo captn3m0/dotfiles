@@ -1,3 +1,6 @@
 [submodule "files/vim/.vim/bundle/dracula-theme"]
 	path = files/vim/.vim/bundle/dracula-theme
 	url = git@github.com:dracula/vim.git
+[submodule "files/themes/.config/alacritty/themes"]
+	path = files/themes/.config/alacritty/themes
+	url = https://github.com/aaron-williamson/base16-alacritty.git
