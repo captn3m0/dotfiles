@@ -227,6 +227,10 @@ if [[ -f /usr/share/bash-completion/completions/pass ]] && ! shopt -oq posix; th
    . /usr/share/bash-completion/completions/pass
 fi
 
+if [[ -f /usr/share/bash-completion/completions/npm ]] && ! shopt -oq posix; then
+   . /usr/share/bash-completion/completions/npm
+fi
+
 if [[ -f /usr/share/bash-completion/completions/poetry ]] && ! shopt -oq posix; then
    . /usr/share/bash-completion/completions/poetry
 fi
@@ -264,9 +268,9 @@ export BLOCKSIZE=K
 # export CDPATH=.:~:~/src:/etc
 # export DISPLAY=:79
 export EDITOR='vim'
-# export ftp_proxy=${MY_PROXY}
-# export GPG_TTY='tty'				# gpg-agent says it needs this
-# export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
+export VISUAL='subl'
+
+export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'
 # put list of remote hosts in ~/.hosts ...
 export HOSTFILE=$HOME/.hosts
 # export IGNOREEOF=1				# prevent CTRL-D from immediately logging out
@@ -290,22 +294,21 @@ export PAGER='less -e'
 # export PILOTRATE=57600			# make pilot-xfer go faster than 9600
 export TERM='xterm'
 export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
-# export USER_CLIENT=deluge
-# export USER_DPRT=22218
-# export USER_OPRT=47426
-# export USER_VPRT=79
-# export USER_WPRT=30818
-# export VISUAL='subl'
-# export wpsetters=feh
+
+
 # ${file%\.[^.]*}				# to remove filename extensions in bash
-# fortune -a					# fortunes at each new shell
-# mesg n              				#
-set -b						# causes output from background processes to be output right away, not on wait for next primary prompt
-# set bell-style visible			# I hate noise
-#set completion-ignore-case on 		# complete things that have been typed in the wrong case
+# Disallow messages from other users
+mesg n
+# causes output from background processes to be output right away, not on wait for next primary prompt
+set -b
+
+set bell-style visible			# I hate noise
+set completion-ignore-case on 		# complete things that have been typed in the wrong case
 # set -o ignoreeof				# can't c-d out of shell
-# set -o noclobber				# disallow > to work on files that already exist (prevents catting over file)
-set -o notify					# notify when jobs running in background terminate
+# disallow > to work on files that already exist (prevents catting over file)
+set -o noclobber
+# notify when jobs running in background terminate
+set -o notify
 # set -o nounset				# attempt to use undefined variable outputs error message and forces exit (messes up completion if enabled)
 # set +o nounset          			# otherwise some completions will fail
 #setopt autopushd pushdminus pushdsilent pushdtohome
@@ -313,7 +316,6 @@ set -o notify					# notify when jobs running in background terminate
 # setopt extendedglob
 # setopt hist_verify          			# verify when using !
 # setopt nocheckjobs          			# don't complain about background jobs on e
-# setopt no_clobber           			# don't overwrite files when redirect
 # setopt nohup               			# don't kill bg jobs when tty quits
 # setopt printexitvalue       			# print exit value from jobs
 # setopt share_history
@@ -358,16 +360,16 @@ ulimit -c unlimited				# let me have core dumps
 # unsetopt bgnice            			# don't nice bg command
 
 
-# To create a ZIP archive of a file or folder	 #
+# To create a ZIP archive of a file or folder
 function zipf() { zip -r "$1".zip "$1" ; }
 
 # Custom Functions For adding and fetching covers from a pdf
 function addcover() { convert "$2" /tmp/cover.pdf; pdftk /tmp/cover.pdf "$1" cat output /tmp/final.pdf;mv /tmp/final.pdf "$1"; }
 function getcover() { pdftk "$1" cat 1 output /tmp/cover.pdf; convert /tmp/cover.pdf cover.jpg;}
 
-##################################################
-# Directory shortcuts				 #
-##################################################
+#######################
+# Directory shortcuts #
+#######################
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -423,33 +425,47 @@ alias ssh="cat ~/.ssh/config.d/p* > ~/.ssh/config; ssh"
 alias ssr='sudo systemctl restart'
 alias cda='composer dump-autoload'
 
-#### FASD
-eval "$(fasd --init auto)"
-alias a='fasd -a'        # any
-alias s='fasd -si'       # show / search / select
-alias d='fasd -d'        # directory
-alias f='fasd -f'        # file
-alias sd='fasd -sid'     # interactive directory selection
-alias sf='fasd -sif'     # interactive file selection
+#### autojump using z
 alias z='j'     # cd, same functionality as j in autojump
-alias zz='fasd_cd -d -i' # cd with interactive selection
-
 source /etc/profile.d/autojump.bash
-alias vim='nvim'
 
-#### Docker
+# Docker
 # docker run image
 alias dri='docker run --volume /home/nemo/tmp:/data --tty --rm --interactive --entrypoint /bin/sh '
-# Better caching: https://github.com/moby/moby/issues/15717
+
+# Better caching (among other things)
+# https://github.com/moby/moby/issues/15717
 export DOCKER_BUILDKIT=1
+
 # docker run image, but with current directory mounted as /current
 # Do not run this on untrusted images
 alias dri_cwd='docker run --volume `pwd`:/current --volume /home/nemo/tmp:/data --tty --rm --interactive --entrypoint /bin/sh '
+
+# container-top
 alias ctop='docker run --name ctop -it --rm -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop '
 
+# Run hadolint
 alias dockerlint='LC_ALL=C hadolint'
 
-##### Terraform
+# https://github.com/uber/makisu
+function makisu_build() {
+    makisu_version=${MAKISU_VERSION:-v0.1.10}
+    cd ${@: -1}
+    docker run -i --rm --net host \
+        -v /var/run/docker.sock:/docker.sock \
+        -e DOCKER_HOST=unix:///docker.sock \
+        -v $(pwd):/makisu-context \
+        -v /tmp/makisu-storage:/makisu-storage \
+        gcr.io/makisu-project/makisu:$makisu_version build \
+            --commit=explicit \
+            --modifyfs=true \
+            --load \
+            ${@:1:${#@}-1} /makisu-context
+    cd -
+}
+
+# Terraform
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 alias t=terraform
 alias tp='terraform plan'
 alias tpt='terraform plan --target '
@@ -488,12 +504,9 @@ transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho
     tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
 
 export JAVA_HOME=/usr/lib/jvm/default-runtime
-export EC2_HOME=/home/nemo/apps/ec2
-export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
 # added by travis gem
 [ -f /home/nemo/.travis/travis.sh ] && source /home/nemo/.travis/travis.sh
-#[[ -s "/home/nemo/.gvm/scripts/gvm" ]] && source "/home/nemo/.gvm/scripts/gvm"
 
 #PERL_MB_OPT="--install_base \"/home/nemo/perl5\""; export PERL_MB_OPT;
 #PERL_MM_OPT="INSTALL_BASE=/home/nemo/perl5"; export PERL_MM_OPT;
@@ -540,118 +553,14 @@ man() {
             man "$@"
 }
 
-# Overrides the display provided by imagemagick
-function display() {
-    if [[ `which autorandr` ]]; then
-      autorandr
-    else
-      echo "[warn] Reminder to switch to autorandr"
-      layout="$1"
-      if [[ "$1" == "toggle" ]]; then
-          # exchange it
-          CURRENT=$(cat ~/.screenlayout/current)
-          echo "current=$CURRENT"
-          case "$CURRENT" in
-              "office")
-                  layout="single"
-                  ;;
-              "single")
-                  layout="office"
-                  ;;
-          esac
-      fi
-      echo "layout=$layout"
-      if [[ "$layout" == "home" ]]; then
-          xrandr --newmode "2560x1080_60.00"  \
-              230.00  2560 2720 2992 3424  \
-              1080 1083 1093 1120 -hsync +vsync
-          xrandr --addmode HDMI1 "2560x1080_60.00"
-      fi
-      if [[ -a ~/.screenlayout/$layout.sh ]]; then
-          `cd ~/.screenlayout && sh $layout.sh`
-          # Write the current layout
-          echo $layout > ~/.screenlayout/current
-          if [[ -e "~/Pictures/$layout.jpg" ]]; then
-              (cd ~/Pictures && cp "$layout.jpg" "./xin_1.jpg")
-          fi
-          sleep 3
-          nitrogen --restore
-          i3-msg reload
-          # dunst doesn't like screensize changes
-          killall dunst;notify-send "Display Switched"
-      fi
-    fi
-}
-
 function mkcd() {
-    mkdir "$1"
+    mkdir --parents "$1"
     cd "$1"
 }
 
 # To allow global package installations for the current user
 PATH="$HOME/.node_modules/bin:$PATH"
 export npm_config_prefix=~/.node_modules
-
-###-begin-npm-completion-###
-#
-# npm command completion script
-#
-# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
-# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
-#
-
-if type complete &>/dev/null; then
-  _npm_completion () {
-    local words cword
-    if type _get_comp_words_by_ref &>/dev/null; then
-      _get_comp_words_by_ref -n = -n @ -n : -w words -i cword
-    else
-      cword="$COMP_CWORD"
-      words=("${COMP_WORDS[@]}")
-    fi
-
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           npm completion -- "${words[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-    if type __ltrim_colon_completions &>/dev/null; then
-      __ltrim_colon_completions "${words[cword]}"
-    fi
-  }
-  complete -o default -F _npm_completion npm
-elif type compdef &>/dev/null; then
-  _npm_completion() {
-    local si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 npm completion -- "${words[@]}" \
-                 2>/dev/null)
-    IFS=$si
-  }
-  compdef _npm_completion npm
-elif type compctl &>/dev/null; then
-  _npm_completion () {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       npm completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K _npm_completion npm
-fi
-###-end-npm-completion-###
 
 # Stolen from @ThatHarmanSingh
 function sprint() {
@@ -668,24 +577,6 @@ function sprint() {
   cut -d ' ' -f 4- |
   # To handle multiple commit-pull-reset-commit cycles
   uniq
-}
-
-# https://github.com/uber/makisu
-#
-function makisu_build() {
-    makisu_version=${MAKISU_VERSION:-v0.1.10}
-    cd ${@: -1}
-    docker run -i --rm --net host \
-        -v /var/run/docker.sock:/docker.sock \
-        -e DOCKER_HOST=unix:///docker.sock \
-        -v $(pwd):/makisu-context \
-        -v /tmp/makisu-storage:/makisu-storage \
-        gcr.io/makisu-project/makisu:$makisu_version build \
-            --commit=explicit \
-            --modifyfs=true \
-            --load \
-            ${@:1:${#@}-1} /makisu-context
-    cd -
 }
 
 # https://starship.rs/advanced-config/#change-window-title
