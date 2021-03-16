@@ -12,11 +12,14 @@ set $WS3 3:
 set $WS4 4:
 
 # Startup items that don't have their windows
-exec --no-startup-id nitrogen --restore
+exec nitrogen --restore
 exec --no-startup-id redshift-gtk
+
 exec yubikey-touch-detector --libnotify
+
 # This ensures that GTK changes are applied immediately
 exec xfsettingsd --replace --no-daemon
+
 # execute ibus XIM server.
 exec ibus-daemon --replace --xim
 
@@ -46,14 +49,12 @@ exec xbacklight -set 15
 
 # Code Workspace
 exec i3-msg "workspace $WS1; exec subl"
-exec i3-msg "workspace $WS1; exec alacritty"
 
 # Web workspace (Run both, depending on the system I'm on)
-exec i3-msg "workspace $WS2; exec firefox-beta"
 exec i3-msg "workspace $WS2; exec firefox"
 
 # Startup figure out monitors
-exec autorandr
+exec autorandr -c home
 
 # Quick switching between workspace is disabled
 # Just leads to confusion

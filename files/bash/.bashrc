@@ -263,7 +263,7 @@ export COMP_WORDBREAKS
 export BLOCKSIZE=K
 # export CDPATH=.:~:~/src:/etc
 # export DISPLAY=:79
-export EDITOR='nvim'
+export EDITOR='vim'
 # export ftp_proxy=${MY_PROXY}
 # export GPG_TTY='tty'				# gpg-agent says it needs this
 # export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'		# most commonly used grep options
