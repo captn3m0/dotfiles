@@ -34,6 +34,11 @@ markup=none
 #align=left
 #interval=5
 
+[pomodoro]
+command=/home/nemo/projects/go/bin/openpomodoro-cli status
+interval=1
+color=#e74c3c
+
 [weather]
 command=curl -Ss 'https://wttr.in/Bangalore?0&T&Q' | cut -c 16- | head -2 | xargs echo
 # Every 30 minutes
@@ -55,6 +60,7 @@ signal=10
 #separator=|
 #interval=30
 
+# Currently broken: https://github.com/vivien/i3blocks-contrib/issues/388
 [dunst]
 interval=once
 format=json
@@ -97,10 +103,10 @@ interval=10
 #
 # This displays "ARTIST - SONG" if a music is playing.
 # Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-#[mediaplayer]
+[mediaplayer]
 #instance=spotify
-#interval=5
-#signal=10
+interval=5
+signal=10
 
 [nm-vpn]
 interval=20
@@ -113,3 +119,26 @@ FONT=Monospace 10
 [time]
 command=date '+%H:%M'
 interval=60
+
+[temperature]
+interval=10
+T_WARN=85
+T_CRIT=90
+SENSOR_CHIP=coretemp-isa-0000
+
+[monitor_manager]
+interval=once
+SHOW_ON_OFF=1
+SHOW_NAMES=0
+SHOW_PRIMARY=0
+SHOW_MODE=1
+SHOW_BLANKED=0
+SHOW_DUPLICATE=0
+SHOW_ROTATION=0
+SHOW_REFLECTION=0
+SHOW_BRIGHTNESS=0
+SHOW_BRIGHTNESS_VALUE=0
+SHOW_UP_DOWN=0
+FONT_FAMILY=DejaVu Sans Mono
+FONT_SIZE=12
+CLOSE_TO_BOUNDARY_BUFFER=30
