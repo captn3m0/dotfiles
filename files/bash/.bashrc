@@ -148,8 +148,10 @@ alias upgrade.size='pacman -Quq|xargs expac -SH M "%k\t%n" | sort -sh'
 # https://github.com/chef/inspec
 function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
 
+# Run as pingen N where N = Number of digits in PIN
 function pingen { pwgen -1Avs -r=qwertyuiopasdfghjklzxcvbnm "$1"; }
 
+# Sort a file in-place
 function sortinplace { sort -o "$1" "$1"; }
 
 # alias kapitan='docker run -t --rm -u $(id -u) -v $(pwd):/src:delegated deepmind/kapitan'
@@ -268,7 +270,6 @@ export BLOCKSIZE=K
 # export CDPATH=.:~:~/src:/etc
 # export DISPLAY=:79
 export EDITOR='vim'
-export VISUAL='subl'
 
 export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'
 # put list of remote hosts in ~/.hosts ...
@@ -305,8 +306,6 @@ set -b
 set bell-style visible			# I hate noise
 set completion-ignore-case on 		# complete things that have been typed in the wrong case
 # set -o ignoreeof				# can't c-d out of shell
-# disallow > to work on files that already exist (prevents catting over file)
-set -o noclobber
 # notify when jobs running in background terminate
 set -o notify
 # set -o nounset				# attempt to use undefined variable outputs error message and forces exit (messes up completion if enabled)
