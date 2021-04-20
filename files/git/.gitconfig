@@ -64,7 +64,7 @@
     branches = 
     tags = 
 [credential]
-	helper = cache --timeout=3600
+	helper = /usr/bin/pass-git-helper
 [color "diff"]
 	meta = yellow
 	frag = magenta bold
