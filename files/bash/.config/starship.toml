@@ -29,11 +29,6 @@ format = """\
   $jobs\
   $time\
   $character"""
-[character]
-symbol = "➜"
-error_symbol = "✗"
-use_symbol_for_status = true
-
 
 [time]
 disabled = false
