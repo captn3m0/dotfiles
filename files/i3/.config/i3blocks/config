@@ -125,6 +125,7 @@ interval=10
 T_WARN=85
 T_CRIT=90
 SENSOR_CHIP=coretemp-isa-0000
+interval=2
 
 [monitor_manager]
 interval=once
