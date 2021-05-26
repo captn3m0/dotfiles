@@ -154,6 +154,10 @@ function pingen { pwgen -1Avs -r=qwertyuiopasdfghjklzxcvbnm "$1"; }
 # Sort a file in-place
 function sortinplace { sort -o "$1" "$1"; }
 
+function download_as_pdf {
+  rdrview --template "title,body" "$1" -H | tidy | pandoc --from html --pdf-engine=xelatex -o "$2"
+}
+
 # alias kapitan='docker run -t --rm -u $(id -u) -v $(pwd):/src:delegated deepmind/kapitan'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
