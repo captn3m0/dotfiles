@@ -45,7 +45,7 @@ pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
 pathadd "$HOME/.phpenv/bin"
 pathadd "$HOME/apps/ec2/bin"
-pathadd "$HOME/.gem/ruby/2.7.0/bin"
+pathadd "$HOME/.gem/ruby/3.0.0/bin"
 # needs a kubectl upgrade
 pathadd "$HOME/.krew/bin"
 pathadd "$HOME/.local/bin"
@@ -79,7 +79,7 @@ composer-unlink() {
 
 export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/.config/alacritty/themes/colors
 export BAT_THEME="Solarized (light)"
-GTK_THEME_dark="NumixSolarizedDarkViolet"
+GTK_THEME_dark="NumixSolarizedDarkRed"
 GTK_THEME_light="NumixSolarizedLightGreen"
 BRIGHTNESS_dark=0
 BRIGHTNESS_light=99
@@ -111,6 +111,7 @@ alias dark="colorchange dark"
 alias light="colorchange light"
 
 # https://prefetch.net/blog/2020/07/14/decoding-json-web-tokens-jwts-from-the-linux-command-line/
+# This puts them in bash history, so be careful
 jwtd() {
     if [[ -x $(command -v jq) ]]; then
          jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "${1}"
