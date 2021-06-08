@@ -592,3 +592,13 @@ starship_precmd_user_func="starship_set_win_title"
 eval "$(starship init bash)"
 
 [ -s "/usr/share/scm_breeze/scm_breeze.sh" ] && source "/usr/share/scm_breeze/scm_breeze.sh"
+
+
+function ytdl.album() {
+    cd $(mktemp -d)
+    youtube-dl -f "bestaudio[ext=m4a]" --output "audio.m4a" "$1"
+    youtube-cue --audio-file "audio.m4a" "$1" tracks.cue
+    m4acut -C tracks.cue "audio.m4a" && \
+    trash audio.m4a && \
+    beet import -map .
+}
