@@ -12,7 +12,7 @@ set $WS3 3:
 set $WS4 4:
 
 # Startup items that don't have their windows
-exec nitrogen --restore
+
 exec --no-startup-id redshift-gtk
 
 exec yubikey-touch-detector --libnotify
@@ -95,14 +95,11 @@ bindsym $mod+Shift+q kill
 bindsym XF86KbdBrightnessUp exec /home/nemo/projects/scripts/backlight up
 bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down
 
-# Autolock screen after 2 minutes
-exec xautolock -detectsleep -time 1 -locker "/home/nemo/projects/scripts/lock.sh"
-
 # dunst for notifications
 exec "dunst"
 
 # Win+L
-bindsym $mod+l exec xautolock -locknow
+bindsym $mod+l exec multilockscreen -l dim
 
 # For now, just run gnome-screenshot for window-screenshots
 
@@ -259,6 +256,9 @@ exec --no-startup-id GTK_THEME=Ambiance com.github.parnold-x.nasc
 #bindsym $mod+F1 [class="xpad" instance="xpad"] scratchpad show
 # Only for Nasc
 bindsym $mod+F3 [class="Com.github.parnold-x.nasc"] scratchpad show
+
+# Setup a new lock screen on every boot
+exec "sh -c 'multilockscreen --fx dim -u /home/nemo/Pictures/wallpapers/; multilockscreen -w'"
 
 # Go through all windows
 
