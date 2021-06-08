@@ -33,7 +33,7 @@ alias xclip='xclip -selection c'
 alias sl=ls
 alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
 alias wine32='WINEARCH=win32 WINEPREFIX=~/win32 wine'
-alias signal_update='sss docker && docker run captn3m0/signal-arch-builder'
+alias signal_update='podman run captn3m0/signal-arch-builder'
 alias kc='kapitan compile'
 # https://tizardsbriefcase.com/1059/linux/remove-query-string-filename-wget
 alias clean.filenames='for file in *; do mv "$file" "${file%%\?*}"; done'
