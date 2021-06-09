@@ -1,36 +1,169 @@
 # Minimum List of important+small packages I want
 aur:
-- insomnia-bin
-- pandoc-bin
-- dxvk-bin
-- ttf-twemoji-color
-- q
-- chromium-widevine
-- soundux
-- dex2jar-git
-- openpomodoro
-- beancount
-- puddletag
-- fava
-- pup-bin
-- otf-stix
-- gallery-dl
-- jd-gui
-- ttf-symbola-free
-- m4b-tool-bin
-- docker-credential-pass
-- jd-cmd
-- linkchecker
-- zeal
-- ttf-all-the-icons
-- autojump
-- beanprice
-- protontricks
-- m4acut
-- scm_breeze-git
-- pacman-cleanup-hook
-- aur-auto-vote-git
-- letsencrypt-cloudflare-hook
-- multilockscreen-git
-- pass-git-helper
-- rdrview-git
+  # Fonts
+  - ttf-twemoji-color
+  - ttf-symbola-free
+  - ttf-all-the-icons
+  - ttf-input
+  - otf-stix
+  # Gaming
+  - dxvk-bin
+  - protontricks
+  # Reverse Engineering
+  - dex2jar-git
+  - jd-gui
+  - jd-cmd
+  - android-apktool
+  # Media
+  - chromium-widevine # DRM for Netflix/Prime
+  - puddletag # Media Tagging GUI
+  - gallery-dl # youtube-dl, but for image galleries
+  - m4b-tool-bin # Audiobook merge/split tooling
+  - m4acut # Split m4a files
+  - soundux # pipewire audio plumbing. Useful for mixing audio into calls
+  # Finances
+  - fava
+  - beancount
+  - beanprice
+  # Productivity
+  - openpomodoro
+  - autojump # jump around
+  # Tools
+  - pup-bin # Parse HTML in cli
+  - linkchecker # Check website for broken links
+  - q # CSV file parser
+  - letsencrypt-cloudflare-hook
+  - pandoc-bin # because the haskell dependencies are too much
+  - rdrview-git
+  # Dev
+  - insomnia-bin # Postman, but FOSS (by Kong)
+  - docker-credential-pass
+  - zeal # (Dash equivalent to browse docs)
+  - scm_breeze-git # Git aliases and shortcuts
+  - pass-git-helper # Use pass for Git HTTPS clone credentials
+  # Arch Specific
+  - pacman-cleanup-hook
+  - aur-auto-vote-git
+  - multilockscreen-git
+pacman:
+  # GUI Software
+  - firefox
+  - calibre
+  - vlc
+  - gnumeric
+  - abiword
+  - evince
+  - foliate
+  # Reverse Engineering
+  - zaproxy
+  - jadx
+  # Development
+  - git
+  - vim
+  - php
+  - ruby
+  # Container Stuff
+  - docker
+  - containerd
+  - podman
+  - runc
+  - composer
+  # Languages
+  - crystal
+  - nodejs
+  - npm
+  # Appearance
+  - papirus-icon-theme
+  - arc-gtk-theme
+  - arc-icon-theme
+  # Fonts
+  - ttf-droid
+  - ttf-fira-mono
+  - ttf-font-awesome
+  - ttf-indic-otf
+  - ttf-joypixels
+  # Media
+  - youtube-dl
+  - audacity
+  - clementine
+  # Security
+  - zbar # Use this for pass-otp
+  - browserpass
+  - browserpass-firefox
+  # Tools
+  - p7zip
+  - imagemagick
+  - gnupg
+  - aws-cli
+  - hub # GitHub CLI
+  # Configuration
+  - arandr
+  - autorandr
+  # Bluetooth
+  - blueman
+  - bluez
+  - bluez-plugins
+  - bluez-tools
+  - bluez-utils
+
+  - cronie
+  - dehydrated
+  - ebook-tools
+  - entr
+  # Gaming
+  - gamemode
+  - lib32-gamemode
+  - go
+  - hexchat
+  - i3blocks
+  - i3status
+  - i3-gaps
+  - jq
+  - khal
+  - libappindicator-gtk2
+  - liferea
+  - meld
+  - minitube
+  - ncdu
+  - opensc
+  - pass
+  - pass-otp
+  - pavucontrol
+  - pcmanfm
+  - pdftk
+  - picom
+  - picocom
+  - pinta
+  - powerline-fonts
+  - pwgen
+  - rofi
+  - screen
+  - shards
+  - shellcheck
+  - speedtest-cli
+  - starship
+  - stow
+  - strace
+  - the_silver_searcher
+  - thunderbird
+  - transmission-gtk
+  - trash-cli
+  - unicode-emoji
+  - vdirsyncer
+  - khal
+  - wget
+  - whois
+  - wkhtmltopdf
+  - yq
+  - yubikey-manager
+  - yubikey-touch-detector
+  - yubikey-personalization
+  - awesome-terminal-fonts
+  - bat
+  - cloc
+  - cuetools
+  - ddcutil
+  - dmenu
+  - earlyoom
+  - expac
+  - gpicview
