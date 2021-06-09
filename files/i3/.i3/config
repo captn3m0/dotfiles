@@ -98,10 +98,13 @@ bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down
 # dunst for notifications
 exec "dunst"
 
-# Win+L
-bindsym $mod+l exec multilockscreen -l dim
-
-# For now, just run gnome-screenshot for window-screenshots
+# Lock Related
+## Setup a new lock screen on every boot
+exec "sh -c 'multilockscreen --fx dim -u /home/nemo/Pictures/wallpapers/; multilockscreen -w'"
+## Run xss-lock for handling suspend + session locks
+exec xss-lock -l -- multilockscreen --l dim
+## And manual locking as well
+bindsym $mod+l exec loginctl lock-session
 
 # For starting applications with a .desktop entry
 bindsym $mod+shift+d exec notify-send -u low "Use Mod+Caps_Lock instead"
@@ -256,9 +259,6 @@ exec --no-startup-id GTK_THEME=Ambiance com.github.parnold-x.nasc
 #bindsym $mod+F1 [class="xpad" instance="xpad"] scratchpad show
 # Only for Nasc
 bindsym $mod+F3 [class="Com.github.parnold-x.nasc"] scratchpad show
-
-# Setup a new lock screen on every boot
-exec "sh -c 'multilockscreen --fx dim -u /home/nemo/Pictures/wallpapers/; multilockscreen -w'"
 
 # Go through all windows
 
