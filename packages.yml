@@ -1,0 +1,36 @@
+# Minimum List of important+small packages I want
+aur:
+- insomnia-bin
+- pandoc-bin
+- dxvk-bin
+- ttf-twemoji-color
+- q
+- chromium-widevine
+- soundux
+- dex2jar-git
+- openpomodoro
+- beancount
+- puddletag
+- fava
+- pup-bin
+- otf-stix
+- gallery-dl
+- jd-gui
+- ttf-symbola-free
+- m4b-tool-bin
+- docker-credential-pass
+- jd-cmd
+- linkchecker
+- zeal
+- ttf-all-the-icons
+- autojump
+- beanprice
+- protontricks
+- m4acut
+- scm_breeze-git
+- pacman-cleanup-hook
+- aur-auto-vote-git
+- letsencrypt-cloudflare-hook
+- multilockscreen-git
+- pass-git-helper
+- rdrview-git
