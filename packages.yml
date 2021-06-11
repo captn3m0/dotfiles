@@ -167,3 +167,10 @@ pacman:
   - earlyoom
   - expac
   - gpicview
+bin:
+  docker-pushrm:
+    url: https://github.com/christian-korneck/docker-pushrm/releases/download/v1.7.0/docker-pushrm_linux_amd64
+    sha256: 43d0b1f8f44049d1395f8ee758078a58abaa488acc4b067b5c681ca1ab6d50fb
+  harborctl:
+    url: https://github.com/moooofly/harborctl/releases/download/v1.1.0/harborctl_1.1.0_Linux_386.tar.gz
+    sha256: 191ddcebb2114c6da85a790edf8370f0eb5cc0089d43892e677e08fe8c98a50c
