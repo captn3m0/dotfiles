@@ -73,6 +73,7 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return split v; exec alacritty
 bindsym $mod+Shift+Return split h; exec alacritty
+bindsym $mod+Shift+f exec killall firefox;
 
 # Snippy for quick text
 # https://gist.github.com/coderofsalvation/46549e3788ade2f3a938
@@ -82,8 +83,8 @@ bindsym $mod+Escape exec snippy.sh
 
 bindsym $mod+z exec fsearch
 
-bindsym $mod+Hyper_L exec rofi -show drun
-bindsym --release Hyper_L exec rofi -show window
+bindsym $mod+Hyper_L exec rofi -show drun -icon-theme "Papirus" -show-icons -font "Input Sans 12"
+bindsym --release Hyper_L exec rofi -show window -icon-theme "Papirus" -show-icons -font "Input Sans 12"
 
 bindsym $mod+F8 exec pcmanfm --role=floating
 
@@ -100,9 +101,11 @@ exec "dunst"
 
 # Lock Related
 ## Setup a new lock screen on every boot
-exec "sh -c 'multilockscreen --fx dim -u /home/nemo/Pictures/wallpapers/; multilockscreen -w'"
+exec "sh -c 'sleep 5; multilockscreen --fx dim -u /home/nemo/Pictures/wallpapers/; multilockscreen -w'"
+
 ## Run xss-lock for handling suspend + session locks
-exec xss-lock -l -- multilockscreen --l dim
+exec xss-lock -l -- multilockscreen -l dim
+
 ## And manual locking as well
 bindsym $mod+l exec loginctl lock-session
 
@@ -268,8 +271,8 @@ bindsym $mod+minus scratchpad show
 
 # i3 gaps
 for_window [class="^.*"] border pixel 0
-gaps inner 15
-gaps outer 20
+gaps inner 10
+gaps outer 5
 smart_gaps on
 smart_borders on
 
