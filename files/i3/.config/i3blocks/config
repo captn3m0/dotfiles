@@ -50,17 +50,16 @@ command=ip address show dev wlan0 | grep inet | head -n1  | cut -d ' ' -f 6
 interval=3600
 color=#91E78B
 
-[volume]
-LABEL=♪
-interval=once
-signal=10
+#[volume]
+#LABEL=♪
+#interval=once
+#signal=10
 
 # I rarely run out of memory, so this is commented
 #[memory]
 #separator=|
 #interval=30
 
-# Currently broken: https://github.com/vivien/i3blocks-contrib/issues/388
 [dunst]
 interval=once
 format=json
@@ -69,7 +68,7 @@ markup=pango
 # Shows disk space remaining in /home
 [disk]
 interval=30
-label=💾
+label=Disk 
 
 [bandwidth2]
 interval=persist
@@ -104,7 +103,7 @@ interval=10
 # This displays "ARTIST - SONG" if a music is playing.
 # Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
 [mediaplayer]
-#instance=spotify
+instance=%any
 interval=5
 signal=10
 
