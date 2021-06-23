@@ -596,9 +596,16 @@ eval "$(starship init bash)"
 
 function ytdl.album() {
     cd $(mktemp -d)
-    youtube-dl -f "bestaudio[ext=m4a]" --output "audio.m4a" "$1"
+    youtube-dl --quiet -f "bestaudio[ext=m4a]" --output "audio.m4a" "$1"
     youtube-cue --audio-file "audio.m4a" "$1" tracks.cue
     m4acut -C tracks.cue "audio.m4a" && \
     trash audio.m4a && \
     beet import -map .
+}
+
+function gaanadl.album() {
+    cd $(mktemp -d)
+    youtube-dl --quiet --autonumber-start 1 --add-metadata -o "%(autonumber)d - %(title)s.m4a" "$1"
+    beet import -map .
+    cd -
 }
