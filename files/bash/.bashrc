@@ -32,14 +32,33 @@ alias watch='watch '
 alias xclip='xclip -selection c'
 alias sl=ls
 alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
+alias dh='du -d1 -h'
 alias wine32='WINEARCH=win32 WINEPREFIX=~/win32 wine'
-alias signal_update='podman run captn3m0/signal-arch-builder'
+alias signal_update='podman run docker.io/captn3m0/signal-arch-builder'
 alias kc='kapitan compile'
 # https://tizardsbriefcase.com/1059/linux/remove-query-string-filename-wget
 alias clean.filenames='for file in *; do mv "$file" "${file%%\?*}"; done'
 
 alias dunst.pause='notify-send "DUNST_COMMAND_PAUSE"'
 alias dunst.resume='notify-send "DUNST_COMMAND_RESUME"'
+
+alias sp="docker exec -it steampipe steampipe "
+
+alias steampipe.service="docker run \
+  -p 9193:9193 \
+  --name steampipe \
+  --mount type=bind,source=/home/nemo/.config/steampipe,target=/home/steampipe/.steampipe/config  \
+  --mount type=volume,source=steampipe_data,target=/home/steampipe/.steampipe/db/12.1.0/data \
+  --mount type=volume,source=steampipe_internal,target=/home/steampipe/.steampipe/internal \
+  --mount type=volume,source=steampipe_logs,target=/home/steampipe/.steampipe/logs   \
+  --mount type=volume,source=steampipe_plugins,target=/home/steampipe/.steampipe/plugins   \
+  turbot/steampipe service start --foreground"
+
+function aur.make() {
+    find . -maxdepth 1 -iregex '.*\.\(bz2\|tar\|zip\|deb\|xz\|part\|rpm\|gz\|zst\|AppImage\|pacman\|jar\)$' -delete 
+    makepkg --printsrcinfo > .SRCINFO
+    makepkg -sric
+}
 # ... or force ignoredups and ignorespace
 pathadd '/sbin'
 pathadd '/home/nemo/projects/scripts/'
@@ -95,10 +114,10 @@ function colorchange() {
   xfconf-query -c xsettings -p /Net/ThemeName -s "${!gtk_theme}"
   echo "✔️ gtk"
 
-  subl_settings="/home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
-  strip-json-comments "$subl_settings" | jq ".color_scheme=\"Packages/Solarized Color Scheme/Solarized ($1).sublime-color-scheme\"" > /tmp/sublime.json
-  mv /tmp/sublime.json "$subl_settings"
-  echo "✔️ sublime"
+  # subl_settings="/home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+  # strip-json-comments "$subl_settings" | jq ".color_scheme=\"Packages/Solarized Color Scheme/Solarized ($1).sublime-color-scheme\"" > /tmp/sublime.json
+  # mv /tmp/sublime.json "$subl_settings"
+  # echo "✔️ sublime"
 
   brightness="BRIGHTNESS_$1"
   if [[ $(xrandr --listmonitors|grep 2560) ]]; then
@@ -147,7 +166,10 @@ alias package.dlsize='expac -S -H M '%k\t%n' $(pacman -Qqu) | sort -sh'
 alias upgrade.size='pacman -Quq|xargs expac -SH M "%k\t%n" | sort -sh'
 
 # https://github.com/chef/inspec
-function inspec { docker run -it --rm -v $(pwd):/share chef/inspec $@; }
+function inspec { podman run -it --rm -v $(pwd):/share chef/inspec $@; }
+
+# Most common invocation: terraform.docs  markdown --html=false --anchor=false --show "outputs"
+function terraform.docs { podman run -it --rm -u $(id -u) -v $(pwd):/src quay.io/terraform-docs/terraform-docs:0.14.1 $@ /src; }
 
 # Run as pingen N where N = Number of digits in PIN
 function pingen { pwgen -1Avs -r=qwertyuiopasdfghjklzxcvbnm "$1"; }
@@ -159,7 +181,7 @@ function download_as_pdf {
   rdrview --template "title,body" "$1" -H | tidy | pandoc --from html --pdf-engine=xelatex -o "$2"
 }
 
-# alias kapitan='docker run -t --rm -u $(id -u) -v $(pwd):/src:delegated deepmind/kapitan'
+alias kapitan='podman run -t --rm -u $(id -u) -v $(pwd):/src:delegated deepmind/kapitan'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -569,7 +591,7 @@ export npm_config_prefix=~/.node_modules
 # Stolen from @ThatHarmanSingh
 function sprint() {
 
-# Set time format to unix so we can subtract
+    # Set time format to unix so we can subtract
  HISTTIMEFORMAT='%s ' history |
  # History returns way more than needed
   tail -n 4000 |
@@ -605,7 +627,7 @@ function ytdl.album() {
 
 function gaanadl.album() {
     cd $(mktemp -d)
-    youtube-dl --quiet --autonumber-start 1 --add-metadata -o "%(autonumber)d - %(title)s.m4a" "$1"
+    youtube-dl --rm-cache-dir --no-cache-dir --quiet --autonumber-start 1 --add-metadata -o "%(autonumber)d - %(title)s.m4a" "$1"
     beet import -map .
     cd -
 }
