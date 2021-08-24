@@ -4,3 +4,4 @@ configuration {
  font: "Input Mono 10";
  combi-modi: "window,drun";
 }
+@import "/usr/share/rofi/themes/gruvbox-light.rasi"

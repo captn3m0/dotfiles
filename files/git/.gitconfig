@@ -58,11 +58,6 @@
 	preloadindex = true
 	quotepath = false
 
-[svn-remote "svn"]
-#svn checkout https://svn.code.sf.net/p/elibsrv/code/ elibsrv-code
-#    url = http://localhost:81/svn/project/branches
-    branches = 
-    tags = 
 [credential]
 	helper = /usr/bin/pass-git-helper
 [color "diff"]
