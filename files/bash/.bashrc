@@ -272,6 +272,10 @@ if [[ -f /usr/share/git/completion/git-completion.bash ]] && ! shopt -oq posix; 
   . /usr/share/git/completion/git-completion.bash
 fi
 
+if [[ -f /etc/bash_completion.d/pdm.bash-completion ]] && ! shopt -oq posix; then
+  . /etc/bash_completion.d/pdm.bash-completion
+fi
+
 function smallmkv() { ffmpeg -i "$1" -b 1000k -acodec libmp3lame -vcodec libx264 -ar 44100 -ab 56k -ac 2 -vpre fast -crf 24 \ "$1.mkv" ;}
 export LC_ALL=en_US.utf8
 export LC_ALL=en_US.utf8
@@ -631,3 +635,8 @@ function gaanadl.album() {
     beet import -map .
     cd -
 }
+PATH="/home/nemo/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/nemo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/nemo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/nemo/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/nemo/perl5"; export PERL_MM_OPT;
