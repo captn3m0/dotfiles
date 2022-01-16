@@ -70,5 +70,4 @@
 [diff-so-fancy]
 	useUnicodeRuler = false
 [init]
-	templateDir = ~/.githooks/templates
 	defaultBranch = main
