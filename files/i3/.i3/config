@@ -26,6 +26,9 @@ exec ibus-daemon --replace --xim
 # Launch the VPN app, but turn it off
 exec riseup-vpn-git --start-vpn off
 
+# Launch easyeffects
+exec easyeffects --hide-window
+
 ## Press Ctrl+C twice to search a word
 ## Dictionaries are kept in ~/Documents/Dictionaries
 exec --no-startup-id goldendict
@@ -71,8 +74,8 @@ font pango:Cantarell 10,Fira Sans 8,Dejavu Sans,FontAwesome 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return split v; exec alacritty
-bindsym $mod+Shift+Return split h; exec alacritty
+bindsym $mod+Return split v; exec foot
+bindsym $mod+Shift+Return split h; exec foot
 bindsym $mod+Shift+f exec killall firefox;
 
 # Snippy for quick text
@@ -86,7 +89,7 @@ bindsym $mod+z exec fsearch
 bindsym $mod+Hyper_L exec rofi -show drun -icon-theme "Papirus" -show-icons -font "Input Sans 12"
 bindsym --release Hyper_L exec rofi -show window -icon-theme "Papirus" -show-icons -font "Input Sans 12"
 
-bindsym $mod+F8 exec pcmanfm --role=floating
+bindsym $mod+F8 exec pcmanfm
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -101,16 +104,13 @@ exec "dunst"
 
 # Lock Related
 ## Setup a new lock screen on every boot
-exec "sh -c 'sleep 5; multilockscreen --fx dim -u /home/nemo/Pictures/wallpapers/; multilockscreen -w'"
+exec "betterlockscreen --fx dim -u /home/nemo/Pictures/wallpapers/"
 
 ## Run xss-lock for handling suspend + session locks
-exec xss-lock -l -- multilockscreen -l dim
+exec xss-lock -l -- betterlockscreen -l dim
 
 ## And manual locking as well
 bindsym $mod+l exec loginctl lock-session
-
-# For starting applications with a .desktop entry
-bindsym $mod+shift+d exec notify-send -u low "Use Mod+Caps_Lock instead"
 
 # Print screen
 bindsym Print exec flameshot gui
@@ -232,12 +232,29 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 
 # https://github.com/vivien/i3blocks-contrib/tree/master/volume#usage
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+# Review the lines below and append to ~/.config/i3/config
+
+## Volume control
+
+# Path to volume control, without trailing slash
+set $volumepath ~/i3-volume
+
+# Amount to increase/decrease volume as a percentage
+set $volumestep 5
+
+# pulseaudio-utils settings
+#
+# Symbolic name for sink (numeric index not supported)
+#   Recommended: comment out this setting and omit the -s option to use default sink
+#   List sink names: pacmd list-sinks | awk -F "[<>]" '/^\s+name: <.*>/{print $2}'
+#set $sinkname alsa_output.pci-0000_00_1b.0.analog-stereo
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 2 && notify-send `pamixer --get-volume` -t 200
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 2 && notify-send `pamixer --get-volume` -t 200
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Window assignments
-for_window [class="Pcmanfm"] floating enable resize 860 800
 for_window [class="Wine"] floating enable
 for_window [class="Blueberry.py"] floating enable
 for_window [class="Transmission-gtk"] floating enable
@@ -259,7 +276,7 @@ for_window [class="Blueman-manager"] floating enable resize 640 600
 exec --no-startup-id xpad
 # Sticky math app
 exec --no-startup-id GTK_THEME=Ambiance com.github.parnold-x.nasc
-#bindsym $mod+F1 [class="xpad" instance="xpad"] scratchpad show
+bindsym $mod+F1 [class="xpad" instance="xpad"] scratchpad show
 # Only for Nasc
 bindsym $mod+F3 [class="Com.github.parnold-x.nasc"] scratchpad show
 
@@ -302,3 +319,6 @@ bindsym $mod+F9 exec autorandr
 client.focused          #859900 #859900 #fdf6e3 #2e9ef4
 client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
 client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+
+exec_always --no-startup-id kitti3 -p TL
+bindsym $mod+n nop kitti3

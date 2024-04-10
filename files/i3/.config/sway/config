@@ -1,1 +1,329 @@
-../../.i3/config
+# sway config file
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+include /etc/sway/config.d/*
+
+exec systemctl --user import-environment SSH_AUTH_SOCK
+exec dbus-update-activation-environment --systemd SSH_AUTH_SOCK
+
+# I use the Super key on my laptop for i3
+set $mod Mod4
+
+# 4 named workspaces
+set $WS1 1:
+set $WS2 2:
+set $WS3 3:
+set $WS4 4:
+
+# Startup items that don't have their windows
+exec gammastep
+
+exec yubikey-touch-detector --libnotify
+
+# This ensures that GTK changes are applied immediately
+exec xfsettingsd --replace --no-daemon
+
+# execute ibus XIM server.
+exec ibus-daemon --replace --xim
+
+# Launch the VPN app, but turn it off
+exec riseup-vpn-git --start-vpn off
+
+# Launch easyeffects
+exec easyeffects --hide-window
+
+## Press Ctrl+C twice to search a word
+## Dictionaries are kept in ~/Documents/Dictionaries
+exec --no-startup-id goldendict
+
+# For ArchLinux
+exec --no-startup-id connman-gtk
+exec --no-startup-id /usr/sbin/hackertray --firefox auto --comments/usr/sbin/hackertray
+
+# For Ubuntu
+exec --no-startup-id nm-applet
+exec --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
+exec --no-startup-id autorandr --change
+
+input * {
+	#xkb_layout = "in(eng),in(hin-wx),in(hin-kagapa)"
+	# Caps Lock = Hyper_L
+    xkb_options "grp_led:caps,caps:hyper,compose:ralt"
+}
+
+
+# Quick switching between workspace is disabled
+# Just leads to confusion
+workspace_auto_back_and_forth no
+
+# I am still learning splitting properly
+workspace_layout default
+hide_edge_borders both
+
+# Still playing around with this
+font pango:Cantarell 10,Fira Sans 8,Dejavu Sans,FontAwesome 9
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return split v; exec alacritty
+bindsym $mod+Shift+Return split h; exec alacritty
+bindsym $mod+Shift+f exec killall firefox;
+
+# Snippy for quick text
+# https://gist.github.com/coderofsalvation/46549e3788ade2f3a938
+bindsym $mod+grave exec snippy.sh
+# This one because of a 60% keyboard
+bindsym $mod+Escape exec snippy.sh
+
+bindsym $mod+z exec fsearch
+
+bindsym $mod+Hyper_L exec wofi --show drun -icon-theme "Papirus" -show-icons -font "Cantarell 14"
+# TODO: Window switch does not work
+bindsym --release Hyper_L exec wofi --show window -icon-theme "Papirus" -show-icons -font "Cantarell 14"
+
+bindsym $mod+F8 exec nemo --no-desktop
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# keyboard backlight, for Mac
+# increase/decrease keyboard brightness
+# TODO: Switch to wayland?
+#bindsym XF86KbdBrightnessUp exec /home/nemo/projects/scripts/backlight up
+#bindsym XF86KbdBrightnessDown exec /home/nemo/projects/scripts/backlight down
+
+# Setup wallpapers
+exec swaybg --output "Samsung Electric Company C24F390 HTQK801650" --mode fit --image /home/nemo/Pictures/wallpapers/personal/zurich.jpg \
+  --output "HDMI-A-1" --mode stretch --image /home/nemo/Pictures/wallpapers/personal/titlis.jpg
+
+# Notifications
+exec swaync
+# Toggle control center
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
+# Lock Related
+exec swayidle -w \
+	timeout 1800 'swaylock -f' \
+  timeout 2000 'swaymsg "output * dpms off"' \
+	 resume 'swaymsg "output * power on"' \
+  before-sleep 'swaylock -f' \
+  lock 'swaylock -f' \
+  unlock 'killall -s SIGUSR1 swaylock' \
+  idlehint 1800
+
+exec swayidle -w timeout 10 \
+  'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' resume 'swaymsg "output * dpms on"'
+
+bindsym $mod+l exec "killall -s SIGUSR1 swayidle"
+
+## And manual locking as well
+## TODO: Get this working
+# bindsym $mod+l exec loginctl lock-session
+
+# Print screen
+bindsym Print exec flameshot gui
+bindsym $mod+I exec grimshot copy area
+
+bindsym Ctrl+Print exec flameshot screen
+bindsym Ctrl+$mod+I exec grimshot save area
+
+bindsym $mod+P exec /home/nemo/projects/scripts/wofipass --type
+
+# focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Switching to a different workspace
+bindsym $mod+Ctrl+Left  workspace prev_on_output
+bindsym $mod+Ctrl+Right workspace next_on_output
+
+# split in horizontal orientation
+bindsym $mod+h split h; exec wofi --show drun
+
+# split in vertical orientation
+bindsym $mod+v split v; exec wofi --show drun
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# rename a workspace
+bindsym $mod+ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+#bindsym button 6 exec "notify-send 123"
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# backlight support
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+## Volume control
+
+# pulseaudio-utils settings
+#
+# Symbolic name for sink (numeric index not supported)
+#   Recommended: comment out this setting and omit the -s option to use default sink
+#   List sink names: pacmd list-sinks | awk -F "[<>]" '/^\s+name: <.*>/{print $2}'
+#set $sinkname alsa_output.pci-0000_00_1b.0.analog-stereo
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 2 && notify-send `pamixer --get-volume` -t 200 -e
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 2 && notify-send `pamixer --get-volume` -t 200 -e
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# Window assignments
+for_window [class="Wine"] floating enable
+for_window [class="Blueberry.py"] floating enable
+for_window [class="Transmission-gtk"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [class="xpad"] floating enable
+for_window [class="Zeal"] floating enable
+for_window [class="Pavucontrol"] floating enable resize 940 600
+for_window [class="Connman-gtk"] floating enable resize 800 420
+for_window [class="Firefox" instance="Browser"] floating enable
+for_window [class="Firefox Beta" instance="Browser"] floating enable
+for_window [class="Fsearch"] floating enable
+for_window [class="Com.github.parnold-x.nasc"] floating enable 800 420
+for_window [class="xpad" window_role="info-"] move scratchpad
+for_window [class="Com.github.parnold-x.nasc"] move scratchpad
+for_window [class="Blueman-manager"] floating enable resize 640 600
+
+# Sticky Notepad
+exec --no-startup-id xpad
+# Sticky math app
+exec --no-startup-id GTK_THEME=Ambiance com.github.parnold-x.nasc
+bindsym $mod+F1 [class="xpad" instance="xpad"] scratchpad show
+# Only for Nasc
+bindsym $mod+F3 [class="Com.github.parnold-x.nasc"] scratchpad show
+
+# Go through all windows
+
+# Scratchpad
+bindsym $mod+shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# gaps are native in sway
+for_window [class="^.*"] border pixel 0
+gaps inner 10
+gaps outer 5
+smart_gaps on
+smart_borders on
+
+bar {
+  font xft:Cantarell, FontAwesome 11
+  status_command i3blocks
+  colors {
+    separator #657b83
+    background #002b36
+    statusline #fdf6e3
+    focused_workspace #fdf6e3 #859900 #fdf6e3
+    active_workspace #fdf6e3 #6c71c4 #fdf6e3
+    inactive_workspace #586e75 #93a1a1 #002b36
+    urgent_workspace #d33682 #d33682 #fdf6e3
+  }
+}
+
+# Multi monitor
+bindsym $mod+shift+a move workspace to output left
+bindsym $mod+shift+s move workspace to output right
+
+# class                 border  backgr. text    indicator
+client.focused          #859900 #859900 #fdf6e3 #2e9ef4
+client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
+client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+
+exec_always --no-startup-id kitti3 -p TL
+
+# https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland/#setting-values-in-gsettings
+exec_always import-gsettings
+
+bindsym $mod+n nop kitti3
+
+output 'Samsung Electric Company C24F390 HTQK801650' position 0 0
+output 'LG Electronics LG ULTRAWIDE 0x0000974A' position 1920 0
+
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+
+for_window [app_id="signal"] floating enable

@@ -41,8 +41,8 @@ color=#e74c3c
 
 [weather]
 command=curl -Ss 'https://wttr.in/Bangalore?0&T&Q' | cut -c 16- | head -2 | xargs echo
-# Every 30 minutes
-interval=1800
+# Every 5 minutes
+interval=300
 color=#A4C2F4
 
 [ip]
@@ -142,3 +142,12 @@ SHOW_UP_DOWN=0
 FONT_FAMILY=DejaVu Sans Mono
 FONT_SIZE=12
 CLOSE_TO_BOUNDARY_BUFFER=30
+
+[i3volume]
+label=
+command=~/i3-volume/volume output i3blocks
+interval=once
+signal=10
+color=#b8bb26
+separator_block_width=10
+markup=pango
