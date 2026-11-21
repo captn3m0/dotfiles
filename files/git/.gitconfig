@@ -46,18 +46,12 @@
 [push]
     default = current
 
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
 
 [core]
-    # https://github.com/so-fancy/diff-so-fancy
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 	preloadindex = true
 	quotepath = false
-	hooksPath = /home/nemo/.config/git/hooks
+	hooksPath = ~/.config/git/hooks
 
 [credential]
 	helper = /usr/bin/pass-git-helper
@@ -68,8 +62,6 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[diff-so-fancy]
-	useUnicodeRuler = false
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
@@ -86,3 +78,22 @@
 	path = ~/.config/git/identities/shauryaa
 [includeIf "gitdir:~/projects/personal/kapitan/"]
 	path = ~/.config/git/identities/kapitan
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	line-numbers = true
+[fetch]
+	prune = true
+[rebase]
+	autoStash = true
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	algorithm = histogram
+[commit]
+	verbose = true
+[branch]
+	sort = -committerdate
+[tag]
+	gpgSign = true
