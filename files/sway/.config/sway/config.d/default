@@ -210,4 +210,4 @@ set $powermenu ~/.config/sway/scripts/power_menu.sh
     bindsym $mod+Shift+grave exec makoctl dismiss --all
     bindsym $mod+Ctrl+grave exec makoctl restore
     bindsym $mod+Shift+n exec makoctl invoke
-    bindsym $mod+Ctrl+n exec makoctl mode -t do-not-disturb
+    bindsym $mod+Ctrl+n exec ~/.config/waybar/scripts/dnd.sh toggle

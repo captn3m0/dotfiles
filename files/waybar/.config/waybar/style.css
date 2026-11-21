@@ -60,6 +60,8 @@
 #mode,
 #network,
 #custom-keyboard-layout,
+#custom-darkman,
+#custom-dnd,
 #idle_inhibitor,
 #cpu,
 #memory,
@@ -182,4 +184,8 @@
     margin-left:15px;
     margin-right:15px;
     font-size:15px;
+}
+
+#custom-dnd.dnd {
+    color: #e5c07b;
 }
