@@ -1,0 +1,5 @@
+#!/bin/bash
+ln -sfn themes/light.conf "$HOME/.config/kitty/current-theme.conf"
+pkill -USR1 -x kitty
+pkill -RTMIN+8 -x waybar
+exit 0
