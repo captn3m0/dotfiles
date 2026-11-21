@@ -2,7 +2,14 @@
 
 I'm using GNU Stow to manage my configuration for now.
 
-See `bootstrap.sh` to see how stow works in this context.
+Each directory in `files/` is a stow package. Run `./bootstrap.sh` to link
+them all into `$HOME`; a conflicting package is skipped and reported.
+Run `stow -n -v --target ~ <pkg>` from `files/` for a dry run.
+
+Wayland only (sway, waybar, kitty). darkman switches kitty themes.
+
+Not tracked: `~/.ssh` keys, `known_hosts` and generated `config`
+(public hosts live in `files/ssh/.ssh/config.d/public`).
 
 ## Notes for self:
 
