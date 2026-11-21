@@ -78,3 +78,11 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[includeIf "gitdir:~/projects/work/razorpay/"]
+	path = ~/.config/git/identities/razorpay
+[includeIf "gitdir:~/projects/personal/aur/"]
+	path = ~/.config/git/identities/aur
+[includeIf "gitdir:~/projects/personal/shauryaa/"]
+	path = ~/.config/git/identities/shauryaa
+[includeIf "gitdir:~/projects/personal/kapitan/"]
+	path = ~/.config/git/identities/kapitan
