@@ -4,6 +4,8 @@ exec_always ~/.config/sway/scripts/import-gsettings
 # Set inner/outer gaps
 gaps inner 3
 gaps outer 3
+# Cancel the inner gap at the top edge, no gap under the screen top
+gaps top -3
 
 # Hide titlebar on windows:
 default_border pixel 1
