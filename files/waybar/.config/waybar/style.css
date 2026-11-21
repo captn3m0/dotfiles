@@ -10,8 +10,7 @@
  * Keyframes
  * -------------------------------------------------------------------------- */
 
-@define-color highlight #685878 ;
-@define-color base1  #19191e ;
+@import url("current-theme.css");
 
 @keyframes blink-warning {
     70% {
@@ -50,7 +49,7 @@
     border: none;
     border-radius: 0;
     background: transparent;
-    color: #e3e3ea;
+    color: @text;
     background-color: @base1;
     font-family: JetBrainsMono;
     font-size: 13px;
@@ -89,14 +88,14 @@
 
 #workspaces button {
     border-radius: 5px;
-    color: #eceff4;
+    color: @ws-text;
     padding: 1px 6px;
     margin-right: 2px;
     margin-left: 2px;
 }
 
 #workspaces button.focused {
-    border: 1px solid #d8dee9;
+    border: 1px solid @ws-border;
 }
 
 #workspaces button.urgent {

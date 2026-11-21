@@ -3,5 +3,7 @@ ln -sfn themes/dark.conf "$HOME/.config/kitty/current-theme.conf"
 pkill -USR1 -x kitty
 ln -sfn themes/dark.conf "$HOME/.config/mako/current-theme"
 makoctl reload 2>/dev/null
+ln -sfn themes/dark.css "$HOME/.config/waybar/current-theme.css"
+pkill -USR2 -x waybar
 pkill -RTMIN+8 -x waybar
 exit 0
