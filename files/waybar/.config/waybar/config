@@ -63,6 +63,7 @@
 
     "modules-right": [
         "custom/keyboard-layout",
+        "custom/darkman",
         "idle_inhibitor",
         "cpu",
         "memory",
@@ -83,6 +84,20 @@
         // See example config for sending signal to Waybar in ~/.config/sway/config.d/input
         "signal": 1,
         "on-click": "~/.config/waybar/scripts/keyhint.sh"
+    },
+
+    "custom/darkman": {
+        "exec": "~/.config/waybar/scripts/darkman.sh",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "dark": "󰖔",
+            "light": "󰖙",
+            "unknown": "?"
+        },
+        "interval": 300,
+        "signal": 8,
+        "on-click": "darkman toggle"
     },
 
     "idle_inhibitor": {
