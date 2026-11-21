@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Playdate SDK lives in /opt; set above any guard so build tools get it
+export PLAYDATE_SDK_PATH=/opt/playdate-sdk
+
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
@@ -21,6 +24,8 @@ pathadd /home/nemo/.local/share/junest/bin
 
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye > /dev/null
 
 function gemls(){
   tar --to-stdout -xf "$1" data.tar.gz | tar -zt
@@ -29,7 +34,6 @@ alias adb.run='apktool build src/ -o patched.apk && java -jar ~/apps/uber-apk-si
 alias mk='microk8s.kubectl'
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
 alias watch='watch '
-alias xclip='xclip -selection c'
 alias sl=ls
 alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
 alias dh='du -d1 -h'
@@ -70,7 +74,6 @@ pathadd "$HOME/.krew/bin"
 pathadd "$HOME/.local/bin"
 
 # slows shell for now.
-source <(kubectl completion bash)
 # Enable kubectl completion with k
 complete -F __start_kubectl k
 
@@ -91,15 +94,10 @@ composer-unlink() {
 
 # These 2 methods change the color scheme for my:
 # 1. Editor (sublime text)
-# 2. Terminal (alacritty)
-# 3. bat
-# 4. Monitor brightness (only one of the monitors). See https://github.com/rockowitz/ddcutil/issues/140
-# 5. Gtk theme
+# 2. bat
+# 3. Monitor brightness (only one of the monitors). See https://github.com/rockowitz/ddcutil/issues/140
 
-export ALACRITTY_COLOR_DIR=/home/nemo/projects/personal/dotfiles/files/themes/.config/alacritty/themes/colors
 export BAT_THEME="Solarized (light)"
-GTK_THEME_dark="NumixSolarizedDarkRed"
-GTK_THEME_light="NumixSolarizedLightGreen"
 BRIGHTNESS_dark=0
 BRIGHTNESS_light=99
 
@@ -107,20 +105,13 @@ function colorchange() {
   export BAT_THEME="Solarized ($1)"
   echo "✔️ bat"
 
-  alacritty-colorscheme -C "$ALACRITTY_COLOR_DIR" apply "base16-solarized-$1.yml"
-  echo "✔️ alacritty"
-
-  gtk_theme="GTK_THEME_$1"
-  xfconf-query -c xsettings -p /Net/ThemeName -s "${!gtk_theme}"
-  echo "✔️ gtk"
-
   # subl_settings="/home/nemo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
   # strip-json-comments "$subl_settings" | jq ".color_scheme=\"Packages/Solarized Color Scheme/Solarized ($1).sublime-color-scheme\"" > /tmp/sublime.json
   # mv /tmp/sublime.json "$subl_settings"
   # echo "✔️ sublime"
 
   brightness="BRIGHTNESS_$1"
-  if [[ $(xrandr --listmonitors|grep 2560) ]]; then
+  if swaymsg -t get_outputs | grep -q '"width": 2560'; then
     ddcutil --model "LG ULTRAWIDE" setvcp 0x10 ${!brightness}
   fi
   echo "✔️ monitor"
@@ -299,8 +290,10 @@ export COMP_WORDBREAKS
 # compinit
 export BLOCKSIZE=K
 # export CDPATH=.:~:~/src:/etc
-# export DISPLAY=:79
-export EDITOR='vim'
+export EDITOR=helix
+alias hx=helix
+alias vim=helix
+alias vi=helix
 
 export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'
 # put list of remote hosts in ~/.hosts ...
@@ -456,8 +449,6 @@ alias ssr='sudo systemctl restart'
 alias cda='composer dump-autoload'
 
 #### autojump using z
-alias z='j'     # cd, same functionality as j in autojump
-source /etc/profile.d/autojump.bash
 
 # Docker
 # docker run image
@@ -546,8 +537,6 @@ export JAVA_HOME=/usr/lib/jvm/default-runtime
 # karn https://github.com/prydonius/karn
 if command -v karn > /dev/null; then eval "$(karn init)"; fi
 
-# Disable beeps
-xset -b
 
 # function make-completion-wrapper () {
 #     local function_name="$2"
@@ -616,6 +605,7 @@ function starship_set_win_title(){
 
 starship_precmd_user_func="starship_set_win_title"
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
 
 [ -s "/usr/share/scm_breeze/scm_breeze.sh" ] && source "/usr/share/scm_breeze/scm_breeze.sh"
 
