@@ -112,7 +112,6 @@ function colorchange() {
 }
 
 alias dark="colorchange dark"
-alias light="colorchange light"
 
 # https://prefetch.net/blog/2020/07/14/decoding-json-web-tokens-jwts-from-the-linux-command-line/
 # This puts them in bash history, so be careful
@@ -137,7 +136,6 @@ alias subtitles='subliminal -p addic7ed -l en -s -- $1'
 alias pu='phpunit'
 alias ghpr='gh pull-request'
 alias ssdr='sudo systemctl daemon-reload'
-alias cat='bat'
 alias fomu.setup='export PATH=/home/nemo/apps/fomu/bin:$PATH'
 
 # Gets list of all packages from AUR sorted by Size
@@ -193,10 +191,6 @@ fi
 # Drone related stuff
 export DRONE_SERVER=https://drone.razorpay.com
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # k8s
 alias k='kubectl'
@@ -394,45 +388,32 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
 alias gitci='git commit -a -m'
-alias la_='ls -Al'									# show hidden files
-alias l?='cat ~/technical/tips/ls'
-alias lc='ls -ltcr'       								# sort by and show change time, most recent last
-alias ldir='ls -lhA |grep ^d'
-alias ld='ls -ltr' 									# sort by date
-alias lfiles='ls -lhA |grep ^-'
-alias lf="ls -Alh --color | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"	# full ls with octal+symbolic permissions
-alias lgg='ls --color=always | grep --color=always -i'					# quick case-insenstive partial filename search
-alias lh='ls -Al' 									# show hidden files
-alias lh='ls -lAtrh' 									# sort by date and human readable
-alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
-alias li='ls -ai1|sort' 								# sort by index number
-alias linecount='wc -l $1'								# count number of lines in text file
-alias lk='ls -lSr'									# sort by size
-alias llllll='ls -FlaXo --color=auto'							# sort the extensions alphabetically; good for winfiles
-alias lllll='ls -Fla --full-time -o -Q --color=auto'					# whatever
-alias llll='ls -laS --color=auto'							# sort by size
-alias lll='ls -Falot --color=auto'							# sort by mod time
-alias ll_='ls -l'									# long listing
-alias l.='ls -d .[[:alnum:]]* 2> /dev/null || echo "No hidden file here..."'		# list only hidden files
-alias l='ls -hF --color'								# quick listing
-alias lm_='ls -al |more'    								# pipe through 'more'
-alias ln='ln -s'
-alias lr='ls -lR'									# recursice ls
-alias lrt='ls -lart'									# list files with last modified at the end
-alias lsam='ls -am' 									# List files horizontally
-alias lsdd='ls -latr'                                 					# sort by date
-alias lsd='ls -l | grep "^d"'								# list only directories
-alias lsize='ls --sort=size -lhr'							# list by size
-alias lsl='ls -lah'                                   					# long list, human-readable
-alias ls='ls -hF --color'								# add colors for filetype recognition
-alias lsnew='ls -Alh --color=auto --time-style=+%D | grep `date +%D`'
-alias lss='ls -shaxSr'                         			       			# sort by size
-alias lsss='ls -lrt | grep $1'								# to see something coming into ls output: lss
-alias lsx='ls -ax' 									# sort right to left rather then in columns
-alias lt_='ls -alt|head -20' 								# 20, all, long listing, modification time
-alias lt='ls -ltr'         								# sort by date, most recent last
-alias lu='ls -ltur'        								# sort by and show access time, most recent last
-alias lx='ls -lXB'									# sort by extension
+alias ls='eza --group-directories-first'
+alias ll='eza -lah --git --group-directories-first'
+alias la='eza -a'
+alias l='eza -F'
+alias lt='eza -l --sort=modified'
+alias lk='eza -l --sort=size'
+alias ld='eza -lD'
+
+mkcd() { mkdir -p -- "$1" && cd -- "$1"; }
+
+extract() {
+  case "$1" in
+    *.tar.gz|*.tgz) tar xzf "$1" ;;
+    *.tar.bz2|*.tbz2) tar xjf "$1" ;;
+    *.tar.xz|*.txz) tar xJf "$1" ;;
+    *.tar.zst) tar --zstd -xf "$1" ;;
+    *.tar) tar xf "$1" ;;
+    *.zip|*.jar|*.apk) unzip "$1" ;;
+    *.gz) gunzip "$1" ;;
+    *.bz2) bunzip2 "$1" ;;
+    *.xz) unxz "$1" ;;
+    *.7z) 7z x "$1" ;;
+    *.rar) unrar x "$1" ;;
+    *) echo "extract: unknown format: $1" >&2; return 1 ;;
+  esac
+}
 alias sss='sudo systemctl start'
 alias sse='sudo systemctl enable'
 alias ssd='sudo systemctl disable'
