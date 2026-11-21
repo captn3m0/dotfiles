@@ -13,3 +13,4 @@ files/ssh/.ssh/cm/
 files/dev/.docker/cli-plugins/
 files/dev/.docker/scout/
 recovery-arch-iso/
+files/mako/.config/mako/current-theme

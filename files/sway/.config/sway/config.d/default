@@ -204,3 +204,10 @@ set $powermenu ~/.config/sway/scripts/power_menu.sh
     bindsym Ctrl+Print exec ~/.config/sway/scripts/screenshot_window.sh
     # Screenshot the current display and pipe to swappy
     bindsym Shift+Print exec ~/.config/sway/scripts/screenshot_display.sh
+
+    # Notifications (mako)
+    bindsym $mod+grave exec makoctl dismiss
+    bindsym $mod+Shift+grave exec makoctl dismiss --all
+    bindsym $mod+Ctrl+grave exec makoctl restore
+    bindsym $mod+Shift+n exec makoctl invoke
+    bindsym $mod+Ctrl+n exec makoctl mode -t do-not-disturb

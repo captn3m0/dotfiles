@@ -1,0 +1,19 @@
+include=~/.config/mako/current-theme
+
+font=UbuntuMono 12.5
+width=315
+height=200
+padding=10
+margin=10
+icon-path=/usr/share/icons/Arc-X-D
+max-icon-size=70
+layer=overlay
+border-size=5
+border-radius=0
+default-timeout=5000
+
+[urgency=high]
+ignore-timeout=1
+
+[mode=do-not-disturb]
+invisible=1

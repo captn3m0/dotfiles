@@ -1,5 +1,7 @@
 #!/bin/bash
 ln -sfn themes/light.conf "$HOME/.config/kitty/current-theme.conf"
 pkill -USR1 -x kitty
+ln -sfn themes/light.conf "$HOME/.config/mako/current-theme"
+makoctl reload 2>/dev/null
 pkill -RTMIN+8 -x waybar
 exit 0
