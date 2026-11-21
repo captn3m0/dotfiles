@@ -18,9 +18,6 @@ gemread() {
 pathadd '/home/nemo/bin'
 pathadd '/home/nemo/projects/go/bin'
 pathadd '/bin'
-pathadd '/snap/bin'
-
-pathadd /home/nemo/.local/share/junest/bin
 
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -32,7 +29,6 @@ function gemls(){
 }
 alias adb.run='apktool build src/ -o patched.apk && java -jar ~/apps/uber-apk-signer-1.1.0.jar -a patched.apk  && adb install -r -d patched-aligned-debugSigned.apk && adb shell monkey -p '$1' -v 1'
 alias mk='microk8s.kubectl'
-alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
 alias watch='watch '
 alias sl=ls
 alias dynamodump='docker run bchew/dynamodump /usr/local/bin/dynamodump'
@@ -43,8 +39,6 @@ alias kc='kapitan compile'
 # https://tizardsbriefcase.com/1059/linux/remove-query-string-filename-wget
 alias clean.filenames='for file in *; do mv "$file" "${file%%\?*}"; done'
 
-alias dunst.pause='notify-send "DUNST_COMMAND_PAUSE"'
-alias dunst.resume='notify-send "DUNST_COMMAND_RESUME"'
 
 alias sp="docker exec -it steampipe steampipe "
 
@@ -135,7 +129,7 @@ if [ -f /usr/sbin/virtualenvwrapper.sh ]; then
   source /usr/sbin/virtualenvwrapper_lazy.sh
 fi
 
-alias sublime='/usr/bin/sublime-text'
+alias sublime=subl
 alias subl3=subl
 alias chrome='chromium-browser'
 alias gp='git push'
@@ -295,7 +289,6 @@ alias hx=helix
 alias vim=helix
 alias vi=helix
 
-export GREP_OPTIONS='-D skip --binary-files=without-match --ignore-case'
 # put list of remote hosts in ~/.hosts ...
 export HOSTFILE=$HOME/.hosts
 # export IGNOREEOF=1				# prevent CTRL-D from immediately logging out
@@ -534,8 +527,6 @@ export JAVA_HOME=/usr/lib/jvm/default-runtime
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
 # Manage multiple Git identities
-# karn https://github.com/prydonius/karn
-if command -v karn > /dev/null; then eval "$(karn init)"; fi
 
 
 # function make-completion-wrapper () {
@@ -612,7 +603,7 @@ eval "$(zoxide init bash)"
 
 function ytdl.album() {
     cd $(mktemp -d)
-    youtube-dl --quiet -f "bestaudio[ext=m4a]" --output "audio.m4a" "$1"
+    yt-dlp --quiet -f "bestaudio[ext=m4a]" --output "audio.m4a" "$1"
     youtube-cue --audio-file "audio.m4a" "$1" tracks.cue
     m4acut -C tracks.cue "audio.m4a" && \
     trash audio.m4a && \
@@ -621,7 +612,7 @@ function ytdl.album() {
 
 function gaanadl.album() {
     cd $(mktemp -d)
-    youtube-dl --rm-cache-dir --no-cache-dir --quiet --autonumber-start 1 --add-metadata -o "%(autonumber)d - %(title)s.m4a" "$1"
+    yt-dlp --rm-cache-dir --no-cache-dir --quiet --embed-metadata -o "%(autonumber)d - %(title)s.m4a" "$1"
     beet import -map .
     cd -
 }
