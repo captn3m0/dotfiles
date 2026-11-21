@@ -26,6 +26,7 @@ export git_status_command="git_status_shortcuts"
 # Alias
 git_index_alias="c"    # Switch to a repo in the (c)ode directory
 
+
 # Git Aliases
 # ----------------------------------------------
 git_alias="g"
@@ -33,13 +34,13 @@ git_alias="g"
 # 1. 'SCM Breeze' functions
 git_status_shortcuts_alias="gs"
 git_add_shortcuts_alias="ga"
-git_add_patch_alias="gap"
-git_add_updated_alias="gau"
-git_show_files_alias="gsf"
 exec_scmb_expand_args_alias="ge"
+git_show_files_alias="gsf"
+git_commit_all_alias="gca"
+git_grep_shortcuts_alias="gtrep"
 # 2. Commands that handle paths (with shortcut args expanded)
 git_checkout_alias="gco"
-git_checkout_branch_alias="gcob"
+git_checkout_branch_alias="gcb"
 git_commit_alias="gc"
 git_commit_verbose_alias="gcv"
 git_reset_alias="grs"
@@ -47,16 +48,20 @@ git_reset_hard_alias="grsh"
 git_rm_alias="grm"
 git_blame_alias="gbl"
 git_diff_alias="gd"
+git_diff_no_whitespace_alias="gdnw"
+git_diff_file_alias="gdf"
 git_diff_word_alias="gdw"
 git_diff_cached_alias="gdc"
 git_difftool_alias="gdt"
+git_mergetool_alias="gmt"
 # 3. Standard commands
 git_clone_alias="gcl"
 git_fetch_alias="gf"
 git_fetch_all_alias="gfa"
 git_fetch_and_rebase_alias="gfr"
 git_pull_alias="gpl"
-git_push_alias="gps"
+git_pull_rebase_alias="gplr"
+git_push_alias="gp"
 git_push_force_alias="gpsf"
 git_pull_then_push_alias="gpls"
 git_status_original_alias="gst"
@@ -64,7 +69,8 @@ git_status_short_alias="gss"
 git_clean_alias="gce"
 git_clean_force_alias="gcef"
 git_add_all_alias="gaa"
-git_commit_all_alias="gca"
+git_add_patch_alias="gap"
+git_add_updated_alias="gau"
 git_commit_amend_alias="gcm"
 git_commit_amend_no_msg_alias="gcmh"
 git_commit_no_msg_alias="gch"
@@ -85,7 +91,7 @@ git_merge_only_fast_forward_alias="gmff"
 git_cherry_pick_alias="gcp"
 git_log_alias="gl"
 git_log_all_alias="gla"
-git_log_stat_alias="gls"
+git_log_stat_alias="glst"
 git_log_graph_alias="glg"
 git_show_alias="gsh"
 git_show_summary="gsm"  # (gss taken by git status short)
@@ -94,15 +100,23 @@ git_stash_apply_alias="gasha"
 git_stash_pop_alias="gashp"
 git_stash_list_alias="gashl"
 git_tag_alias="gt"
+git_submodule_update_alias="gsu"
+git_submodule_update_rec_alias="gsur"
+git_top_level_alias="gtop"
+git_whatchanged_alias="gwc"
+git_apply_alias="gapp"
+# Hub aliases (https://github.com/github/hub)
+git_pull_request_alias="gpr"
 
 
 # Git Keyboard Shortcuts
 # ----------------------------------------------
 # Keyboard shortcuts are on by default. Set this to 'false' to disable them.
 git_keyboard_shortcuts_enabled="true"
-git_commit_all_keys="\C-x "        		  # CTRL+x, SPACE
-git_add_and_commit_keys="\C-xc"    		  # CTRL+x, c
-git_commit_all_with_ci_skip_keys="\C-xv"  # CTRL+x, v    (Appends [ci skip] to commit message)
+git_commit_all_keys="\C-x "               # CTRL+x, SPACE
+git_add_and_commit_keys="\C-xc"           # CTRL+x, c
+git_commit_all_with_ci_skip_keys="\C-xv"  # CTRL+x, v    (Appends [ci skip] to message)
+git_add_and_amend_commit_keys="\C-xz"     # CTRL+x, z
 
 
 # Shell Command Wrapping
@@ -110,4 +124,6 @@ git_commit_all_with_ci_skip_keys="\C-xv"  # CTRL+x, v    (Appends [ci skip] to c
 # Expand numbered args for common shell commands
 shell_command_wrapping_enabled="true"
 # Here you can tweak the list of wrapped commands.
-scmb_wrapped_shell_commands="vim emacs gedit cat rm cp mv ln cd bat glow"
+scmb_wrapped_shell_commands="vim emacs gedit cat rm cp mv ln cd bat"
+# Add numbered shortcuts to output of ls -l, just like 'git status'
+shell_ls_aliases_enabled="true"

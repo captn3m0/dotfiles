@@ -1,0 +1,20 @@
+#!/bin/sh
+# Global hooksPath disables .git/hooks, so run gitleaks then chain to the repo's own hook
+hook=$(basename "$0")
+
+if [ "$hook" = pre-commit ]; then
+  if command -v gitleaks >/dev/null 2>&1; then
+    gitleaks git --pre-commit --staged --redact --no-banner --log-level warn -v || {
+      echo "gitleaks: secrets in staged changes; fix them or commit with --no-verify" >&2
+      exit 1
+    }
+  else
+    echo "gitleaks not installed, skipping secret scan" >&2
+  fi
+fi
+
+local_hook="$(git rev-parse --git-common-dir)/hooks/$hook"
+if [ -x "$local_hook" ]; then
+  exec "$local_hook" "$@"
+fi
+exit 0

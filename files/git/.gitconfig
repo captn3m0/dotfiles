@@ -1,6 +1,6 @@
 [user]
     name = Nemo
-    email = me@captnemo.in
+    email = commits@captnemo.in
 	signingkey = 468F9102AB8BF8C959C2F9A4F94EA74A4EA9EB52
 
 [github]
@@ -8,9 +8,9 @@
 
 [alias]
     rod = rebase origin/development
-    rom = rebase origin/master
-    rum = rebase upstream/master
-    pom = push origin master
+    rom = rebase origin/main
+    rum = rebase upstream/main
+    pom = push origin main
     pod = push origin development
     pogh = push origin gh-pages
     get = pull --rebase
@@ -19,9 +19,9 @@
     fo  = fetch origin
     co  = checkout
     ci  = commit
-    from = "! git fetch origin; git rebase origin/master"
+    from = "! git fetch origin; git rebase origin/main"
     frogh = "! git fetch origin; git rebase origin/gh-pages"
-    frum = "! git fetch upstream; git rebase upstream/master"
+    frum = "! git fetch upstream; git rebase upstream/main"
 	pushall = !git remote | xargs -L1 git push --all
 
 [rerere]
@@ -57,6 +57,7 @@
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	preloadindex = true
 	quotepath = false
+	hooksPath = /home/nemo/.config/git/hooks
 
 [credential]
 	helper = /usr/bin/pass-git-helper
@@ -71,3 +72,9 @@
 	useUnicodeRuler = false
 [init]
 	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
