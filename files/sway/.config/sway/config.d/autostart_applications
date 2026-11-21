@@ -15,7 +15,7 @@ exec_always swayidle -w before-sleep "gtklock -d -m powerbar"
 # Desktop notifications
 exec mako
 
-# Start foot server
+# On-screen volume and brightness popups
 exec avizo-service
 
 # cliphist

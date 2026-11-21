@@ -55,7 +55,7 @@
         "format-ethernet": "󰈀 {bandwidthDownBits:>} 󰶡 {bandwidthUpBits:>} 󰶣",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
         "format-disconnected": " Disconnected",
-        "on-click": "footclient -T waybar_nmtui -e nmtui",
+        "on-click": "kitty -T waybar_nmtui -e nmtui",
         "interval": 2
     },
 
@@ -117,13 +117,13 @@
             "warning": 70,
             "critical": 90,
         },
-        "on-click": "footclient -T waybar_htop -e htop"
+        "on-click": "kitty -T waybar_htop -e htop"
     },
 
     "memory": {
         "interval": 5,
         "format": "MEM{:>3}%",
-        "on-click": "footclient -T waybar_htop -e htop",
+        "on-click": "kitty -T waybar_htop -e htop",
         "states": {
             "warning": 70,
             "critical": 90
