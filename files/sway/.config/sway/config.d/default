@@ -1,0 +1,206 @@
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Set default terminal emulator
+set $term kitty
+
+# Application launcher
+set $launcher fuzzel
+
+# Application menu
+set $menu nwg-drawer
+
+# Power Menu
+set $powermenu ~/.config/sway/scripts/power_menu.sh
+
+### Key bindings
+#
+# Basics:
+#
+    # Launch the terminal
+    bindsym $mod+Return split v; exec $term
+    bindsym $mod+Shift+Return split h; exec $term
+
+    # Open the power menu
+    bindsym $mod+Shift+e exec $powermenu
+
+    # Kill focused window
+    bindsym $mod+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $launcher
+
+    # Menu
+    bindsym $mod+Shift+d exec $menu
+
+    # Lock screen
+    bindsym $mod+l exec gtklock
+    # This is the default MacOS keybinding for locking the screen
+    bindsym $mod+ctrl+q exec gtklock
+
+    # Activities
+    bindsym $mod+shift+p exec ~/.config/sway/scripts/window_switcher.sh
+
+    # Move windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Change "normal" to "inverse" to switch left and right
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+#
+# Moving around:
+#
+    bindsym {
+        # Change window focus
+        $mod+Left focus left
+        $mod+Down focus down
+        $mod+Up focus up
+        $mod+Right focus right
+
+        # Move the focused window
+        $mod+Shift+Left move left
+        $mod+Shift+Down move down
+        $mod+Shift+Up move up
+        $mod+Shift+Right move right
+    }
+
+#
+# Workspaces:
+#
+    # Workspace bindings are using bindcode instead of bindsym for better Azerty compatibility.
+    # https://github.com/EndeavourOS-Community-Editions/sway/pull/81
+    # Use wev to find keycodes for setting up other bindings this way.
+
+    bindcode {
+        # Switch to workspace
+        $mod+10 workspace number 1
+        $mod+11 workspace number 2
+        $mod+12 workspace number 3
+        $mod+13 workspace number 4
+        $mod+14 workspace number 5
+        $mod+15 workspace number 6
+        $mod+16 workspace number 7
+        $mod+17 workspace number 8
+        $mod+18 workspace number 9
+        $mod+19 workspace number 10
+
+        # Move focused container to workspace
+        $mod+Shift+10 move container to workspace number 1
+        $mod+Shift+11 move container to workspace number 2
+        $mod+Shift+12 move container to workspace number 3
+        $mod+Shift+13 move container to workspace number 4
+        $mod+Shift+14 move container to workspace number 5
+        $mod+Shift+15 move container to workspace number 6
+        $mod+Shift+16 move container to workspace number 7
+        $mod+Shift+17 move container to workspace number 8
+        $mod+Shift+18 move container to workspace number 9
+        $mod+Shift+19 move container to workspace number 10
+    }
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+
+#
+# Layout stuff:
+#
+    # Set how the current window will be split
+    # Split the window vertically
+    bindsym $mod+v splitv
+    # Split the window horizontally
+    bindsym $mod+b splith
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+
+#
+# Resizing containers:
+#
+    bindsym {
+        # Resize with arrow keys
+        $mod+ctrl+Right resize shrink width 20 px
+        $mod+ctrl+Up resize grow height 20 px
+        $mod+ctrl+Down resize shrink height 20 px
+        $mod+ctrl+Left resize grow width 20 px
+    }
+
+    # Resize floating windows with mouse scroll:
+    bindsym --whole-window --border {
+        # Resize vertically
+        $mod+button4 resize shrink height 5 px or 5 ppt
+        $mod+button5 resize grow height 5 px or 5 ppt
+        # Resize horizontally
+        $mod+Shift+button4 resize shrink width 5 px or 5 ppt
+        $mod+Shift+button5 resize grow width 5 px or 5 ppt
+    }
+
+#
+# Media Keys
+#
+    bindsym {
+
+        XF86AudioRaiseVolume exec volumectl -u up
+        XF86AudioLowerVolume exec volumectl -u down
+        XF86AudioMute exec volumectl toggle-mute
+        XF86AudioMicMute exec volumectl -m toggle-mute
+
+        XF86MonBrightnessUp exec lightctl up
+        XF86MonBrightnessDown exec lightctl down
+
+        # Player
+        XF86AudioPlay exec playerctl play-pause
+        XF86AudioNext exec playerctl next
+        XF86AudioPrev exec playerctl previous
+    }
+
+#
+# App shortcuts
+#
+    # Launch the file explorer
+    bindsym $mod+n exec thunar
+
+    # Launch the browser
+    bindsym $mod+o exec firefox
+
+    # Launch the clipboard manager
+    bindsym $mod+Ctrl+v exec cliphist list | fuzzel -d -w 90 -l 30 -p "Select an entry to copy it to your clipboard buffer:"| cliphist decode | wl-copy
+    # Delete an entry from the clipboard manager
+    bindsym $mod+Ctrl+x exec cliphist list | fuzzel -d -w 90 -l 30 -t cc9393ff -S cc9393ff -p "Select an entry to delete it from cliphist:"| cliphist delete
+    # Note: you can clear all cliphist entries by running `cliphist wipe`
+
+#
+# Screenshots
+#
+    # Snip a selection and pipe to swappy
+    bindsym print exec grim -g "$(slurp)" - | swappy -f -
+    # Screenshot a window and pipe to swappy
+    bindsym Ctrl+Print exec ~/.config/sway/scripts/screenshot_window.sh
+    # Screenshot the current display and pipe to swappy
+    bindsym Shift+Print exec ~/.config/sway/scripts/screenshot_display.sh

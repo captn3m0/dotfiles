@@ -1,0 +1,31 @@
+### Input configuration
+#
+# Read `man 5 sway-input` for more information about this section.
+
+# Touchpad configuration
+input type:touchpad {
+    # disable while typing
+    dwt enabled
+    tap enabled
+    natural_scroll disabled
+}
+
+# Enable numlock by default
+input type:keyboard {
+  xkb_numlock enabled
+  # Caps is now ctrl
+  xkb_options caps:ctrl_modifier
+  xkb_layout eu
+}
+
+
+# # Toggle between keyboard layouts. This example has the "us" and "gb"
+# # keyboard layouts, and uses Alt+Shift to toggle between them.
+# input "type:keyboard" {
+#     xkb_layout "us,gb"
+#     xkb_options "grp:alt_shift_toggle"
+# }
+# # Assign the same binding to "pkill -RTMIN+1 waybar" to send signal to
+# # the Waybar keyboard module (so the module shows the updated layout).
+# # This example uses Alt + left Shift.
+# bindsym Alt+Shift_L exec "pkill -RTMIN+1 waybar"
