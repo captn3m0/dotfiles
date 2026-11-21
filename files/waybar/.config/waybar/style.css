@@ -1,0 +1,185 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@define-color highlight #685878 ;
+@define-color base1  #19191e ;
+
+@keyframes blink-warning {
+    70% {
+        color: white;
+    }
+
+    to {
+        color: white;
+        background-color: orange;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: white;
+    }
+
+    to {
+        color: white;
+        background-color: red;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+    margin: 1px;
+    padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: #e3e3ea;
+    background-color: @base1;
+    font-family: JetBrainsMono;
+    font-size: 13px;
+}
+
+/* Every modules */
+#mode,
+#network,
+#custom-keyboard-layout,
+#idle_inhibitor,
+#cpu,
+#memory,
+#backlight,
+#pulseaudio,
+#battery,
+#clock,
+#tray {
+    padding:0.5rem 0.6rem;
+    margin: 1px 0px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+#custom-launcher {
+    margin-left:15px;
+    margin-right:10px;
+}
+
+#workspaces {
+    font-size:13px;
+}
+
+#workspaces button {
+    border-radius: 5px;
+    color: #eceff4;
+    padding: 1px 6px;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+#workspaces button.focused {
+    border: 1px solid #d8dee9;
+}
+
+#workspaces button.urgent {
+    border-color: #c9545d;
+    color: #c9545d;
+}
+
+#mode {
+    background: @highlight;
+    border-bottom: 3px transparent;
+    color:white;
+    margin-left: 5px;
+    padding: 7px;
+}
+
+#window {
+    font-weight: bold;
+}
+
+#network.disconnected {
+    color: orange;
+}
+
+#cpu.warning {
+    color: orange;
+}
+
+#cpu.critical {
+    color: red;
+}
+
+#memory {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.warning {
+    color: orange;
+ }
+
+#memory.critical {
+    color: red;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+#backlight.icon {
+}
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+    color: @highlight;
+}
+
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.warning {
+    color: orange;
+}
+
+#battery.critical {
+    color: red;
+}
+
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#custom-power {
+    margin-left:15px;
+    margin-right:15px;
+    font-size:15px;
+}

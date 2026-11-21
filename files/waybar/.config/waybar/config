@@ -1,0 +1,178 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    // "height": 30, // Auto-height is used when commented
+    // "width": 1280, // Full screen width when commented
+    "spacing": 5, // Gaps between modules (in px)
+    // See `man waybar` for more configuration options
+
+// Configuration - modules-left
+
+    "modules-left": [
+        "custom/launcher",
+        "sway/workspaces",
+        "sway/mode",
+        "sway/window"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10"
+        }
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>",
+        "tooltip": false
+    },
+
+    "sway/window": {
+        "format": "{}",
+        //"all-outputs": true, // Active window shows only on active display when commented
+        "max-length": 120
+    },
+
+// Configuration - modules-center
+
+    "modules-center": [
+        "network"
+    ],
+
+    "network": {
+        "format-disabled": " Disabled",
+        "format-wifi": "",
+        "tooltip-format-wifi": "{essid}",
+        "format-ethernet": "󰈀 {bandwidthDownBits:>} 󰶡 {bandwidthUpBits:>} 󰶣",
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "format-disconnected": " Disconnected",
+        "on-click": "footclient -T waybar_nmtui -e nmtui",
+        "interval": 2
+    },
+
+// Configuration - modules-right
+
+    "modules-right": [
+        "custom/keyboard-layout",
+        "idle_inhibitor",
+        "cpu",
+        "memory",
+        "backlight",
+        "pulseaudio",
+        "battery",
+        "bluetooth",
+        "clock",
+        "tray",
+        "custom/power"
+    ],
+
+    "custom/keyboard-layout": {
+      	"exec": "i=$(swaymsg -t get_inputs); echo \"\"; echo \"$i\" | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+        "format": "",
+        // Interval set only as a fallback; use signal to update the module more immediately
+        "interval": 30,
+        // See example config for sending signal to Waybar in ~/.config/sway/config.d/input
+        "signal": 1,
+        "on-click": "~/.config/waybar/scripts/keyhint.sh"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip-format-activated": "Idle Inhibitor Activated",
+        "tooltip-format-deactivated": "Idle Inhibitor Deactivated"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "{usage:>3}%",
+        "states": {
+            "warning": 70,
+            "critical": 90,
+        },
+        "on-click": "footclient -T waybar_htop -e htop"
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "MEM{:>3}%",
+        "on-click": "footclient -T waybar_htop -e htop",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": ["󰄰", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+        "tooltip-format": "Backlight (Scroll): {percent:}%",
+        "on-scroll-down": "brightnessctl -c backlight set 5%-",
+        "on-scroll-up": "brightnessctl -c backlight set +5%"
+    },
+
+    "pulseaudio": {
+        "scroll-step": 2,
+        "format": "{icon}",
+        "format-muted":"󰝟 muted",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon}",
+        "tooltip-format": "Battery: {capacity:}%. {timeTo}",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-connected": "󰂱 {num_connections}",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "tooltip-format": "{controller_alias}: {status}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "kitty --title waybar_bluetui -e bluetui"
+    },
+
+    "clock": {
+        "format": "󰅐 {:%d %b %H:%M (%Z)}",
+        "tooltip-format": "{tz_list}",
+        "timezones": [
+            "Europe/Berlin",
+            "Asia/Kolkata",
+            "Europe/London",
+            "Etc/UTC"
+        ]
+    },
+
+    "tray": {
+        "icon-size": 20,
+        "spacing":5
+     }
+}
