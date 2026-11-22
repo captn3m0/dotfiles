@@ -106,7 +106,7 @@
 #mode {
     background: @highlight;
     border-bottom: 3px transparent;
-    color:white;
+    color: @base1;
     margin-left: 5px;
     padding: 7px;
 }
