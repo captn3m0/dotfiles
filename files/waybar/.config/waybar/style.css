@@ -104,7 +104,7 @@
 }
 
 #mode {
-    background: @highlight;
+    background: @accent2;
     border-bottom: 3px transparent;
     color: @base1;
     margin-left: 5px;
