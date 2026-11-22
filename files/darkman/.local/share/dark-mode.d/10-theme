@@ -1,5 +1,6 @@
 #!/bin/bash
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface icon-theme breeze-dark
 ln -sfn themes/dark.conf "$HOME/.config/mako/current-theme"
 makoctl reload 2>/dev/null
 ln -sfn themes/dark.css "$HOME/.config/waybar/current-theme.css"
