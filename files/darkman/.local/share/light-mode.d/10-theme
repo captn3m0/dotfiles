@@ -1,4 +1,5 @@
 #!/bin/bash
+gsettings set org.gnome.desktop.interface color-scheme prefer-light
 ln -sfn themes/light.conf "$HOME/.config/mako/current-theme"
 makoctl reload 2>/dev/null
 ln -sfn themes/light.css "$HOME/.config/waybar/current-theme.css"
