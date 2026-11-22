@@ -5,7 +5,6 @@ files/ranger/.config/ranger/bookmarks
 files/ranger/.config/ranger/tagged
 files/mpv/.config/mpv/watch_later/
 files/display/.config/nitrogen
-files/kitty/.config/kitty/current-theme.conf
 files/ssh/.ssh/config
 files/ssh/.ssh/known_hosts*
 files/ssh/.ssh/servers/
