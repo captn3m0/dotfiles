@@ -1,0 +1,36 @@
+@import url("theme.css");
+
+:root {
+  --lwt-accent-color: var(--t-bg) !important;
+  --lwt-text-color: var(--t-fg) !important;
+  --toolbar-bgcolor: var(--t-bg) !important;
+  --toolbar-color: var(--t-fg) !important;
+  --toolbar-field-background-color: var(--t-box) !important;
+  --toolbar-field-color: var(--t-fg) !important;
+  --toolbar-field-border-color: var(--t-border) !important;
+  --toolbar-field-focus-background-color: var(--t-box) !important;
+  --toolbar-field-focus-color: var(--t-fg) !important;
+  --tab-selected-bgcolor: var(--t-box) !important;
+  --tab-selected-textcolor: var(--t-fg) !important;
+  --urlbar-box-bgcolor: var(--t-box) !important;
+  --arrowpanel-background: var(--t-box) !important;
+  --arrowpanel-color: var(--t-fg) !important;
+  --arrowpanel-border-color: var(--t-border) !important;
+  --sidebar-background-color: var(--t-bg) !important;
+  --sidebar-text-color: var(--t-fg) !important;
+  --focus-outline-color: var(--t-accent) !important;
+}
+
+#navigator-toolbox,
+#nav-bar,
+#TabsToolbar,
+#toolbar-menubar,
+#PersonalToolbar,
+#sidebar-main {
+  background-color: var(--t-bg) !important;
+  color: var(--t-fg) !important;
+}
+
+.tab-background[selected] {
+  background-color: var(--t-box) !important;
+}

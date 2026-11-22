@@ -1,0 +1,23 @@
+@import url("theme.css");
+
+@-moz-document url-prefix("about:") {
+  :root {
+    --in-content-page-background: var(--t-bg) !important;
+    --in-content-page-color: var(--t-fg) !important;
+    --in-content-box-background: var(--t-box) !important;
+    --in-content-box-border-color: var(--t-border) !important;
+    --in-content-border-color: var(--t-border) !important;
+    --in-content-accent-color: var(--t-accent) !important;
+    --in-content-primary-button-background: var(--t-accent) !important;
+    --in-content-primary-button-text-color: var(--t-on-accent) !important;
+    --in-content-link-color: var(--t-link) !important;
+    --background-color-canvas: var(--t-bg) !important;
+    --background-color-box: var(--t-box) !important;
+    --text-color: var(--t-fg) !important;
+    --border-color: var(--t-border) !important;
+    --color-accent-primary: var(--t-accent) !important;
+    --link-color: var(--t-link) !important;
+    --newtab-background-color: var(--t-bg) !important;
+    --newtab-text-primary-color: var(--t-fg) !important;
+  }
+}

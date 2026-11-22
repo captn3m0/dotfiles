@@ -1,0 +1,21 @@
+/* Light: Gruvbox soft, dark: 1984; same palette as kitty and waybar */
+:root {
+  --t-bg: #f2e5bc;
+  --t-box: #fbf1c7;
+  --t-fg: #3c3836;
+  --t-border: #d5c4a1;
+  --t-accent: #d65d0e;
+  --t-link: #076678;
+  --t-on-accent: #fbf1c7;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --t-bg: #0d0f31;
+    --t-box: #14174a;
+    --t-fg: #ffffff;
+    --t-border: #2a2e6b;
+    --t-accent: #00d5eb;
+    --t-link: #46bdff;
+    --t-on-accent: #0d0f31;
+  }
+}
