@@ -387,6 +387,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
+alias gsureml2md='uv run https://raw.githubusercontent.com/captn3m0/gsur-eml-to-markdown/refs/heads/main/convert.py'
 alias gitci='git commit -a -m'
 alias ls='eza --group-directories-first'
 alias ll='eza -lah --git --group-directories-first'
